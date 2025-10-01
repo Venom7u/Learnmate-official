@@ -429,3 +429,141 @@ body {
 .module-link:hover {
     text-decoration: underline;
 }
+/* Auth Modal Styles */
+.auth-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.auth-modal {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.auth-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.auth-modal-header h2 {
+    margin: 0;
+    color: #333;
+}
+
+.close-auth-btn {
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.close-auth-btn:hover {
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.auth-submit-btn {
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.auth-submit-btn:hover {
+    background: #0056b3;
+}
+
+.auth-switch {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.auth-switch a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.auth-switch a:hover {
+    text-decoration: underline;
+}
+
+/* Navigation Auth Styles */
+.nav-auth {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-login, .btn-signup, .btn-logout {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-login {
+    background: transparent;
+    border: 1px solid #007bff;
+    color: #007bff;
+}
+
+.btn-signup {
+    background: #007bff;
+    color: white;
+}
+
+.btn-logout {
+    background: #dc3545;
+    color: white;
+}
+
+.user-welcome {
+    font-weight: bold;
+    color: #333;
+}
+
+.user-courses {
+    background: #28a745;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+}
