@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript ES6+ - LearnMate</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .module-detail {
+            padding: 120px 0 50px;
+        }
+        .module-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 10px;
+        }
+        .module-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .module-meta {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        .module-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .topics-list {
+            list-style: none;
+            padding: 0;
+        }
+        .topics-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 1.1rem;
+        }
+        .code-example {
+            background: #2c3e50;
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        .code-example pre {
+            margin: 0;
+            overflow-x: auto;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 2rem;
+        }
+        .secondary-button {
+            background: #95a5a6;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+        .secondary-button:hover {
+            background: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <h2><a href="../index.html" style="color: #3498db; text-decoration: none;">LearnMate</a></h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#courses">Courses</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="module-detail">
+        <div class="container">
+            <div class="module-header">
+                <h1>JavaScript ES6+</h1>
+                <p class="module-meta">Web Development Course • Module 3</p>
+            </div>
+
+            <div class="module-content">
+                <h2>What is JavaScript ES6+?</h2>
+                <p>ES6 (ECMAScript 2015) is the modern version of JavaScript with new features that make coding easier and more powerful. This module covers all the essential ES6+ features used in modern web development.</p>
+                
+                <h3>Topics Covered:</h3>
+                <ul class="topics-list">
+                    <li>✅ let and const variables (Block scoping)</li>
+                    <li>✅ Arrow functions (Simplified syntax)</li>
+                    <li>✅ Template literals (String interpolation)</li>
+                    <li>✅ Destructuring (Array and Object)</li>
+                    <li>✅ Spread and Rest operators</li>
+                    <li>✅ Promises and Async/Await</li>
+                    <li>✅ Modules (import/export)</li>
+                    <li>✅ Classes and OOP in JavaScript</li>
+                    <li>✅ Enhanced Object literals</li>
+                </ul>
+
+                <h3>Practical Examples:</h3>
+                <div class="code-example">
+                    <h4>Arrow Function Example:</h4>
+                    <pre><code>// Traditional function
+function add(a, b) {
+    return a + b;
+}
+
+// Arrow function (modern)
+const add = (a, b) => a + b;
+
+// Even shorter for single expression
+const square = x => x * x;</code></pre>
+                </div>
+
+                <div class="code-example">
+                    <h4>Destructuring Example:</h4>
+                    <pre><code>// Object destructuring
+const person = { name: 'John', age: 30 };
+const { name, age } = person;
+
+// Array destructuring  
+const colors = ['red', 'green', 'blue'];
+const [firstColor, secondColor] = colors;</code></pre>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="cta-button" onclick="alert('Starting JavaScript Module!')">Start Learning This Module</button>
+                    <button class="secondary-button" onclick="window.history.back()">Back to Course</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="../script.js"></script>
+</body>
+</html>
