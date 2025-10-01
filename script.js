@@ -187,7 +187,14 @@ function showCourseDetails(courseId) {
                     <div class="course-modules">
                         <h3>What You'll Learn</h3>
                         <ul>
-                            ${course.modules.map(module => `<li>✅ ${module}</li>`).join('')}
+                            ${course.modules.map(module => {
+                                // Check if module is object or string
+                                if (typeof module === 'object') {
+                                    return `<li>✅ ${module.name}</li>`;
+                                } else {
+                                    return `<li>✅ ${module}</li>`;
+                                }
+                            }).join('')}
                         </ul>
                     </div>
                     
@@ -252,4 +259,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
