@@ -3,14 +3,38 @@ const coursesData = {
     'web-development': {
         title: 'Web Development Master Course',
         price: 'Free',
-        description: 'Complete web development course covering HTML, CSS, JavaScript from basics to advanced level.',
+        description: 'Complete web development course covering HTML, CSS, JavaScript from basics to advanced level. Build real-world projects and become a professional web developer.',
         modules: [
-            'HTML5 & Semantic HTML',
-            'CSS3 & Responsive Design', 
-            'JavaScript ES6+',
-            'DOM Manipulation',
-            'API Integration',
-            'Real Projects'
+            {
+                name: 'HTML5 & Semantic HTML',
+                description: 'Learn modern HTML5 tags, semantic structure, forms, tables and SEO-friendly coding practices.',
+                page: 'modules/html5.html'
+            },
+            {
+                name: 'CSS3 & Responsive Design',
+                description: 'Master CSS3 features, Flexbox, Grid, animations and create mobile-responsive websites.',
+                page: 'modules/css3.html'
+            },
+            {
+                name: 'JavaScript ES6+',
+                description: 'Learn modern JavaScript ES6+ features, variables, functions, loops and advanced concepts.',
+                page: 'modules/javascript.html'
+            },
+            {
+                name: 'DOM Manipulation',
+                description: 'Manipulate webpage content dynamically, handle events and create interactive web pages.',
+                page: 'modules/dom.html'
+            },
+            {
+                name: 'API Integration',
+                description: 'Connect to external APIs, fetch data and create dynamic content from servers.',
+                page: 'modules/api.html'
+            },
+            {
+                name: 'Real Projects',
+                description: 'Build 5+ real-world projects including Portfolio Website, E-commerce Site, Weather App, Todo App and Blog Platform.',
+                page: 'modules/projects.html'
+            }
         ],
         duration: '8 Weeks',
         level: 'Beginner'
@@ -228,3 +252,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
