@@ -6,7 +6,7 @@
     <title>LearnMate - Your Learning Partner</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Previous auth modal styles yahan rahenge */
+        /* All the previous CSS styles yahan rahenge */
         .auth-modal-overlay {
             position: fixed;
             top: 0;
@@ -101,7 +101,6 @@
             text-decoration: underline;
         }
 
-        /* Navigation Auth Styles */
         .nav-auth {
             display: flex;
             align-items: center;
@@ -147,7 +146,6 @@
             margin-right: 10px;
         }
 
-        /* Module Detail Popup Styles */
         .module-popup-overlay {
             position: fixed;
             top: 0;
@@ -227,6 +225,7 @@
             margin: 15px 0;
             font-family: 'Courier New', monospace;
             font-size: 14px;
+            white-space: pre-wrap;
         }
 
         .module-features {
@@ -324,6 +323,48 @@
                     <p>SEO, Social Media, Google Ads</p>
                     <span class="price">₹799</span>
                 </div>
+                
+                <!-- Mathematics Class 10 -->
+                <div class="course-card" onclick="showCourseDetails('mathematics')">
+                    <h3>Mathematics Class 10</h3>
+                    <p>Complete CBSE syllabus with expert teachers</p>
+                    <span class="price">₹299</span>
+                </div>
+                
+                <!-- English Speaking -->
+                <div class="course-card" onclick="showCourseDetails('english-speaking')">
+                    <h3>English Speaking</h3>
+                    <p>Fluency in 30 days - Daily practice</p>
+                    <span class="price">₹599</span>
+                </div>
+                
+                <!-- Science Experiments -->
+                <div class="course-card" onclick="showCourseDetails('science-experiments')">
+                    <h3>Science Experiments</h3>
+                    <p>Fun learning with practical experiments</p>
+                    <span class="price">Free</span>
+                </div>
+                
+                <!-- Graphic Design -->
+                <div class="course-card" onclick="showCourseDetails('graphic-design')">
+                    <h3>Graphic Design</h3>
+                    <p>Photoshop, Canva, Design principles</p>
+                    <span class="price">₹699</span>
+                </div>
+                
+                <!-- Mobile App Development -->
+                <div class="course-card" onclick="showCourseDetails('mobile-app-development')">
+                    <h3>Mobile App Development</h3>
+                    <p>Android & iOS apps with Flutter</p>
+                    <span class="price">₹899</span>
+                </div>
+                
+                <!-- Data Science -->
+                <div class="course-card" onclick="showCourseDetails('data-science')">
+                    <h3>Data Science</h3>
+                    <p>Python, ML, Data analysis complete course</p>
+                    <span class="price">₹999</span>
+                </div>
             </div>
         </div>
     </section>
@@ -362,7 +403,7 @@
     </footer>
 
     <script>
-        // Course data with detailed module content
+        // Course data with ALL courses
         const coursesData = {
             'web-development': {
                 title: 'Web Development Master Course',
@@ -372,7 +413,6 @@
                     {
                         name: 'HTML5 & Semantic HTML',
                         description: 'Learn modern HTML5 tags, semantic structure, forms, tables and SEO-friendly coding practices.',
-                        page: 'modules/html5.html',
                         content: {
                             overview: 'HTML5 is the latest version of HyperText Markup Language, the code that describes web pages. It\'s made up of elements that you use to enclose, wrap, or mark up different parts of content to make it appear or act in a certain way.',
                             topics: [
@@ -417,7 +457,6 @@
                     {
                         name: 'CSS3 & Responsive Design',
                         description: 'Master CSS3 features, Flexbox, Grid, animations and create mobile-responsive websites.',
-                        page: 'modules/css3.html',
                         content: {
                             overview: 'CSS3 is the latest evolution of the Cascading Style Sheets language and aims at extending CSS2.1. It brings a lot of long-awaited novelties, like rounded corners, shadows, gradients, transitions or animations, as well as new layouts like multi-columns, flexible box or grid layouts.',
                             topics: [
@@ -465,7 +504,6 @@
                     {
                         name: 'JavaScript ES6+',
                         description: 'Learn modern JavaScript ES6+ features, variables, functions, loops and advanced concepts.',
-                        page: 'modules/javascript.html',
                         content: {
                             overview: 'ECMAScript 2015 (ES6) introduced significant new syntax for writing complex applications, including classes, modules, arrow functions, template literals, destructuring assignments, and more. Modern JavaScript development relies heavily on these features.',
                             topics: [
@@ -510,146 +548,6 @@ async function fetchData() {
                                 'Module system'
                             ]
                         }
-                    },
-                    {
-                        name: 'DOM Manipulation',
-                        description: 'Manipulate webpage content dynamically, handle events and create interactive web pages.',
-                        page: 'modules/dom.html',
-                        content: {
-                            overview: 'The Document Object Model (DOM) is a programming interface for web documents. It represents the page so that programs can change the document structure, style, and content. The DOM represents the document as nodes and objects.',
-                            topics: [
-                                'DOM Selection Methods',
-                                'Element Creation and Removal',
-                                'Event Handling',
-                                'DOM Traversal',
-                                'Attribute Manipulation',
-                                'Dynamic Styling'
-                            ],
-                            codeExample: `// DOM Selection
-const element = document.getElementById('myId');
-const elements = document.querySelectorAll('.myClass');
-
-// Creating Elements
-const newDiv = document.createElement('div');
-newDiv.textContent = 'Hello World';
-document.body.appendChild(newDiv);
-
-// Event Handling
-button.addEventListener('click', function() {
-    alert('Button clicked!');
-});
-
-// Dynamic Styling
-element.style.backgroundColor = 'blue';
-element.classList.add('active');`,
-                            features: [
-                                'Dynamic content updates',
-                                'User interaction handling',
-                                'Real-time form validation',
-                                'Single Page Applications',
-                                'Interactive web pages'
-                            ]
-                        }
-                    },
-                    {
-                        name: 'API Integration',
-                        description: 'Connect to external APIs, fetch data and create dynamic content from servers.',
-                        page: 'modules/api.html',
-                        content: {
-                            overview: 'API (Application Programming Interface) integration allows your web applications to communicate with external services and databases. Learn how to fetch data from REST APIs, handle responses, and update your UI dynamically.',
-                            topics: [
-                                'REST API Concepts',
-                                'HTTP Methods (GET, POST, PUT, DELETE)',
-                                'Fetch API and Axios',
-                                'JSON Data Handling',
-                                'Error Handling',
-                                'Authentication (API Keys, JWT)'
-                            ],
-                            codeExample: `// Using Fetch API
-async function fetchUserData() {
-    try {
-        const response = await fetch('https://api.example.com/users');
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const users = await response.json();
-        displayUsers(users);
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
-}
-
-// POST Request
-async function createUser(userData) {
-    const response = await fetch('https://api.example.com/users', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData)
-    });
-    return response.json();
-}`,
-                            features: [
-                                'Real-time data fetching',
-                                'Third-party service integration',
-                                'Dynamic content loading',
-                                'CRUD operations',
-                                'Authentication handling'
-                            ]
-                        }
-                    },
-                    {
-                        name: 'Real Projects',
-                        description: 'Build 5+ real-world projects including Portfolio Website, E-commerce Site, Weather App, Todo App and Blog Platform.',
-                        page: 'modules/projects.html',
-                        content: {
-                            overview: 'Apply all your web development skills by building real-world projects. These projects will help you understand how different technologies work together and prepare you for professional web development.',
-                            topics: [
-                                'Portfolio Website with Responsive Design',
-                                'E-commerce Site with Shopping Cart',
-                                'Weather App with API Integration',
-                                'Todo App with Local Storage',
-                                'Blog Platform with CRUD Operations',
-                                'Social Media Dashboard'
-                            ],
-                            codeExample: `// Example: Todo App
-class TodoApp {
-    constructor() {
-        this.todos = JSON.parse(localStorage.getItem('todos')) || [];
-        this.init();
-    }
-
-    init() {
-        this.render();
-        this.setupEventListeners();
-    }
-
-    addTodo(text) {
-        this.todos.push({ id: Date.now(), text, completed: false });
-        this.saveToLocalStorage();
-        this.render();
-    }
-
-    render() {
-        const todoList = document.getElementById('todoList');
-        todoList.innerHTML = this.todos.map(todo => \`
-            <div class="todo-item \${todo.completed ? 'completed' : ''}">
-                <span>\${todo.text}</span>
-                <button onclick="app.toggleTodo(\${todo.id})">Toggle</button>
-                <button onclick="app.deleteTodo(\${todo.id})">Delete</button>
-            </div>
-        \`).join('');
-    }
-}`,
-                            features: [
-                                'Real-world application',
-                                'Portfolio building',
-                                'Problem-solving skills',
-                                'Code organization',
-                                'Deployment experience'
-                            ]
-                        }
                     }
                 ],
                 duration: '8 Weeks',
@@ -684,10 +582,101 @@ class TodoApp {
                 ],
                 duration: '4 Weeks',
                 level: 'Intermediate'
+            },
+            'mathematics': {
+                title: 'Mathematics Class 10',
+                price: '₹299',
+                description: 'Complete CBSE syllabus with expert teachers and practice problems.',
+                modules: [
+                    'Real Numbers',
+                    'Polynomials',
+                    'Pair of Linear Equations',
+                    'Quadratic Equations',
+                    'Trigonometry',
+                    'Statistics & Probability'
+                ],
+                duration: '12 Weeks',
+                level: 'Class 10'
+            },
+            'english-speaking': {
+                title: 'English Speaking',
+                price: '₹599',
+                description: 'Fluency in 30 days with daily practice sessions.',
+                modules: [
+                    'Basic Grammar',
+                    'Vocabulary Building',
+                    'Pronunciation',
+                    'Conversation Practice',
+                    'Public Speaking',
+                    'Accent Training'
+                ],
+                duration: '4 Weeks',
+                level: 'Beginner'
+            },
+            'science-experiments': {
+                title: 'Science Experiments',
+                price: 'Free',
+                description: 'Fun learning with practical experiments and demonstrations.',
+                modules: [
+                    'Physics Experiments',
+                    'Chemistry Labs',
+                    'Biology Practicals',
+                    'Science Projects',
+                    'Safety Measures',
+                    'Report Writing'
+                ],
+                duration: '6 Weeks',
+                level: 'All Levels'
+            },
+            'graphic-design': {
+                title: 'Graphic Design',
+                price: '₹699',
+                description: 'Learn Photoshop, Canva and design principles.',
+                modules: [
+                    'Design Principles',
+                    'Adobe Photoshop',
+                    'Canva Mastery',
+                    'Logo Design',
+                    'Social Media Graphics',
+                    'Portfolio Building'
+                ],
+                duration: '5 Weeks',
+                level: 'Beginner'
+            },
+            'mobile-app-development': {
+                title: 'Mobile App Development',
+                price: '₹899',
+                description: 'Build Android & iOS apps with Flutter framework.',
+                modules: [
+                    'Flutter Basics',
+                    'Dart Programming',
+                    'UI/UX Design',
+                    'API Integration',
+                    'App Publishing',
+                    'Monetization'
+                ],
+                duration: '7 Weeks',
+                level: 'Intermediate'
+            },
+            'data-science': {
+                title: 'Data Science',
+                price: '₹999',
+                description: 'Python, Machine Learning, Data analysis complete course.',
+                modules: [
+                    'Python for Data Science',
+                    'Data Analysis with Pandas',
+                    'Data Visualization',
+                    'Machine Learning Basics',
+                    'Statistical Analysis',
+                    'Real-world Projects'
+                ],
+                duration: '10 Weeks',
+                level: 'Advanced'
             }
         };
 
-        // User authentication system (same as before)
+        // Rest of the JavaScript code (auth system, functions, etc.)
+        // Ye wahi code hai jo pichle message mein tha
         const authSystem = {
             currentUser: null,
             users: JSON.parse(localStorage.getItem('courseUsers')) || [],
@@ -826,7 +815,6 @@ class TodoApp {
             }
         };
 
-        // Auth modal functions
         function closeAuthModal() {
             const modal = document.querySelector('.auth-modal-overlay');
             if (modal) {
@@ -865,7 +853,6 @@ class TodoApp {
             }
         }
 
-        // Course details show karne ka function
         function showCourseDetails(courseId) {
             const course = coursesData[courseId];
             
@@ -927,58 +914,96 @@ class TodoApp {
             }
         }
 
-        // Module detail show karne ka function
         function showModuleDetail(courseId, moduleIndex) {
             const course = coursesData[courseId];
             const module = course.modules[moduleIndex];
             
-            const moduleHTML = `
-                <div class="module-popup-overlay">
-                    <div class="module-popup">
-                        <div class="module-header">
-                            <h2>${module.name}</h2>
-                            <button class="close-module-btn" onclick="closeModulePopup()">×</button>
-                        </div>
-                        <div class="module-content">
-                            <div class="module-section">
-                                <h3>Overview</h3>
-                                <p>${module.content.overview}</p>
+            if (typeof module === 'string') {
+                // Simple module (just string)
+                const moduleHTML = `
+                    <div class="module-popup-overlay">
+                        <div class="module-popup">
+                            <div class="module-header">
+                                <h2>${module}</h2>
+                                <button class="close-module-btn" onclick="closeModulePopup()">×</button>
                             </div>
-                            
-                            <div class="module-section">
-                                <h3>Topics Covered</h3>
-                                <ul>
-                                    ${module.content.topics.map(topic => `<li>📚 ${topic}</li>`).join('')}
-                                </ul>
-                            </div>
-                            
-                            <div class="module-section">
-                                <h3>Key Features</h3>
-                                <div class="module-features">
-                                    ${module.content.features.map(feature => `
-                                        <div class="feature-item">
-                                            <strong>${feature}</strong>
-                                        </div>
-                                    `).join('')}
+                            <div class="module-content">
+                                <div class="module-section">
+                                    <h3>Module Overview</h3>
+                                    <p>This module covers essential concepts and practical applications of ${module}.</p>
                                 </div>
+                                
+                                <div class="module-section">
+                                    <h3>Learning Objectives</h3>
+                                    <ul>
+                                        <li>Understand core concepts</li>
+                                        <li>Apply knowledge in practical scenarios</li>
+                                        <li>Build projects using learned skills</li>
+                                        <li>Prepare for advanced topics</li>
+                                    </ul>
+                                </div>
+                                
+                                ${moduleIndex < course.modules.length - 1 ? `
+                                    <button class="next-module-btn" onclick="showModuleDetail('${courseId}', ${moduleIndex + 1})">
+                                        Next Module: ${course.modules[moduleIndex + 1]} →
+                                    </button>
+                                ` : ''}
                             </div>
-                            
-                            <div class="module-section">
-                                <h3>Code Example</h3>
-                                <pre class="code-example">${module.content.codeExample}</pre>
-                            </div>
-                            
-                            ${moduleIndex < course.modules.length - 1 ? `
-                                <button class="next-module-btn" onclick="showModuleDetail('${courseId}', ${moduleIndex + 1})">
-                                    Next Module: ${course.modules[moduleIndex + 1].name} →
-                                </button>
-                            ` : ''}
                         </div>
                     </div>
-                </div>
-            `;
-            
-            document.body.insertAdjacentHTML('beforeend', moduleHTML);
+                `;
+                
+                document.body.insertAdjacentHTML('beforeend', moduleHTML);
+            } else {
+                // Detailed module (object with content)
+                const moduleHTML = `
+                    <div class="module-popup-overlay">
+                        <div class="module-popup">
+                            <div class="module-header">
+                                <h2>${module.name}</h2>
+                                <button class="close-module-btn" onclick="closeModulePopup()">×</button>
+                            </div>
+                            <div class="module-content">
+                                <div class="module-section">
+                                    <h3>Overview</h3>
+                                    <p>${module.content.overview}</p>
+                                </div>
+                                
+                                <div class="module-section">
+                                    <h3>Topics Covered</h3>
+                                    <ul>
+                                        ${module.content.topics.map(topic => `<li>📚 ${topic}</li>`).join('')}
+                                    </ul>
+                                </div>
+                                
+                                <div class="module-section">
+                                    <h3>Key Features</h3>
+                                    <div class="module-features">
+                                        ${module.content.features.map(feature => `
+                                            <div class="feature-item">
+                                                <strong>${feature}</strong>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                                
+                                <div class="module-section">
+                                    <h3>Code Example</h3>
+                                    <pre class="code-example">${module.content.codeExample}</pre>
+                                </div>
+                                
+                                ${moduleIndex < course.modules.length - 1 ? `
+                                    <button class="next-module-btn" onclick="showModuleDetail('${courseId}', ${moduleIndex + 1})">
+                                        Next Module: ${course.modules[moduleIndex + 1].name || course.modules[moduleIndex + 1]} →
+                                    </button>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.insertAdjacentHTML('beforeend', moduleHTML);
+            }
         }
 
         function closeModulePopup() {
@@ -1005,16 +1030,13 @@ class TodoApp {
             });
         }
 
-        // Logout function
         function logout() {
             authSystem.logout();
             alert('Logged out successfully!');
             window.location.reload();
         }
 
-        // Contact form handling
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize auth UI
             authSystem.updateAuthUI();
             
             const contactForm = document.querySelector('.contact-form');
@@ -1035,7 +1057,6 @@ class TodoApp {
                 });
             }
 
-            // Smooth scrolling for navigation links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
