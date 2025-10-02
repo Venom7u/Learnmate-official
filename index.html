@@ -6,7 +6,7 @@
     <title>LearnMate - Your Learning Partner</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* All the previous CSS styles yahan rahenge */
+        /* All CSS styles yahan rahenge */
         .auth-modal-overlay {
             position: fixed;
             top: 0;
@@ -403,7 +403,7 @@
     </footer>
 
     <script>
-        // Course data with ALL courses
+        // Course data with ALL courses having detailed modules
         const coursesData = {
             'web-development': {
                 title: 'Web Development Master Course',
@@ -414,7 +414,7 @@
                         name: 'HTML5 & Semantic HTML',
                         description: 'Learn modern HTML5 tags, semantic structure, forms, tables and SEO-friendly coding practices.',
                         content: {
-                            overview: 'HTML5 is the latest version of HyperText Markup Language, the code that describes web pages. It\'s made up of elements that you use to enclose, wrap, or mark up different parts of content to make it appear or act in a certain way.',
+                            overview: 'HTML5 is the latest version of HyperText Markup Language, the code that describes web pages. It provides better structure and semantic elements for modern web development.',
                             topics: [
                                 'HTML5 Document Structure',
                                 'Semantic Elements (header, nav, section, article, footer)',
@@ -458,7 +458,7 @@
                         name: 'CSS3 & Responsive Design',
                         description: 'Master CSS3 features, Flexbox, Grid, animations and create mobile-responsive websites.',
                         content: {
-                            overview: 'CSS3 is the latest evolution of the Cascading Style Sheets language and aims at extending CSS2.1. It brings a lot of long-awaited novelties, like rounded corners, shadows, gradients, transitions or animations, as well as new layouts like multi-columns, flexible box or grid layouts.',
+                            overview: 'CSS3 brings advanced styling capabilities including Flexbox, Grid, animations, and responsive design techniques for creating modern, mobile-first websites.',
                             topics: [
                                 'CSS3 Selectors and Pseudo-classes',
                                 'Flexbox Layout',
@@ -505,7 +505,7 @@
                         name: 'JavaScript ES6+',
                         description: 'Learn modern JavaScript ES6+ features, variables, functions, loops and advanced concepts.',
                         content: {
-                            overview: 'ECMAScript 2015 (ES6) introduced significant new syntax for writing complex applications, including classes, modules, arrow functions, template literals, destructuring assignments, and more. Modern JavaScript development relies heavily on these features.',
+                            overview: 'Modern JavaScript (ES6+) introduces powerful features that make coding more efficient and maintainable, including arrow functions, destructuring, modules, and async/await.',
                             topics: [
                                 'Let and Const vs Var',
                                 'Arrow Functions',
@@ -558,12 +558,126 @@ async function fetchData() {
                 price: '₹499',
                 description: 'Learn Python from scratch to advanced level with practical projects.',
                 modules: [
-                    'Python Basics & Syntax',
-                    'Data Structures',
-                    'OOP Concepts',
-                    'File Handling',
-                    'Web Scraping',
-                    'Django Framework'
+                    {
+                        name: 'Python Basics & Syntax',
+                        description: 'Master Python fundamentals, syntax, and basic programming concepts.',
+                        content: {
+                            overview: 'Python is a versatile, beginner-friendly programming language known for its clean syntax and readability. Perfect for beginners and professionals alike.',
+                            topics: [
+                                'Variables and Data Types',
+                                'Operators and Expressions',
+                                'Control Structures (if-else, loops)',
+                                'Functions and Modules',
+                                'Basic Input/Output',
+                                'Error Handling'
+                            ],
+                            codeExample: `# Basic Python Syntax
+name = "Alice"
+age = 25
+
+# Conditional statement
+if age >= 18:
+    print(f"{name} is an adult")
+else:
+    print(f"{name} is a minor")
+
+# Function definition
+def greet(name):
+    return f"Hello, {name}!"
+
+# List comprehension
+numbers = [1, 2, 3, 4, 5]
+squares = [x**2 for x in numbers]`,
+                            features: [
+                                'Easy to learn syntax',
+                                'Versatile applications',
+                                'Large standard library',
+                                'Cross-platform compatibility',
+                                'Strong community support'
+                            ]
+                        }
+                    },
+                    {
+                        name: 'Data Structures',
+                        description: 'Learn essential data structures like lists, tuples, dictionaries, and sets.',
+                        content: {
+                            overview: 'Data structures are fundamental building blocks for efficient programming. Python offers powerful built-in data structures.',
+                            topics: [
+                                'Lists and List Comprehensions',
+                                'Tuples and Sets',
+                                'Dictionaries and Dictionary Comprehensions',
+                                'Strings and String Methods',
+                                'Arrays vs Lists',
+                                'Custom Data Structures'
+                            ],
+                            codeExample: `# Lists
+fruits = ['apple', 'banana', 'orange']
+fruits.append('grape')
+
+# Dictionary
+student = {
+    'name': 'John',
+    'age': 20,
+    'courses': ['Math', 'Science']
+}
+
+# Set operations
+set1 = {1, 2, 3}
+set2 = {2, 3, 4}
+union_set = set1 | set2
+
+# List comprehension with condition
+even_squares = [x**2 for x in range(10) if x % 2 == 0]`,
+                            features: [
+                                'Efficient data organization',
+                                'Fast search and retrieval',
+                                'Memory optimization',
+                                'Algorithm implementation',
+                                'Real-world problem solving'
+                            ]
+                        }
+                    },
+                    {
+                        name: 'OOP Concepts',
+                        description: 'Master Object-Oriented Programming principles in Python.',
+                        content: {
+                            overview: 'Object-Oriented Programming (OOP) helps in creating modular, reusable, and maintainable code through classes and objects.',
+                            topics: [
+                                'Classes and Objects',
+                                'Inheritance and Polymorphism',
+                                'Encapsulation and Abstraction',
+                                'Method Overriding',
+                                'Class Methods and Static Methods',
+                                'Properties and Decorators'
+                            ],
+                            codeExample: `class Animal:
+    def __init__(self, name, species):
+        self.name = name
+        self.species = species
+    
+    def make_sound(self):
+        pass
+
+class Dog(Animal):
+    def __init__(self, name, breed):
+        super().__init__(name, "Dog")
+        self.breed = breed
+    
+    def make_sound(self):
+        return "Woof!"
+
+# Using the class
+my_dog = Dog("Buddy", "Golden Retriever")
+print(my_dog.make_sound())`,
+                            features: [
+                                'Code reusability',
+                                'Modular design',
+                                'Easy maintenance',
+                                'Real-world modeling',
+                                'Scalable architecture'
+                            ]
+                        }
+                    }
                 ],
                 duration: '6 Weeks',
                 level: 'Beginner'
@@ -573,12 +687,112 @@ async function fetchData() {
                 price: '₹799',
                 description: 'Master SEO, Social Media Marketing, Google Ads and more.',
                 modules: [
-                    'SEO Fundamentals',
-                    'Social Media Marketing',
-                    'Google Ads & Analytics',
-                    'Content Marketing',
-                    'Email Marketing',
-                    'Marketing Strategy'
+                    {
+                        name: 'SEO Fundamentals',
+                        description: 'Learn Search Engine Optimization techniques to rank higher in search results.',
+                        content: {
+                            overview: 'SEO is the practice of optimizing websites to rank higher in search engine results pages, driving organic traffic and visibility.',
+                            topics: [
+                                'Keyword Research and Analysis',
+                                'On-Page SEO Techniques',
+                                'Off-Page SEO and Link Building',
+                                'Technical SEO',
+                                'Local SEO Strategies',
+                                'SEO Analytics and Reporting'
+                            ],
+                            codeExample: `<!-- SEO Optimized HTML Structure -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Learn digital marketing with expert courses">
+    <meta name="keywords" content="digital marketing, SEO, social media">
+    <title>Digital Marketing Course - Learn SEO & Social Media</title>
+</head>
+<body>
+    <header>
+        <h1>Digital Marketing Master Course</h1>
+    </header>
+</body>
+</html>`,
+                            features: [
+                                'Higher search rankings',
+                                'Increased organic traffic',
+                                'Better user experience',
+                                'Long-term results',
+                                'Cost-effective marketing'
+                            ]
+                        }
+                    },
+                    {
+                        name: 'Social Media Marketing',
+                        description: 'Master social media platforms for business growth and engagement.',
+                        content: {
+                            overview: 'Social Media Marketing involves using platforms like Facebook, Instagram, Twitter to connect with audiences and promote brands.',
+                            topics: [
+                                'Content Strategy Development',
+                                'Platform-Specific Best Practices',
+                                'Community Management',
+                                'Paid Social Advertising',
+                                'Influencer Marketing',
+                                'Social Media Analytics'
+                            ],
+                            codeExample: `Social Media Content Calendar Example:
+
+📅 Monday: Educational Content
+- Blog post sharing
+- Industry insights
+- How-to guides
+
+📅 Tuesday: Engagement Posts
+- Questions and polls
+- User-generated content
+- Behind-the-scenes
+
+📅 Wednesday: Promotional Content
+- Product features
+- Special offers
+- Customer testimonials`,
+                            features: [
+                                'Brand awareness',
+                                'Customer engagement',
+                                'Lead generation',
+                                'Community building',
+                                'Real-time feedback'
+                            ]
+                        }
+                    },
+                    {
+                        name: 'Google Ads & Analytics',
+                        description: 'Learn to create effective Google Ads campaigns and analyze performance.',
+                        content: {
+                            overview: 'Google Ads and Analytics provide powerful tools for paid advertising and tracking website performance and user behavior.',
+                            topics: [
+                                'Campaign Structure Setup',
+                                'Keyword Planning and Bidding',
+                                'Ad Copy Creation',
+                                'Conversion Tracking',
+                                'ROI Analysis',
+                                'A/B Testing Strategies'
+                            ],
+                            codeExample: `Google Ads Campaign Structure:
+
+Campaign: "Digital Marketing Course"
+├── Ad Group: "SEO Course"
+│   ├── Keywords: "learn seo", "seo course online"
+│   └── Ads: "Master SEO - Free Course Available"
+├── Ad Group: "Social Media Course"
+│   ├── Keywords: "social media marketing", "instagram marketing"
+│   └── Ads: "Social Media Expert - Get Certified"`,
+                            features: [
+                                'Targeted advertising',
+                                'Measurable results',
+                                'Flexible budgeting',
+                                'Performance tracking',
+                                'Data-driven decisions'
+                            ]
+                        }
+                    }
                 ],
                 duration: '4 Weeks',
                 level: 'Intermediate'
@@ -588,12 +802,107 @@ async function fetchData() {
                 price: '₹299',
                 description: 'Complete CBSE syllabus with expert teachers and practice problems.',
                 modules: [
-                    'Real Numbers',
-                    'Polynomials',
-                    'Pair of Linear Equations',
-                    'Quadratic Equations',
-                    'Trigonometry',
-                    'Statistics & Probability'
+                    {
+                        name: 'Real Numbers',
+                        description: 'Master fundamental concepts of real numbers and their properties.',
+                        content: {
+                            overview: 'Real numbers form the foundation of mathematics, including rational, irrational numbers and their applications in problem-solving.',
+                            topics: [
+                                'Euclid\'s Division Lemma',
+                                'Fundamental Theorem of Arithmetic',
+                                'Rational and Irrational Numbers',
+                                'Decimal Expansions',
+                                'HCF and LCM',
+                                'Word Problems'
+                            ],
+                            codeExample: `Example Problem:
+Find the HCF of 135 and 225 using Euclid's division algorithm.
+
+Solution:
+225 = 135 × 1 + 90
+135 = 90 × 1 + 45
+90 = 45 × 2 + 0
+
+∴ HCF = 45
+
+Verification:
+135 ÷ 45 = 3
+225 ÷ 45 = 5`,
+                            features: [
+                                'Strong foundation',
+                                'Problem-solving skills',
+                                'Exam preparation',
+                                'Concept clarity',
+                                'Practical applications'
+                            ]
+                        }
+                    },
+                    {
+                        name: 'Polynomials',
+                        description: 'Understand polynomial functions, their graphs and applications.',
+                        content: {
+                            overview: 'Polynomials are algebraic expressions that play a crucial role in various mathematical concepts and real-world applications.',
+                            topics: [
+                                'Polynomial Basics',
+                                'Zeroes of Polynomials',
+                                'Relationship between Zeroes and Coefficients',
+                                'Division Algorithm',
+                                'Graphical Representations',
+                                'Application Problems'
+                            ],
+                            codeExample: `Find zeroes of polynomial: x² - 3x - 4
+
+Solution:
+x² - 3x - 4 = 0
+x² - 4x + x - 4 = 0
+x(x - 4) + 1(x - 4) = 0
+(x - 4)(x + 1) = 0
+
+∴ Zeroes are: x = 4 and x = -1
+
+Verification:
+Sum of zeroes = 4 + (-1) = 3 = -b/a
+Product of zeroes = 4 × (-1) = -4 = c/a`,
+                            features: [
+                                'Algebraic understanding',
+                                'Graph interpretation',
+                                'Equation solving',
+                                'Theoretical concepts',
+                                'Exam-focused learning'
+                            ]
+                        }
+                    },
+                    {
+                        name: 'Trigonometry',
+                        description: 'Learn trigonometric ratios, identities and their applications.',
+                        content: {
+                            overview: 'Trigonometry deals with relationships between angles and sides of triangles, essential for higher mathematics and physics.',
+                            topics: [
+                                'Trigonometric Ratios',
+                                'Trigonometric Identities',
+                                'Heights and Distances',
+                                'Complementary Angles',
+                                'Application Problems',
+                                'Proofs and Derivations'
+                            ],
+                            codeExample: `Problem: A ladder leans against a wall making 60° with ground. 
+If ladder is 10m long, find height it reaches.
+
+Solution:
+sin(60°) = Opposite/Hypotenuse
+√3/2 = Height/10
+Height = 10 × √3/2 = 5√3 ≈ 8.66 meters
+
+Answer: The ladder reaches 8.66 meters high.`,
+                            features: [
+                                'Practical applications',
+                                'Conceptual clarity',
+                                'Problem-solving approach',
+                                'Visual learning',
+                                'Exam readiness'
+                            ]
+                        }
+                    }
                 ],
                 duration: '12 Weeks',
                 level: 'Class 10'
@@ -603,12 +912,116 @@ async function fetchData() {
                 price: '₹599',
                 description: 'Fluency in 30 days with daily practice sessions.',
                 modules: [
-                    'Basic Grammar',
-                    'Vocabulary Building',
-                    'Pronunciation',
-                    'Conversation Practice',
-                    'Public Speaking',
-                    'Accent Training'
+                    {
+                        name: 'Basic Grammar',
+                        description: 'Master essential English grammar rules and sentence structures.',
+                        content: {
+                            overview: 'Strong grammar foundation is crucial for effective communication in English, covering tenses, parts of speech, and sentence construction.',
+                            topics: [
+                                'Parts of Speech',
+                                'Tenses and Their Usage',
+                                'Subject-Verb Agreement',
+                                'Articles and Prepositions',
+                                'Sentence Structure',
+                                'Common Errors and Corrections'
+                            ],
+                            codeExample: `Grammar Rules in Practice:
+
+Present Simple: 
+- I work every day.
+- She works in an office.
+
+Present Continuous:
+- I am working now.
+- She is working on a project.
+
+Present Perfect:
+- I have worked here for 5 years.
+- She has worked since morning.
+
+Common Error Correction:
+❌ "She don't like coffee."
+✅ "She doesn't like coffee."`,
+                            features: [
+                                'Grammar mastery',
+                                'Error correction',
+                                'Sentence construction',
+                                'Confident speaking',
+                                'Writing improvement'
+                            ]
+                        }
+                    },
+                    {
+                        name: 'Vocabulary Building',
+                        description: 'Expand your English vocabulary with practical words and phrases.',
+                        content: {
+                            overview: 'A rich vocabulary enhances communication skills and helps express thoughts more precisely and effectively.',
+                            topics: [
+                                'Word Roots and Prefixes/Suffixes',
+                                'Synonyms and Antonyms',
+                                'Idioms and Phrases',
+                                'Contextual Vocabulary',
+                                'Word Families',
+                                'Vocabulary in Conversations'
+                            ],
+                            codeExample: `Vocabulary Building Techniques:
+
+1. Word Roots:
+   - Bio (life) → biology, biography
+   - Chron (time) → chronic, chronology
+
+2. Common Idioms:
+   - "Break the ice" - start conversation
+   - "Piece of cake" - very easy
+   - "Hit the nail on the head" - exactly right
+
+3. Formal vs Informal:
+   Formal: "I would appreciate it if..."
+   Informal: "Can you please..."`,
+                            features: [
+                                'Word power',
+                                'Expression variety',
+                                'Contextual usage',
+                                'Memory techniques',
+                                'Daily practice'
+                            ]
+                        }
+                    },
+                    {
+                        name: 'Conversation Practice',
+                        description: 'Practice real-life conversations and improve speaking fluency.',
+                        content: {
+                            overview: 'Regular conversation practice builds confidence and fluency, helping you communicate effectively in various situations.',
+                            topics: [
+                                'Everyday Conversations',
+                                'Professional Communication',
+                                'Social Situations',
+                                'Telephone Etiquette',
+                                'Group Discussions',
+                                'Presentation Skills'
+                            ],
+                            codeExample: `Sample Conversations:
+
+At a Restaurant:
+Waiter: "Good evening, are you ready to order?"
+You: "Yes, I'd like to have the vegetable pasta, please."
+
+On the Phone:
+Caller: "Hello, may I speak with Mr. Sharma?"
+You: "I'm sorry, he's in a meeting. Can I take a message?"
+
+Job Interview:
+Interviewer: "Tell me about yourself."
+You: "I'm a passionate web developer with 3 years of experience..."`,
+                            features: [
+                                'Real-life scenarios',
+                                'Confidence building',
+                                'Accent improvement',
+                                'Fluency development',
+                                'Interactive learning'
+                            ]
+                        }
+                    }
                 ],
                 duration: '4 Weeks',
                 level: 'Beginner'
@@ -618,12 +1031,123 @@ async function fetchData() {
                 price: 'Free',
                 description: 'Fun learning with practical experiments and demonstrations.',
                 modules: [
-                    'Physics Experiments',
-                    'Chemistry Labs',
-                    'Biology Practicals',
-                    'Science Projects',
-                    'Safety Measures',
-                    'Report Writing'
+                    {
+                        name: 'Physics Experiments',
+                        description: 'Hands-on physics experiments demonstrating fundamental principles.',
+                        content: {
+                            overview: 'Physics experiments help understand natural laws through practical demonstrations and observations.',
+                            topics: [
+                                'Laws of Motion',
+                                'Light and Optics',
+                                'Electricity and Magnetism',
+                                'Sound and Waves',
+                                'Heat and Thermodynamics',
+                                'Simple Machines'
+                            ],
+                            codeExample: `Experiment: Newton's Third Law - Balloon Rocket
+
+Materials:
+- Balloon
+- String
+- Straw
+- Tape
+
+Procedure:
+1. Thread string through straw
+2. Tie string between two points
+3. Inflate balloon and tape to straw
+4. Release balloon - it moves forward!
+
+Observation:
+As air pushes backward from balloon, 
+balloon moves forward (action-reaction).`,
+                            features: [
+                                'Hands-on learning',
+                                'Concept visualization',
+                                'Scientific method',
+                                'Critical thinking',
+                                'Fun activities'
+                            ]
+                        }
+                    },
+                    {
+                        name: 'Chemistry Labs',
+                        description: 'Safe and exciting chemistry experiments for beginners.',
+                        content: {
+                            overview: 'Chemistry experiments reveal the fascinating world of chemical reactions and molecular interactions.',
+                            topics: [
+                                'Chemical Reactions',
+                                'Acids and Bases',
+                                'Electrochemistry',
+                                'Organic Chemistry',
+                                'Environmental Chemistry',
+                                'Kitchen Chemistry'
+                            ],
+                            codeExample: `Experiment: pH Testing with Natural Indicators
+
+Materials:
+- Red cabbage
+- Various household liquids
+- Test tubes/containers
+
+Procedure:
+1. Boil red cabbage to extract color
+2. Strain to get purple liquid (indicator)
+3. Add to different liquids and observe color changes
+
+Observations:
+- Acidic (vinegar): Red/Pink
+- Neutral (water): Purple
+- Basic (baking soda): Blue/Green`,
+                            features: [
+                                'Safe experiments',
+                                'Visual learning',
+                                'Scientific curiosity',
+                                'Practical knowledge',
+                                'Home-based activities'
+                            ]
+                        }
+                    },
+                    {
+                        name: 'Biology Practicals',
+                        description: 'Explore living world through microscope and experiments.',
+                        content: {
+                            overview: 'Biology practicals help understand life processes, cell structures, and ecological relationships.',
+                            topics: [
+                                'Microscope Techniques',
+                                'Cell Biology',
+                                'Plant Physiology',
+                                'Animal Tissues',
+                                'Ecosystem Studies',
+                                'Genetic Experiments'
+                            ],
+                            codeExample: `Experiment: Osmosis in Potato
+
+Materials:
+- Potato
+- Salt water
+- Fresh water
+- Knife and ruler
+
+Procedure:
+1. Cut potato into equal strips
+2. Place one in salt water, one in fresh water
+3. Wait 30 minutes and compare
+
+Observation:
+- Salt water: Potato shrinks (water moves out)
+- Fresh water: Potato expands (water moves in)
+
+Conclusion: Demonstrates osmosis process`,
+                            features: [
+                                'Life science exploration',
+                                'Observation skills',
+                                'Scientific documentation',
+                                'Environmental awareness',
+                                'Health education'
+                            ]
+                        }
+                    }
                 ],
                 duration: '6 Weeks',
                 level: 'All Levels'
@@ -633,12 +1157,124 @@ async function fetchData() {
                 price: '₹699',
                 description: 'Learn Photoshop, Canva and design principles.',
                 modules: [
-                    'Design Principles',
-                    'Adobe Photoshop',
-                    'Canva Mastery',
-                    'Logo Design',
-                    'Social Media Graphics',
-                    'Portfolio Building'
+                    {
+                        name: 'Design Principles',
+                        description: 'Master fundamental design principles for creating visually appealing graphics.',
+                        content: {
+                            overview: 'Understanding design principles is essential for creating balanced, harmonious, and effective visual compositions.',
+                            topics: [
+                                'Color Theory',
+                                'Typography',
+                                'Layout and Composition',
+                                'Balance and Proportion',
+                                'Contrast and Hierarchy',
+                                'White Space Usage'
+                            ],
+                            codeExample: `Design Principles Checklist:
+
+🎨 Color Theory:
+- Complementary colors for contrast
+- Analogous colors for harmony
+- 60-30-10 rule for color distribution
+
+📐 Layout:
+- Rule of thirds for composition
+- F-pattern for text reading
+- Visual hierarchy for importance
+
+✍️ Typography:
+- Max 2-3 fonts per design
+- Hierarchy through size/weight
+- Readability over style`,
+                            features: [
+                                'Visual communication',
+                                'Aesthetic sense',
+                                'Professional standards',
+                                'Creative thinking',
+                                'Portfolio building'
+                            ]
+                        }
+                    },
+                    {
+                        name: 'Adobe Photoshop',
+                        description: 'Learn professional photo editing and graphic creation in Photoshop.',
+                        content: {
+                            overview: 'Adobe Photoshop is the industry-standard tool for photo editing, digital painting, and graphic design.',
+                            topics: [
+                                'Interface and Tools',
+                                'Layers and Masks',
+                                'Selection Techniques',
+                                'Color Correction',
+                                'Retouching and Restoration',
+                                'Digital Painting'
+                            ],
+                            codeExample: `Photoshop Workflow Example:
+
+1. File Setup:
+   - Create new document (1920x1080px, 72dpi)
+   - Set color mode: RGB
+
+2. Basic Editing:
+   - Open image and duplicate layer
+   - Use Levels for contrast adjustment
+   - Apply Smart Sharpen filter
+
+3. Advanced Techniques:
+   - Create layer masks for non-destructive editing
+   - Use adjustment layers for color grading
+   - Apply blend modes for creative effects`,
+                            features: [
+                                'Professional skills',
+                                'Industry-standard tools',
+                                'Creative freedom',
+                                'Portfolio projects',
+                                'Career opportunities'
+                            ]
+                        }
+                    },
+                    {
+                        name: 'Canva Mastery',
+                        description: 'Create stunning designs quickly with Canva for social media and business.',
+                        content: {
+                            overview: 'Canva makes graphic design accessible to everyone with its user-friendly interface and extensive template library.',
+                            topics: [
+                                'Canva Interface',
+                                'Template Customization',
+                                'Brand Kit Setup',
+                                'Animation Features',
+                                'Collaboration Tools',
+                                'Export and Sharing'
+                            ],
+                            codeExample: `Canva Design Process:
+
+1. Choose Template:
+   - Social media post
+   - Presentation
+   - Business card
+
+2. Customize:
+   - Change colors to brand palette
+   - Replace images with your photos
+   - Edit text with your content
+
+3. Enhance:
+   - Add animations
+   - Include icons/elements
+   - Adjust spacing and alignment
+
+4. Export:
+   - Download as PNG/PDF
+   - Share directly to social media
+   - Schedule posts`,
+                            features: [
+                                'Quick design creation',
+                                'No design experience needed',
+                                'Professional results',
+                                'Time efficiency',
+                                'Business applications'
+                            ]
+                        }
+                    }
                 ],
                 duration: '5 Weeks',
                 level: 'Beginner'
@@ -648,12 +1284,144 @@ async function fetchData() {
                 price: '₹899',
                 description: 'Build Android & iOS apps with Flutter framework.',
                 modules: [
-                    'Flutter Basics',
-                    'Dart Programming',
-                    'UI/UX Design',
-                    'API Integration',
-                    'App Publishing',
-                    'Monetization'
+                    {
+                        name: 'Flutter Basics',
+                        description: 'Learn Flutter framework fundamentals for cross-platform app development.',
+                        content: {
+                            overview: 'Flutter allows building beautiful, natively compiled applications for mobile, web, and desktop from a single codebase.',
+                            topics: [
+                                'Flutter Architecture',
+                                'Dart Programming Basics',
+                                'Widget Tree Concept',
+                                'State Management',
+                                'Layout Building',
+                                'Hot Reload Feature'
+                            ],
+                            codeExample: `Basic Flutter App Structure:
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('My First App'),
+        ),
+        body: Center(
+          child: Text('Hello Flutter!'),
+        ),
+      ),
+    );
+  }
+}`,
+                            features: [
+                                'Cross-platform development',
+                                'Fast development cycle',
+                                'Beautiful UI',
+                                'Single codebase',
+                                'Google-backed technology'
+                            ]
+                        }
+                    },
+                    {
+                        name: 'Dart Programming',
+                        description: 'Master Dart language - the foundation of Flutter development.',
+                        content: {
+                            overview: 'Dart is a client-optimized language for fast apps on any platform, featuring strong typing and just-in-time compilation.',
+                            topics: [
+                                'Dart Syntax and Data Types',
+                                'Functions and Classes',
+                                'Asynchronous Programming',
+                                'Collections and Generics',
+                                'Error Handling',
+                                'Object-Oriented Concepts'
+                            ],
+                            codeExample: `Dart Programming Examples:
+
+// Variable declaration
+String name = 'Flutter';
+int version = 3;
+
+// Function definition
+void greet(String name) {
+  print('Hello, $name!');
+}
+
+// Class definition
+class Person {
+  String name;
+  int age;
+  
+  Person(this.name, this.age);
+  
+  void introduce() {
+    print('I am $name, $age years old');
+  }
+}
+
+// Async programming
+Future<void> fetchData() async {
+  var data = await http.get('api.url');
+  print(data);
+}`,
+                            features: [
+                                'Modern language features',
+                                'Strong typing',
+                                'Asynchronous support',
+                                'Flutter compatibility',
+                                'Performance optimization'
+                            ]
+                        }
+                    },
+                    {
+                        name: 'UI/UX Design',
+                        description: 'Create beautiful and user-friendly mobile app interfaces.',
+                        content: {
+                            overview: 'Good UI/UX design is crucial for app success, focusing on usability, accessibility, and visual appeal.',
+                            topics: [
+                                'Mobile Design Principles',
+                                'Material Design Guidelines',
+                                'User Flow Design',
+                                'Prototyping and Wireframing',
+                                'Usability Testing',
+                                'Accessibility Standards'
+                            ],
+                            codeExample: `UI/UX Design Process:
+
+1. Research:
+   - Target audience analysis
+   - Competitor research
+   - User needs assessment
+
+2. Design:
+   - Wireframe creation
+   - User flow mapping
+   - Visual design mockups
+
+3. Testing:
+   - Usability testing
+   - A/B testing
+   - User feedback collection
+
+4. Implementation:
+   - Design to code conversion
+   - Responsive design
+   - Accessibility features`,
+                            features: [
+                                'User-centered design',
+                                'Professional interfaces',
+                                'Usability principles',
+                                'Design thinking',
+                                'Portfolio projects'
+                            ]
+                        }
+                    }
                 ],
                 duration: '7 Weeks',
                 level: 'Intermediate'
@@ -663,20 +1431,143 @@ async function fetchData() {
                 price: '₹999',
                 description: 'Python, Machine Learning, Data analysis complete course.',
                 modules: [
-                    'Python for Data Science',
-                    'Data Analysis with Pandas',
-                    'Data Visualization',
-                    'Machine Learning Basics',
-                    'Statistical Analysis',
-                    'Real-world Projects'
+                    {
+                        name: 'Python for Data Science',
+                        description: 'Learn Python programming specifically for data analysis and manipulation.',
+                        content: {
+                            overview: 'Python is the leading language for data science, offering powerful libraries for data manipulation, analysis, and visualization.',
+                            topics: [
+                                'NumPy for Numerical Computing',
+                                'Pandas for Data Manipulation',
+                                'Data Cleaning Techniques',
+                                'Exploratory Data Analysis',
+                                'Data Visualization',
+                                'Statistical Analysis'
+                            ],
+                            codeExample: `Python Data Science Examples:
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Data loading
+data = pd.read_csv('dataset.csv')
+
+# Data cleaning
+data = data.dropna()
+data = data[data['age'] > 0]
+
+# Basic analysis
+print(data.describe())
+print(data['salary'].mean())
+
+# Visualization
+plt.hist(data['age'])
+plt.title('Age Distribution')
+plt.show()`,
+                            features: [
+                                'Data manipulation skills',
+                                'Statistical analysis',
+                                'Visualization techniques',
+                                'Real-world datasets',
+                                'Industry-ready skills'
+                            ]
+                        }
+                    },
+                    {
+                        name: 'Machine Learning Basics',
+                        description: 'Introduction to machine learning algorithms and their applications.',
+                        content: {
+                            overview: 'Machine learning enables computers to learn from data and make predictions or decisions without explicit programming.',
+                            topics: [
+                                'Supervised Learning',
+                                'Unsupervised Learning',
+                                'Regression Algorithms',
+                                'Classification Models',
+                                'Clustering Techniques',
+                                'Model Evaluation'
+                            ],
+                            codeExample: `Machine Learning with Scikit-learn:
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+
+# Load and prepare data
+X = data[['feature1', 'feature2']]
+y = data['target']
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# Train model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Make predictions
+predictions = model.predict(X_test)
+
+# Evaluate
+mse = mean_squared_error(y_test, predictions)
+print(f'Mean Squared Error: {mse}')`,
+                            features: [
+                                'Algorithm understanding',
+                                'Model building',
+                                'Prediction techniques',
+                                'Real-world applications',
+                                'AI foundation'
+                            ]
+                        }
+                    },
+                    {
+                        name: 'Data Visualization',
+                        description: 'Create compelling visualizations to communicate data insights effectively.',
+                        content: {
+                            overview: 'Data visualization transforms complex data into understandable graphics, enabling better decision-making and insights.',
+                            topics: [
+                                'Matplotlib and Seaborn',
+                                'Plotly for Interactive Charts',
+                                'Dashboard Creation',
+                                'Storytelling with Data',
+                                'Color Theory in Visualization',
+                                'Best Practices and Principles'
+                            ],
+                            codeExample: `Data Visualization with Python:
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.express as px
+
+# Basic plot
+plt.figure(figsize=(10, 6))
+plt.scatter(data['x'], data['y'])
+plt.title('Scatter Plot')
+plt.xlabel('X Axis')
+plt.ylabel('Y Axis')
+plt.show()
+
+# Advanced visualization
+fig = px.scatter(data, x='age', y='income', 
+                 color='education', size='experience',
+                 title='Income vs Age by Education')
+fig.show()`,
+                            features: [
+                                'Visual storytelling',
+                                'Interactive charts',
+                                'Dashboard creation',
+                                'Insight communication',
+                                'Professional reporting'
+                            ]
+                        }
+                    }
                 ],
                 duration: '10 Weeks',
                 level: 'Advanced'
             }
         };
 
-        // Rest of the JavaScript code (auth system, functions, etc.)
-        // Ye wahi code hai jo pichle message mein tha
+        // Rest of the JavaScript code remains the same
+        // (Auth system, functions, event listeners, etc.)
         const authSystem = {
             currentUser: null,
             users: JSON.parse(localStorage.getItem('courseUsers')) || [],
@@ -879,13 +1770,9 @@ async function fetchData() {
                                 <h3>What You'll Learn</h3>
                                 <ul>
                                     ${course.modules.map((module, index) => {
-                                        if (typeof module === 'object') {
-                                            return `<li onclick="showModuleDetail('${courseId}', ${index})" style="cursor: pointer; padding: 8px; border-radius: 5px; margin: 5px 0; transition: background 0.3s;" onmouseover="this.style.background='#f0f8ff'" onmouseout="this.style.background='transparent'">
-                                                ✅ ${module.name} - ${module.description}
-                                            </li>`;
-                                        } else {
-                                            return `<li>✅ ${module}</li>`;
-                                        }
+                                        return `<li onclick="showModuleDetail('${courseId}', ${index})" style="cursor: pointer; padding: 8px; border-radius: 5px; margin: 5px 0; transition: background 0.3s;" onmouseover="this.style.background='#f0f8ff'" onmouseout="this.style.background='transparent'">
+                                            ✅ ${module.name} - ${module.description}
+                                        </li>`;
                                     }).join('')}
                                 </ul>
                             </div>
@@ -918,92 +1805,53 @@ async function fetchData() {
             const course = coursesData[courseId];
             const module = course.modules[moduleIndex];
             
-            if (typeof module === 'string') {
-                // Simple module (just string)
-                const moduleHTML = `
-                    <div class="module-popup-overlay">
-                        <div class="module-popup">
-                            <div class="module-header">
-                                <h2>${module}</h2>
-                                <button class="close-module-btn" onclick="closeModulePopup()">×</button>
+            const moduleHTML = `
+                <div class="module-popup-overlay">
+                    <div class="module-popup">
+                        <div class="module-header">
+                            <h2>${module.name}</h2>
+                            <button class="close-module-btn" onclick="closeModulePopup()">×</button>
+                        </div>
+                        <div class="module-content">
+                            <div class="module-section">
+                                <h3>Overview</h3>
+                                <p>${module.content.overview}</p>
                             </div>
-                            <div class="module-content">
-                                <div class="module-section">
-                                    <h3>Module Overview</h3>
-                                    <p>This module covers essential concepts and practical applications of ${module}.</p>
-                                </div>
-                                
-                                <div class="module-section">
-                                    <h3>Learning Objectives</h3>
-                                    <ul>
-                                        <li>Understand core concepts</li>
-                                        <li>Apply knowledge in practical scenarios</li>
-                                        <li>Build projects using learned skills</li>
-                                        <li>Prepare for advanced topics</li>
-                                    </ul>
-                                </div>
-                                
-                                ${moduleIndex < course.modules.length - 1 ? `
-                                    <button class="next-module-btn" onclick="showModuleDetail('${courseId}', ${moduleIndex + 1})">
-                                        Next Module: ${course.modules[moduleIndex + 1]} →
-                                    </button>
-                                ` : ''}
+                            
+                            <div class="module-section">
+                                <h3>Topics Covered</h3>
+                                <ul>
+                                    ${module.content.topics.map(topic => `<li>📚 ${topic}</li>`).join('')}
+                                </ul>
                             </div>
+                            
+                            <div class="module-section">
+                                <h3>Key Features</h3>
+                                <div class="module-features">
+                                    ${module.content.features.map(feature => `
+                                        <div class="feature-item">
+                                            <strong>${feature}</strong>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                            
+                            <div class="module-section">
+                                <h3>Practical Example</h3>
+                                <pre class="code-example">${module.content.codeExample}</pre>
+                            </div>
+                            
+                            ${moduleIndex < course.modules.length - 1 ? `
+                                <button class="next-module-btn" onclick="showModuleDetail('${courseId}', ${moduleIndex + 1})">
+                                    Next Module: ${course.modules[moduleIndex + 1].name} →
+                                </button>
+                            ` : ''}
                         </div>
                     </div>
-                `;
-                
-                document.body.insertAdjacentHTML('beforeend', moduleHTML);
-            } else {
-                // Detailed module (object with content)
-                const moduleHTML = `
-                    <div class="module-popup-overlay">
-                        <div class="module-popup">
-                            <div class="module-header">
-                                <h2>${module.name}</h2>
-                                <button class="close-module-btn" onclick="closeModulePopup()">×</button>
-                            </div>
-                            <div class="module-content">
-                                <div class="module-section">
-                                    <h3>Overview</h3>
-                                    <p>${module.content.overview}</p>
-                                </div>
-                                
-                                <div class="module-section">
-                                    <h3>Topics Covered</h3>
-                                    <ul>
-                                        ${module.content.topics.map(topic => `<li>📚 ${topic}</li>`).join('')}
-                                    </ul>
-                                </div>
-                                
-                                <div class="module-section">
-                                    <h3>Key Features</h3>
-                                    <div class="module-features">
-                                        ${module.content.features.map(feature => `
-                                            <div class="feature-item">
-                                                <strong>${feature}</strong>
-                                            </div>
-                                        `).join('')}
-                                    </div>
-                                </div>
-                                
-                                <div class="module-section">
-                                    <h3>Code Example</h3>
-                                    <pre class="code-example">${module.content.codeExample}</pre>
-                                </div>
-                                
-                                ${moduleIndex < course.modules.length - 1 ? `
-                                    <button class="next-module-btn" onclick="showModuleDetail('${courseId}', ${moduleIndex + 1})">
-                                        Next Module: ${course.modules[moduleIndex + 1].name || course.modules[moduleIndex + 1]} →
-                                    </button>
-                                ` : ''}
-                            </div>
-                        </div>
-                    </div>
-                `;
-                
-                document.body.insertAdjacentHTML('beforeend', moduleHTML);
-            }
+                </div>
+            `;
+            
+            document.body.insertAdjacentHTML('beforeend', moduleHTML);
         }
 
         function closeModulePopup() {
