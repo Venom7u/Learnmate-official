@@ -737,6 +737,249 @@
             50% { background-color: #4a5568; }
             100% { background-color: transparent; }
         }
+
+        /* === MATEBOT AI ASSISTANT === */
+        .matebot-container {
+            position: fixed;
+            bottom: 100px;
+            right: 25px;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .matebot-container {
+            background: #2d2d2d;
+            color: white;
+        }
+
+        .matebot-header {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid #0056b3;
+        }
+
+        .matebot-avatar {
+            width: 40px;
+            height: 40px;
+            background: #28a745;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .matebot-status {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .matebot-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: #f8f9fa;
+        }
+
+        .dark-mode .matebot-messages {
+            background: #363636;
+        }
+
+        .matebot-message {
+            max-width: 85%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background: #007bff;
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            background: white;
+            color: #333;
+            border: 1px solid #e0e0e0;
+            border-bottom-left-radius: 5px;
+        }
+
+        .dark-mode .bot-message {
+            background: #2d2d2d;
+            color: white;
+            border-color: #444;
+        }
+
+        .matebot-typing {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 10px 15px;
+            background: white;
+            border-radius: 15px;
+            border-bottom-left-radius: 5px;
+            align-self: flex-start;
+        }
+
+        .dark-mode .matebot-typing {
+            background: #2d2d2d;
+        }
+
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #999;
+            animation: typingAnimation 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: 0s; }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typingAnimation {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-5px); }
+        }
+
+        .matebot-input-container {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #e0e0e0;
+            background: white;
+        }
+
+        .dark-mode .matebot-input-container {
+            background: #2d2d2d;
+            border-color: #444;
+        }
+
+        .matebot-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .dark-mode .matebot-input {
+            background: #363636;
+            color: white;
+            border-color: #555;
+        }
+
+        .matebot-input:focus {
+            border-color: #007bff;
+        }
+
+        .matebot-send-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            margin-left: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .matebot-send-btn:hover {
+            background: #0056b3;
+        }
+
+        .matebot-quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 10px 15px;
+            background: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .dark-mode .matebot-quick-actions {
+            background: #363636;
+            border-color: #444;
+        }
+
+        .matebot-quick-action {
+            background: #e7f3ff;
+            color: #007bff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dark-mode .matebot-quick-action {
+            background: #363636;
+            color: #4da8ff;
+            border: 1px solid #555;
+        }
+
+        .matebot-quick-action:hover {
+            background: #007bff;
+            color: white;
+        }
+
+        .matebot-toggle {
+            position: fixed;
+            bottom: 25px;
+            right: 100px;
+            background: #007bff;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .matebot-toggle:hover {
+            transform: scale(1.1);
+            background: #0056b3;
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.6);
+        }
+
+        .matebot-hidden {
+            transform: translateY(100%);
+            opacity: 0;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
@@ -889,6 +1132,47 @@
        title="Contact us on WhatsApp">
        💬
     </a>
+
+    <!-- MateBot AI Assistant -->
+    <button class="matebot-toggle" id="matebotToggle" title="Chat with MateBot">
+        🤖
+    </button>
+
+    <div class="matebot-container matebot-hidden" id="matebotContainer">
+        <div class="matebot-header">
+            <div class="matebot-avatar">MB</div>
+            <div>
+                <h3 style="margin: 0; font-size: 16px;">MateBot</h3>
+                <div class="matebot-status">Online • Ready to help</div>
+            </div>
+        </div>
+        
+        <div class="matebot-messages" id="matebotMessages">
+            <div class="matebot-message bot-message">
+                Hello! I'm MateBot, your AI learning assistant. How can I help you with your studies today?
+            </div>
+            <div class="matebot-message bot-message">
+                I can help you choose courses, explain concepts, provide study tips, and answer any questions about LearnMate!
+            </div>
+        </div>
+        
+        <div class="matebot-quick-actions">
+            <button class="matebot-quick-action" data-question="Which course should I take?">Course Recommendation</button>
+            <button class="matebot-quick-action" data-question="How to enroll in a course?">Enrollment Help</button>
+            <button class="matebot-quick-action" data-question="Study tips for beginners">Study Tips</button>
+            <button class="matebot-quick-action" data-question="What is LearnMate?">About LearnMate</button>
+        </div>
+        
+        <div class="matebot-input-container">
+            <input type="text" class="matebot-input" id="matebotInput" placeholder="Type your message...">
+            <button class="matebot-send-btn" id="matebotSend">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+        </div>
+    </div>
 
     <script>
         // ===== COURSE DATA =====
@@ -1427,6 +1711,173 @@ plt.show()`,
                 ],
                 duration: '10 Weeks',
                 level: 'Advanced'
+            }
+        };
+
+        // ===== MATEBOT AI ASSISTANT =====
+        const mateBot = {
+            isVisible: false,
+            messages: [],
+
+            init: function() {
+                this.bindEvents();
+                this.loadMessages();
+            },
+
+            bindEvents: function() {
+                const toggleBtn = document.getElementById('matebotToggle');
+                const sendBtn = document.getElementById('matebotSend');
+                const input = document.getElementById('matebotInput');
+                const quickActions = document.querySelectorAll('.matebot-quick-action');
+
+                toggleBtn.addEventListener('click', () => this.toggle());
+                sendBtn.addEventListener('click', () => this.sendMessage());
+                input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') this.sendMessage();
+                });
+
+                quickActions.forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const question = e.target.getAttribute('data-question');
+                        input.value = question;
+                        this.sendMessage();
+                    });
+                });
+            },
+
+            toggle: function() {
+                const container = document.getElementById('matebotContainer');
+                this.isVisible = !this.isVisible;
+                
+                if (this.isVisible) {
+                    container.classList.remove('matebot-hidden');
+                    document.getElementById('matebotInput').focus();
+                    trackEvent('matebot', 'open_chat', 'user');
+                } else {
+                    container.classList.add('matebot-hidden');
+                }
+            },
+
+            sendMessage: function() {
+                const input = document.getElementById('matebotInput');
+                const message = input.value.trim();
+                
+                if (!message) return;
+
+                this.addMessage(message, 'user');
+                input.value = '';
+                this.showTypingIndicator();
+                
+                setTimeout(() => {
+                    this.removeTypingIndicator();
+                    const response = this.generateResponse(message);
+                    this.addMessage(response, 'bot');
+                    trackEvent('matebot', 'send_message', message.substring(0, 50));
+                }, 1000 + Math.random() * 1000);
+            },
+
+            addMessage: function(text, sender) {
+                const messagesContainer = document.getElementById('matebotMessages');
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `matebot-message ${sender}-message`;
+                messageDiv.textContent = text;
+                
+                messagesContainer.appendChild(messageDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                
+                this.messages.push({ text, sender, timestamp: new Date() });
+                this.saveMessages();
+            },
+
+            showTypingIndicator: function() {
+                const messagesContainer = document.getElementById('matebotMessages');
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'matebot-typing';
+                typingDiv.id = 'typingIndicator';
+                typingDiv.innerHTML = `
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                `;
+                
+                messagesContainer.appendChild(typingDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            },
+
+            removeTypingIndicator: function() {
+                const typingIndicator = document.getElementById('typingIndicator');
+                if (typingIndicator) {
+                    typingIndicator.remove();
+                }
+            },
+
+            generateResponse: function(userMessage) {
+                const lowerMessage = userMessage.toLowerCase();
+                
+                // Course recommendations
+                if (lowerMessage.includes('course') || lowerMessage.includes('recommend') || lowerMessage.includes('which')) {
+                    if (lowerMessage.includes('beginner') || lowerMessage.includes('start')) {
+                        return "For beginners, I recommend:\n\n🎯 Web Development (Free) - Great for absolute beginners\n🎯 Python Programming (₹499) - Easy to learn syntax\n🎯 English Speaking (₹599) - Build communication skills\n\nWhich one interests you most?";
+                    } else if (lowerMessage.includes('programming') || lowerMessage.includes('coding')) {
+                        return "For programming, check out:\n\n💻 Web Development (Free) - HTML, CSS, JavaScript\n🐍 Python Programming (₹499) - Versatile language\n📱 Mobile App Development (₹899) - Flutter framework\n\nAll include hands-on projects!";
+                    } else if (lowerMessage.includes('design') || lowerMessage.includes('creative')) {
+                        return "Creative courses available:\n\n🎨 Graphic Design (₹699) - Photoshop & Canva\n📊 Data Science (₹999) - Data visualization\n🌐 Digital Marketing (₹799) - SEO & Social Media\n\nWhich creative field excites you?";
+                    }
+                    return "We have various courses:\n\n• Web Development (Free)\n• Python Programming (₹499)\n• Digital Marketing (₹799)\n• Mathematics Class 10 (₹299)\n• English Speaking (₹599)\n• Science Experiments (Free)\n• Graphic Design (₹699)\n• Mobile App Development (₹899)\n• Data Science (₹999)\n\nWhat are you interested in learning?";
+                }
+
+                // Enrollment help
+                if (lowerMessage.includes('enroll') || lowerMessage.includes('join') || lowerMessage.includes('admission')) {
+                    return "To enroll in a course:\n\n1. Click on any course card\n2. Review course details\n3. Click 'Enroll Now' button\n4. Login or create account\n5. Start learning immediately!\n\nNeed help with a specific course?";
+                }
+
+                // Study tips
+                if (lowerMessage.includes('study') || lowerMessage.includes('learn') || lowerMessage.includes('tips')) {
+                    return "Great study tips:\n\n📚 Set specific goals\n⏰ Create a study schedule\n🎯 Take regular breaks\n📝 Practice consistently\n🤝 Join study groups\n❓ Ask questions when stuck\n📊 Track your progress\n\nWant tips for a specific subject?";
+                }
+
+                // About LearnMate
+                if (lowerMessage.includes('learnmate') || lowerMessage.includes('about') || lowerMessage.includes('what is')) {
+                    return "LearnMate is India's trusted educational platform:\n\n✅ Safe & Secure Learning\n✅ Expert Indian Teachers\n✅ 24/7 Support Available\n✅ Affordable Courses\n✅ Completion Certificates\n✅ Practical Projects\n\nWe focus on quality education with privacy protection!";
+                }
+
+                // Pricing information
+                if (lowerMessage.includes('price') || lowerMessage.includes('cost') || lowerMessage.includes('free')) {
+                    return "Course pricing:\n\n💰 Free: Web Development, Science Experiments\n💵 ₹299: Mathematics Class 10\n💵 ₹499: Python Programming\n💵 ₹599: English Speaking\n💵 ₹699: Graphic Design\n💵 ₹799: Digital Marketing\n💵 ₹899: Mobile App Development\n💵 ₹999: Data Science\n\nAll courses offer great value!";
+                }
+
+                // Technical support
+                if (lowerMessage.includes('problem') || lowerMessage.includes('issue') || lowerMessage.includes('help') || lowerMessage.includes('support')) {
+                    return "For technical support:\n\n📞 Call: +91-8960002095\n💬 WhatsApp: Click the green button\n📧 Email: support@learnmate.com\n\nOur team is available 24/7 to help you!";
+                }
+
+                // Default responses
+                const defaultResponses = [
+                    "I'd be happy to help you with that! Could you provide more details?",
+                    "That's an interesting question! Let me think about the best way to assist you.",
+                    "I understand you're looking for information. What specific aspect would you like to know more about?",
+                    "I can help you with course selection, study tips, enrollment process, or any other learning-related questions!",
+                    "Great question! As your learning assistant, I can guide you through our courses and learning resources."
+                ];
+
+                return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+            },
+
+            saveMessages: function() {
+                if (this.messages.length > 50) {
+                    this.messages = this.messages.slice(-50);
+                }
+                localStorage.setItem('matebotMessages', JSON.stringify(this.messages));
+            },
+
+            loadMessages: function() {
+                const saved = localStorage.getItem('matebotMessages');
+                if (saved) {
+                    this.messages = JSON.parse(saved);
+                    this.messages.forEach(msg => {
+                        this.addMessage(msg.text, msg.sender);
+                    });
+                }
             }
         };
 
@@ -2018,6 +2469,9 @@ plt.show()`,
             // Initialize auth
             authSystem.updateAuthUI();
             initializeCourses();
+            
+            // Initialize MateBot
+            mateBot.init();
             
             // Contact form
             const contactForm = document.querySelector('.contact-form');
