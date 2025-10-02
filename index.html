@@ -6,7 +6,297 @@
     <title>LearnMate - Your Learning Partner</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* All CSS styles yahan rahenge */
+        /* === LOADING SPINNER === */
+        .loading-spinner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* === DARK MODE === */
+        .dark-mode-toggle {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px;
+            margin-left: 15px;
+        }
+
+        .dark-mode {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .dark-mode .navbar {
+            background: #2d2d2d;
+            border-bottom: 1px solid #444;
+        }
+
+        .dark-mode .course-card {
+            background: #2d2d2d;
+            color: white;
+            border: 1px solid #444;
+        }
+
+        .dark-mode .hero {
+            background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+        }
+
+        .dark-mode .contact-form input,
+        .dark-mode .contact-form textarea {
+            background: #2d2d2d;
+            color: white;
+            border: 1px solid #444;
+        }
+
+        /* === SEARCH FUNCTIONALITY === */
+        .search-container {
+            display: flex;
+            max-width: 500px;
+            margin: 20px auto 40px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: 2px solid #007bff;
+            border-radius: 25px 0 0 25px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-btn {
+            padding: 12px 25px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 0 25px 25px 0;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* === PROGRESS TRACKING === */
+        .progress-section {
+            margin: 30px 0;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #007bff;
+        }
+
+        .dark-mode .progress-section {
+            background: #2d2d2d;
+        }
+
+        .progress-item {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .dark-mode .progress-item {
+            background: #363636;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #e9ecef;
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .dark-mode .progress-bar {
+            background: #444;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #28a745, #20c997);
+            transition: width 0.5s ease;
+            border-radius: 6px;
+        }
+
+        /* === NOTIFICATIONS === */
+        .notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+        }
+
+        .notification {
+            background: #28a745;
+            color: white;
+            padding: 15px 25px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: slideInRight 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .notification.error {
+            background: #dc3545;
+        }
+
+        .notification.warning {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* === COURSE RATINGS === */
+        .rating-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .dark-mode .rating-section {
+            background: #2d2d2d;
+        }
+
+        .stars {
+            font-size: 24px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+
+        .stars span {
+            margin: 0 2px;
+            transition: color 0.2s ease;
+        }
+
+        /* === FILTERS === */
+        .filter-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 10px 15px;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            background: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .dark-mode .filter-select {
+            background: #2d2d2d;
+            color: white;
+            border-color: #555;
+        }
+
+        /* === WHATSAPP INTEGRATION === */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #128C7E;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-course-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-course-btn:hover {
+            background: #128C7E;
+        }
+
+        /* === INSTALL APP BUTTON === */
+        .install-btn {
+            background: #6f42c1;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 15px;
+            font-size: 14px;
+        }
+
+        /* === SKIP LINK === */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #007bff;
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 10000;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+
+        /* === AUTH MODAL === */
         .auth-modal-overlay {
             position: fixed;
             top: 0;
@@ -23,10 +313,15 @@
         .auth-modal {
             background: white;
             padding: 30px;
-            border-radius: 10px;
+            border-radius: 15px;
             width: 90%;
             max-width: 400px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode .auth-modal {
+            background: #2d2d2d;
+            color: white;
         }
 
         .auth-modal-header {
@@ -34,6 +329,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 15px;
         }
 
         .auth-modal-header h2 {
@@ -41,10 +338,16 @@
             color: #333;
         }
 
+        .dark-mode .auth-modal-header h2 {
+            color: white;
+        }
+
         .close-auth-btn {
             font-size: 24px;
             cursor: pointer;
             color: #666;
+            background: none;
+            border: none;
         }
 
         .close-auth-btn:hover {
@@ -52,35 +355,52 @@
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-weight: bold;
             color: #333;
         }
 
+        .dark-mode .form-group label {
+            color: white;
+        }
+
         .form-group input {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
             font-size: 16px;
             box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        .dark-mode .form-group input {
+            background: #363636;
+            color: white;
+            border-color: #555;
+        }
+
+        .form-group input:focus {
+            border-color: #007bff;
+            outline: none;
         }
 
         .auth-submit-btn {
             width: 100%;
-            padding: 12px;
+            padding: 15px;
             background: #007bff;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 16px;
             cursor: pointer;
             margin-top: 10px;
+            transition: background 0.3s ease;
         }
 
         .auth-submit-btn:hover {
@@ -89,36 +409,51 @@
 
         .auth-switch {
             text-align: center;
-            margin-top: 15px;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .dark-mode .auth-switch {
+            border-color: #555;
         }
 
         .auth-switch a {
             color: #007bff;
             text-decoration: none;
+            font-weight: bold;
         }
 
         .auth-switch a:hover {
             text-decoration: underline;
         }
 
+        /* === NAVIGATION AUTH === */
         .nav-auth {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
 
         .btn-login, .btn-signup, .btn-logout {
-            padding: 8px 16px;
+            padding: 10px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
         }
 
         .btn-login {
             background: transparent;
-            border: 1px solid #007bff;
+            border: 2px solid #007bff;
             color: #007bff;
+        }
+
+        .btn-login:hover {
+            background: #007bff;
+            color: white;
         }
 
         .btn-signup {
@@ -126,9 +461,17 @@
             color: white;
         }
 
+        .btn-signup:hover {
+            background: #0056b3;
+        }
+
         .btn-logout {
             background: #dc3545;
             color: white;
+        }
+
+        .btn-logout:hover {
+            background: #c82333;
         }
 
         .user-welcome {
@@ -137,15 +480,20 @@
             margin-right: 10px;
         }
 
+        .dark-mode .user-welcome {
+            color: white;
+        }
+
         .user-courses {
             background: #28a745;
             color: white;
-            padding: 4px 8px;
-            border-radius: 12px;
+            padding: 6px 12px;
+            border-radius: 20px;
             font-size: 12px;
             margin-right: 10px;
         }
 
+        /* === MODULE POPUP === */
         .module-popup-overlay {
             position: fixed;
             top: 0;
@@ -170,12 +518,17 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
+        .dark-mode .module-popup {
+            background: #2d2d2d;
+            color: white;
+        }
+
         .module-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #007bff;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #007bff;
             padding-bottom: 15px;
         }
 
@@ -202,14 +555,25 @@
         }
 
         .module-section {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #007bff;
+        }
+
+        .dark-mode .module-section {
+            background: #363636;
         }
 
         .module-section h3 {
             color: #333;
-            border-left: 4px solid #007bff;
-            padding-left: 10px;
             margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .dark-mode .module-section h3 {
+            color: white;
         }
 
         .module-section p {
@@ -217,15 +581,21 @@
             margin-bottom: 10px;
         }
 
+        .dark-mode .module-section p {
+            color: #ccc;
+        }
+
         .code-example {
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 5px;
-            padding: 15px;
+            background: #2d2d2d;
+            color: #f8f9fa;
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 20px;
             margin: 15px 0;
             font-family: 'Courier New', monospace;
             font-size: 14px;
             white-space: pre-wrap;
+            overflow-x: auto;
         }
 
         .module-features {
@@ -240,25 +610,144 @@
             padding: 15px;
             border-radius: 8px;
             border-left: 4px solid #007bff;
+            text-align: center;
+        }
+
+        .dark-mode .feature-item {
+            background: #363636;
         }
 
         .next-module-btn {
             background: #28a745;
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 5px;
+            padding: 15px 30px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 16px;
             margin-top: 20px;
+            transition: background 0.3s ease;
         }
 
         .next-module-btn:hover {
             background: #218838;
         }
+
+        /* === COURSE POPUP === */
+        .course-popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1500;
+        }
+
+        .course-popup {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode .course-popup {
+            background: #2d2d2d;
+            color: white;
+        }
+
+        .popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 15px;
+        }
+
+        .popup-header h2 {
+            margin: 0;
+            color: #007bff;
+        }
+
+        .close-btn {
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            background: none;
+            border: none;
+        }
+
+        .course-price-popup {
+            font-size: 24px;
+            font-weight: bold;
+            color: #28a745;
+            margin: 10px 0;
+        }
+
+        .popup-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .enroll-btn-popup {
+            flex: 1;
+            padding: 15px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .close-btn-popup {
+            flex: 1;
+            padding: 15px;
+            background: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* === HIGHLIGHT ANIMATION === */
+        @keyframes highlight {
+            0% { background-color: transparent; }
+            50% { background-color: #fff3cd; }
+            100% { background-color: transparent; }
+        }
+
+        .dark-mode .highlight {
+            animation: highlightDark 1s;
+        }
+
+        @keyframes highlightDark {
+            0% { background-color: transparent; }
+            50% { background-color: #4a5568; }
+            100% { background-color: transparent; }
+        }
     </style>
 </head>
 <body>
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="nav-container">
@@ -272,6 +761,12 @@
                 <li><a href="#contact">Contact</a></li>
                 <!-- Auth Section -->
                 <div class="nav-auth">
+                    <!-- Dark Mode Toggle -->
+                    <button id="darkModeToggle" class="dark-mode-toggle">🌙</button>
+                    
+                    <!-- Install App Button -->
+                    <button id="installBtn" class="install-btn" style="display: none;">📱 Install App</button>
+                    
                     <!-- Login/Signup Buttons -->
                     <div id="authSection">
                         <button class="btn-login" onclick="authSystem.showAuthModal('login')">Login</button>
@@ -289,121 +784,114 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Welcome to LearnMate</h1>
-            <p>India's most trusted educational platform for safe and secure learning</p>
-            <button class="cta-button" onclick="scrollToCourses()">Start Learning Today</button>
-        </div>
-    </section>
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Welcome to LearnMate</h1>
+                <p>India's most trusted educational platform for safe and secure learning</p>
+                <button class="cta-button" onclick="scrollToCourses()">Start Learning Today</button>
+            </div>
+        </section>
 
-    <!-- Courses Section -->
-    <section id="courses" class="courses">
-        <div class="container">
-            <h2>Our Popular Courses</h2>
-            <div class="course-grid">
-                <!-- Web Development -->
-                <div class="course-card" onclick="showCourseDetails('web-development')">
-                    <h3>Web Development</h3>
-                    <p>HTML, CSS, JavaScript complete course</p>
-                    <span class="price">Free</span>
-                </div>
+        <!-- Courses Section -->
+        <section id="courses" class="courses">
+            <div class="container">
+                <h2>Our Popular Courses</h2>
                 
-                <!-- Python Programming -->
-                <div class="course-card" onclick="showCourseDetails('python')">
-                    <h3>Python Programming</h3>
-                    <p>From beginner to advanced level</p>
-                    <span class="price">₹499</span>
+                <!-- Search and Filters -->
+                <div class="search-container">
+                    <input type="text" id="courseSearch" placeholder="Search courses..." class="search-input">
+                    <button onclick="searchCourses()" class="search-btn">🔍 Search</button>
                 </div>
-                
-                <!-- Digital Marketing -->
-                <div class="course-card" onclick="showCourseDetails('digital-marketing')">
-                    <h3>Digital Marketing</h3>
-                    <p>SEO, Social Media, Google Ads</p>
-                    <span class="price">₹799</span>
+
+                <div class="filter-container">
+                    <select id="levelFilter" class="filter-select" onchange="filterCourses()">
+                        <option value="all">All Levels</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                    
+                    <select id="priceFilter" class="filter-select" onchange="filterCourses()">
+                        <option value="all">All Prices</option>
+                        <option value="free">Free</option>
+                        <option value="paid">Paid</option>
+                    </select>
+
+                    <select id="durationFilter" class="filter-select" onchange="filterCourses()">
+                        <option value="all">Any Duration</option>
+                        <option value="short">Short (1-4 weeks)</option>
+                        <option value="medium">Medium (5-8 weeks)</option>
+                        <option value="long">Long (9+ weeks)</option>
+                    </select>
                 </div>
-                
-                <!-- Mathematics Class 10 -->
-                <div class="course-card" onclick="showCourseDetails('mathematics')">
-                    <h3>Mathematics Class 10</h3>
-                    <p>Complete CBSE syllabus with expert teachers</p>
-                    <span class="price">₹299</span>
+
+                <!-- Progress Section -->
+                <div class="progress-section" id="progressSection" style="display: none;">
+                    <h3>📊 Your Learning Progress</h3>
+                    <div id="progressContainer"></div>
                 </div>
-                
-                <!-- English Speaking -->
-                <div class="course-card" onclick="showCourseDetails('english-speaking')">
-                    <h3>English Speaking</h3>
-                    <p>Fluency in 30 days - Daily practice</p>
-                    <span class="price">₹599</span>
-                </div>
-                
-                <!-- Science Experiments -->
-                <div class="course-card" onclick="showCourseDetails('science-experiments')">
-                    <h3>Science Experiments</h3>
-                    <p>Fun learning with practical experiments</p>
-                    <span class="price">Free</span>
-                </div>
-                
-                <!-- Graphic Design -->
-                <div class="course-card" onclick="showCourseDetails('graphic-design')">
-                    <h3>Graphic Design</h3>
-                    <p>Photoshop, Canva, Design principles</p>
-                    <span class="price">₹699</span>
-                </div>
-                
-                <!-- Mobile App Development -->
-                <div class="course-card" onclick="showCourseDetails('mobile-app-development')">
-                    <h3>Mobile App Development</h3>
-                    <p>Android & iOS apps with Flutter</p>
-                    <span class="price">₹899</span>
-                </div>
-                
-                <!-- Data Science -->
-                <div class="course-card" onclick="showCourseDetails('data-science')">
-                    <h3>Data Science</h3>
-                    <p>Python, ML, Data analysis complete course</p>
-                    <span class="price">₹999</span>
+
+                <!-- Course Grid -->
+                <div class="course-grid" id="courseGrid">
+                    <!-- Courses will be dynamically loaded -->
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2>About LearnMate</h2>
-            <p>LearnMate is a safe and secure educational platform designed for Indian students. We provide quality education with 100% privacy protection.</p>
-            <div class="features">
-                <div class="feature">✅ Safe & Secure</div>
-                <div class="feature">✅ Expert Teachers</div>
-                <div class="feature">✅ 24/7 Support</div>
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2>About LearnMate</h2>
+                <p>LearnMate is a safe and secure educational platform designed for Indian students. We provide quality education with 100% privacy protection.</p>
+                <div class="features">
+                    <div class="feature">✅ Safe & Secure</div>
+                    <div class="feature">✅ Expert Teachers</div>
+                    <div class="feature">✅ 24/7 Support</div>
+                    <div class="feature">✅ Certificate</div>
+                    <div class="feature">✅ Affordable</div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <form class="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea placeholder="Your Message" rows="5" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-        </div>
-    </section>
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <form class="contact-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 LearnMate. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            <p>&copy; 2024 LearnMate. All rights reserved. | 
+               <a href="#">Privacy Policy</a> | 
+               <a href="#">Terms of Service</a></p>
         </div>
     </footer>
 
+    <!-- Notifications Container -->
+    <div id="notificationContainer" class="notification-container"></div>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/919876543210?text=Hi, I'm interested in LearnMate courses" 
+       class="whatsapp-float" 
+       target="_blank"
+       title="Contact us on WhatsApp">
+       💬
+    </a>
+
     <script>
-        // Course data with ALL courses having detailed modules
+        // ===== COURSE DATA =====
         const coursesData = {
             'web-development': {
                 title: 'Web Development Master Course',
@@ -596,87 +1084,6 @@ squares = [x**2 for x in numbers]`,
                                 'Strong community support'
                             ]
                         }
-                    },
-                    {
-                        name: 'Data Structures',
-                        description: 'Learn essential data structures like lists, tuples, dictionaries, and sets.',
-                        content: {
-                            overview: 'Data structures are fundamental building blocks for efficient programming. Python offers powerful built-in data structures.',
-                            topics: [
-                                'Lists and List Comprehensions',
-                                'Tuples and Sets',
-                                'Dictionaries and Dictionary Comprehensions',
-                                'Strings and String Methods',
-                                'Arrays vs Lists',
-                                'Custom Data Structures'
-                            ],
-                            codeExample: `# Lists
-fruits = ['apple', 'banana', 'orange']
-fruits.append('grape')
-
-# Dictionary
-student = {
-    'name': 'John',
-    'age': 20,
-    'courses': ['Math', 'Science']
-}
-
-# Set operations
-set1 = {1, 2, 3}
-set2 = {2, 3, 4}
-union_set = set1 | set2
-
-# List comprehension with condition
-even_squares = [x**2 for x in range(10) if x % 2 == 0]`,
-                            features: [
-                                'Efficient data organization',
-                                'Fast search and retrieval',
-                                'Memory optimization',
-                                'Algorithm implementation',
-                                'Real-world problem solving'
-                            ]
-                        }
-                    },
-                    {
-                        name: 'OOP Concepts',
-                        description: 'Master Object-Oriented Programming principles in Python.',
-                        content: {
-                            overview: 'Object-Oriented Programming (OOP) helps in creating modular, reusable, and maintainable code through classes and objects.',
-                            topics: [
-                                'Classes and Objects',
-                                'Inheritance and Polymorphism',
-                                'Encapsulation and Abstraction',
-                                'Method Overriding',
-                                'Class Methods and Static Methods',
-                                'Properties and Decorators'
-                            ],
-                            codeExample: `class Animal:
-    def __init__(self, name, species):
-        self.name = name
-        self.species = species
-    
-    def make_sound(self):
-        pass
-
-class Dog(Animal):
-    def __init__(self, name, breed):
-        super().__init__(name, "Dog")
-        self.breed = breed
-    
-    def make_sound(self):
-        return "Woof!"
-
-# Using the class
-my_dog = Dog("Buddy", "Golden Retriever")
-print(my_dog.make_sound())`,
-                            features: [
-                                'Code reusability',
-                                'Modular design',
-                                'Easy maintenance',
-                                'Real-world modeling',
-                                'Scalable architecture'
-                            ]
-                        }
                     }
                 ],
                 duration: '6 Weeks',
@@ -723,75 +1130,6 @@ print(my_dog.make_sound())`,
                                 'Cost-effective marketing'
                             ]
                         }
-                    },
-                    {
-                        name: 'Social Media Marketing',
-                        description: 'Master social media platforms for business growth and engagement.',
-                        content: {
-                            overview: 'Social Media Marketing involves using platforms like Facebook, Instagram, Twitter to connect with audiences and promote brands.',
-                            topics: [
-                                'Content Strategy Development',
-                                'Platform-Specific Best Practices',
-                                'Community Management',
-                                'Paid Social Advertising',
-                                'Influencer Marketing',
-                                'Social Media Analytics'
-                            ],
-                            codeExample: `Social Media Content Calendar Example:
-
-📅 Monday: Educational Content
-- Blog post sharing
-- Industry insights
-- How-to guides
-
-📅 Tuesday: Engagement Posts
-- Questions and polls
-- User-generated content
-- Behind-the-scenes
-
-📅 Wednesday: Promotional Content
-- Product features
-- Special offers
-- Customer testimonials`,
-                            features: [
-                                'Brand awareness',
-                                'Customer engagement',
-                                'Lead generation',
-                                'Community building',
-                                'Real-time feedback'
-                            ]
-                        }
-                    },
-                    {
-                        name: 'Google Ads & Analytics',
-                        description: 'Learn to create effective Google Ads campaigns and analyze performance.',
-                        content: {
-                            overview: 'Google Ads and Analytics provide powerful tools for paid advertising and tracking website performance and user behavior.',
-                            topics: [
-                                'Campaign Structure Setup',
-                                'Keyword Planning and Bidding',
-                                'Ad Copy Creation',
-                                'Conversion Tracking',
-                                'ROI Analysis',
-                                'A/B Testing Strategies'
-                            ],
-                            codeExample: `Google Ads Campaign Structure:
-
-Campaign: "Digital Marketing Course"
-├── Ad Group: "SEO Course"
-│   ├── Keywords: "learn seo", "seo course online"
-│   └── Ads: "Master SEO - Free Course Available"
-├── Ad Group: "Social Media Course"
-│   ├── Keywords: "social media marketing", "instagram marketing"
-│   └── Ads: "Social Media Expert - Get Certified"`,
-                            features: [
-                                'Targeted advertising',
-                                'Measurable results',
-                                'Flexible budgeting',
-                                'Performance tracking',
-                                'Data-driven decisions'
-                            ]
-                        }
                     }
                 ],
                 duration: '4 Weeks',
@@ -834,72 +1172,6 @@ Verification:
                                 'Exam preparation',
                                 'Concept clarity',
                                 'Practical applications'
-                            ]
-                        }
-                    },
-                    {
-                        name: 'Polynomials',
-                        description: 'Understand polynomial functions, their graphs and applications.',
-                        content: {
-                            overview: 'Polynomials are algebraic expressions that play a crucial role in various mathematical concepts and real-world applications.',
-                            topics: [
-                                'Polynomial Basics',
-                                'Zeroes of Polynomials',
-                                'Relationship between Zeroes and Coefficients',
-                                'Division Algorithm',
-                                'Graphical Representations',
-                                'Application Problems'
-                            ],
-                            codeExample: `Find zeroes of polynomial: x² - 3x - 4
-
-Solution:
-x² - 3x - 4 = 0
-x² - 4x + x - 4 = 0
-x(x - 4) + 1(x - 4) = 0
-(x - 4)(x + 1) = 0
-
-∴ Zeroes are: x = 4 and x = -1
-
-Verification:
-Sum of zeroes = 4 + (-1) = 3 = -b/a
-Product of zeroes = 4 × (-1) = -4 = c/a`,
-                            features: [
-                                'Algebraic understanding',
-                                'Graph interpretation',
-                                'Equation solving',
-                                'Theoretical concepts',
-                                'Exam-focused learning'
-                            ]
-                        }
-                    },
-                    {
-                        name: 'Trigonometry',
-                        description: 'Learn trigonometric ratios, identities and their applications.',
-                        content: {
-                            overview: 'Trigonometry deals with relationships between angles and sides of triangles, essential for higher mathematics and physics.',
-                            topics: [
-                                'Trigonometric Ratios',
-                                'Trigonometric Identities',
-                                'Heights and Distances',
-                                'Complementary Angles',
-                                'Application Problems',
-                                'Proofs and Derivations'
-                            ],
-                            codeExample: `Problem: A ladder leans against a wall making 60° with ground. 
-If ladder is 10m long, find height it reaches.
-
-Solution:
-sin(60°) = Opposite/Hypotenuse
-√3/2 = Height/10
-Height = 10 × √3/2 = 5√3 ≈ 8.66 meters
-
-Answer: The ladder reaches 8.66 meters high.`,
-                            features: [
-                                'Practical applications',
-                                'Conceptual clarity',
-                                'Problem-solving approach',
-                                'Visual learning',
-                                'Exam readiness'
                             ]
                         }
                     }
@@ -950,77 +1222,6 @@ Common Error Correction:
                                 'Writing improvement'
                             ]
                         }
-                    },
-                    {
-                        name: 'Vocabulary Building',
-                        description: 'Expand your English vocabulary with practical words and phrases.',
-                        content: {
-                            overview: 'A rich vocabulary enhances communication skills and helps express thoughts more precisely and effectively.',
-                            topics: [
-                                'Word Roots and Prefixes/Suffixes',
-                                'Synonyms and Antonyms',
-                                'Idioms and Phrases',
-                                'Contextual Vocabulary',
-                                'Word Families',
-                                'Vocabulary in Conversations'
-                            ],
-                            codeExample: `Vocabulary Building Techniques:
-
-1. Word Roots:
-   - Bio (life) → biology, biography
-   - Chron (time) → chronic, chronology
-
-2. Common Idioms:
-   - "Break the ice" - start conversation
-   - "Piece of cake" - very easy
-   - "Hit the nail on the head" - exactly right
-
-3. Formal vs Informal:
-   Formal: "I would appreciate it if..."
-   Informal: "Can you please..."`,
-                            features: [
-                                'Word power',
-                                'Expression variety',
-                                'Contextual usage',
-                                'Memory techniques',
-                                'Daily practice'
-                            ]
-                        }
-                    },
-                    {
-                        name: 'Conversation Practice',
-                        description: 'Practice real-life conversations and improve speaking fluency.',
-                        content: {
-                            overview: 'Regular conversation practice builds confidence and fluency, helping you communicate effectively in various situations.',
-                            topics: [
-                                'Everyday Conversations',
-                                'Professional Communication',
-                                'Social Situations',
-                                'Telephone Etiquette',
-                                'Group Discussions',
-                                'Presentation Skills'
-                            ],
-                            codeExample: `Sample Conversations:
-
-At a Restaurant:
-Waiter: "Good evening, are you ready to order?"
-You: "Yes, I'd like to have the vegetable pasta, please."
-
-On the Phone:
-Caller: "Hello, may I speak with Mr. Sharma?"
-You: "I'm sorry, he's in a meeting. Can I take a message?"
-
-Job Interview:
-Interviewer: "Tell me about yourself."
-You: "I'm a passionate web developer with 3 years of experience..."`,
-                            features: [
-                                'Real-life scenarios',
-                                'Confidence building',
-                                'Accent improvement',
-                                'Fluency development',
-                                'Interactive learning'
-                            ]
-                        }
                     }
                 ],
                 duration: '4 Weeks',
@@ -1069,84 +1270,6 @@ balloon moves forward (action-reaction).`,
                                 'Fun activities'
                             ]
                         }
-                    },
-                    {
-                        name: 'Chemistry Labs',
-                        description: 'Safe and exciting chemistry experiments for beginners.',
-                        content: {
-                            overview: 'Chemistry experiments reveal the fascinating world of chemical reactions and molecular interactions.',
-                            topics: [
-                                'Chemical Reactions',
-                                'Acids and Bases',
-                                'Electrochemistry',
-                                'Organic Chemistry',
-                                'Environmental Chemistry',
-                                'Kitchen Chemistry'
-                            ],
-                            codeExample: `Experiment: pH Testing with Natural Indicators
-
-Materials:
-- Red cabbage
-- Various household liquids
-- Test tubes/containers
-
-Procedure:
-1. Boil red cabbage to extract color
-2. Strain to get purple liquid (indicator)
-3. Add to different liquids and observe color changes
-
-Observations:
-- Acidic (vinegar): Red/Pink
-- Neutral (water): Purple
-- Basic (baking soda): Blue/Green`,
-                            features: [
-                                'Safe experiments',
-                                'Visual learning',
-                                'Scientific curiosity',
-                                'Practical knowledge',
-                                'Home-based activities'
-                            ]
-                        }
-                    },
-                    {
-                        name: 'Biology Practicals',
-                        description: 'Explore living world through microscope and experiments.',
-                        content: {
-                            overview: 'Biology practicals help understand life processes, cell structures, and ecological relationships.',
-                            topics: [
-                                'Microscope Techniques',
-                                'Cell Biology',
-                                'Plant Physiology',
-                                'Animal Tissues',
-                                'Ecosystem Studies',
-                                'Genetic Experiments'
-                            ],
-                            codeExample: `Experiment: Osmosis in Potato
-
-Materials:
-- Potato
-- Salt water
-- Fresh water
-- Knife and ruler
-
-Procedure:
-1. Cut potato into equal strips
-2. Place one in salt water, one in fresh water
-3. Wait 30 minutes and compare
-
-Observation:
-- Salt water: Potato shrinks (water moves out)
-- Fresh water: Potato expands (water moves in)
-
-Conclusion: Demonstrates osmosis process`,
-                            features: [
-                                'Life science exploration',
-                                'Observation skills',
-                                'Scientific documentation',
-                                'Environmental awareness',
-                                'Health education'
-                            ]
-                        }
                     }
                 ],
                 duration: '6 Weeks',
@@ -1192,86 +1315,6 @@ Conclusion: Demonstrates osmosis process`,
                                 'Professional standards',
                                 'Creative thinking',
                                 'Portfolio building'
-                            ]
-                        }
-                    },
-                    {
-                        name: 'Adobe Photoshop',
-                        description: 'Learn professional photo editing and graphic creation in Photoshop.',
-                        content: {
-                            overview: 'Adobe Photoshop is the industry-standard tool for photo editing, digital painting, and graphic design.',
-                            topics: [
-                                'Interface and Tools',
-                                'Layers and Masks',
-                                'Selection Techniques',
-                                'Color Correction',
-                                'Retouching and Restoration',
-                                'Digital Painting'
-                            ],
-                            codeExample: `Photoshop Workflow Example:
-
-1. File Setup:
-   - Create new document (1920x1080px, 72dpi)
-   - Set color mode: RGB
-
-2. Basic Editing:
-   - Open image and duplicate layer
-   - Use Levels for contrast adjustment
-   - Apply Smart Sharpen filter
-
-3. Advanced Techniques:
-   - Create layer masks for non-destructive editing
-   - Use adjustment layers for color grading
-   - Apply blend modes for creative effects`,
-                            features: [
-                                'Professional skills',
-                                'Industry-standard tools',
-                                'Creative freedom',
-                                'Portfolio projects',
-                                'Career opportunities'
-                            ]
-                        }
-                    },
-                    {
-                        name: 'Canva Mastery',
-                        description: 'Create stunning designs quickly with Canva for social media and business.',
-                        content: {
-                            overview: 'Canva makes graphic design accessible to everyone with its user-friendly interface and extensive template library.',
-                            topics: [
-                                'Canva Interface',
-                                'Template Customization',
-                                'Brand Kit Setup',
-                                'Animation Features',
-                                'Collaboration Tools',
-                                'Export and Sharing'
-                            ],
-                            codeExample: `Canva Design Process:
-
-1. Choose Template:
-   - Social media post
-   - Presentation
-   - Business card
-
-2. Customize:
-   - Change colors to brand palette
-   - Replace images with your photos
-   - Edit text with your content
-
-3. Enhance:
-   - Add animations
-   - Include icons/elements
-   - Adjust spacing and alignment
-
-4. Export:
-   - Download as PNG/PDF
-   - Share directly to social media
-   - Schedule posts`,
-                            features: [
-                                'Quick design creation',
-                                'No design experience needed',
-                                'Professional results',
-                                'Time efficiency',
-                                'Business applications'
                             ]
                         }
                     }
@@ -1328,99 +1371,6 @@ class MyApp extends StatelessWidget {
                                 'Google-backed technology'
                             ]
                         }
-                    },
-                    {
-                        name: 'Dart Programming',
-                        description: 'Master Dart language - the foundation of Flutter development.',
-                        content: {
-                            overview: 'Dart is a client-optimized language for fast apps on any platform, featuring strong typing and just-in-time compilation.',
-                            topics: [
-                                'Dart Syntax and Data Types',
-                                'Functions and Classes',
-                                'Asynchronous Programming',
-                                'Collections and Generics',
-                                'Error Handling',
-                                'Object-Oriented Concepts'
-                            ],
-                            codeExample: `Dart Programming Examples:
-
-// Variable declaration
-String name = 'Flutter';
-int version = 3;
-
-// Function definition
-void greet(String name) {
-  print('Hello, $name!');
-}
-
-// Class definition
-class Person {
-  String name;
-  int age;
-  
-  Person(this.name, this.age);
-  
-  void introduce() {
-    print('I am $name, $age years old');
-  }
-}
-
-// Async programming
-Future<void> fetchData() async {
-  var data = await http.get('api.url');
-  print(data);
-}`,
-                            features: [
-                                'Modern language features',
-                                'Strong typing',
-                                'Asynchronous support',
-                                'Flutter compatibility',
-                                'Performance optimization'
-                            ]
-                        }
-                    },
-                    {
-                        name: 'UI/UX Design',
-                        description: 'Create beautiful and user-friendly mobile app interfaces.',
-                        content: {
-                            overview: 'Good UI/UX design is crucial for app success, focusing on usability, accessibility, and visual appeal.',
-                            topics: [
-                                'Mobile Design Principles',
-                                'Material Design Guidelines',
-                                'User Flow Design',
-                                'Prototyping and Wireframing',
-                                'Usability Testing',
-                                'Accessibility Standards'
-                            ],
-                            codeExample: `UI/UX Design Process:
-
-1. Research:
-   - Target audience analysis
-   - Competitor research
-   - User needs assessment
-
-2. Design:
-   - Wireframe creation
-   - User flow mapping
-   - Visual design mockups
-
-3. Testing:
-   - Usability testing
-   - A/B testing
-   - User feedback collection
-
-4. Implementation:
-   - Design to code conversion
-   - Responsive design
-   - Accessibility features`,
-                            features: [
-                                'User-centered design',
-                                'Professional interfaces',
-                                'Usability principles',
-                                'Design thinking',
-                                'Portfolio projects'
-                            ]
-                        }
                     }
                 ],
                 duration: '7 Weeks',
@@ -1473,92 +1423,6 @@ plt.show()`,
                                 'Industry-ready skills'
                             ]
                         }
-                    },
-                    {
-                        name: 'Machine Learning Basics',
-                        description: 'Introduction to machine learning algorithms and their applications.',
-                        content: {
-                            overview: 'Machine learning enables computers to learn from data and make predictions or decisions without explicit programming.',
-                            topics: [
-                                'Supervised Learning',
-                                'Unsupervised Learning',
-                                'Regression Algorithms',
-                                'Classification Models',
-                                'Clustering Techniques',
-                                'Model Evaluation'
-                            ],
-                            codeExample: `Machine Learning with Scikit-learn:
-
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error
-
-# Load and prepare data
-X = data[['feature1', 'feature2']]
-y = data['target']
-
-# Split data
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-
-# Train model
-model = LinearRegression()
-model.fit(X_train, y_train)
-
-# Make predictions
-predictions = model.predict(X_test)
-
-# Evaluate
-mse = mean_squared_error(y_test, predictions)
-print(f'Mean Squared Error: {mse}')`,
-                            features: [
-                                'Algorithm understanding',
-                                'Model building',
-                                'Prediction techniques',
-                                'Real-world applications',
-                                'AI foundation'
-                            ]
-                        }
-                    },
-                    {
-                        name: 'Data Visualization',
-                        description: 'Create compelling visualizations to communicate data insights effectively.',
-                        content: {
-                            overview: 'Data visualization transforms complex data into understandable graphics, enabling better decision-making and insights.',
-                            topics: [
-                                'Matplotlib and Seaborn',
-                                'Plotly for Interactive Charts',
-                                'Dashboard Creation',
-                                'Storytelling with Data',
-                                'Color Theory in Visualization',
-                                'Best Practices and Principles'
-                            ],
-                            codeExample: `Data Visualization with Python:
-
-import matplotlib.pyplot as plt
-import seaborn as sns
-import plotly.express as px
-
-# Basic plot
-plt.figure(figsize=(10, 6))
-plt.scatter(data['x'], data['y'])
-plt.title('Scatter Plot')
-plt.xlabel('X Axis')
-plt.ylabel('Y Axis')
-plt.show()
-
-# Advanced visualization
-fig = px.scatter(data, x='age', y='income', 
-                 color='education', size='experience',
-                 title='Income vs Age by Education')
-fig.show()`,
-                            features: [
-                                'Visual storytelling',
-                                'Interactive charts',
-                                'Dashboard creation',
-                                'Insight communication',
-                                'Professional reporting'
-                            ]
-                        }
                     }
                 ],
                 duration: '10 Weeks',
@@ -1566,8 +1430,7 @@ fig.show()`,
             }
         };
 
-        // Rest of the JavaScript code remains the same
-        // (Auth system, functions, event listeners, etc.)
+        // ===== AUTHENTICATION SYSTEM =====
         const authSystem = {
             currentUser: null,
             users: JSON.parse(localStorage.getItem('courseUsers')) || [],
@@ -1584,6 +1447,7 @@ fig.show()`,
                     email: email,
                     password: password,
                     enrolledCourses: [],
+                    progress: {},
                     joinDate: new Date().toLocaleDateString()
                 };
 
@@ -1625,6 +1489,7 @@ fig.show()`,
                 }
 
                 this.currentUser.enrolledCourses.push(courseId);
+                this.currentUser.progress[courseId] = 0;
                 
                 const userIndex = this.users.findIndex(user => user.id === this.currentUser.id);
                 if (userIndex !== -1) {
@@ -1638,6 +1503,14 @@ fig.show()`,
                 };
             },
 
+            updateProgress: function(courseId, progress) {
+                if (this.currentUser && this.currentUser.progress) {
+                    this.currentUser.progress[courseId] = progress;
+                    this.saveUsers();
+                    updateProgressUI();
+                }
+            },
+
             saveUsers: function() {
                 localStorage.setItem('courseUsers', JSON.stringify(this.users));
             },
@@ -1645,17 +1518,22 @@ fig.show()`,
             updateAuthUI: function() {
                 const authSection = document.getElementById('authSection');
                 const userSection = document.getElementById('userSection');
+                const progressSection = document.getElementById('progressSection');
                 const userNameSpan = document.getElementById('userName');
                 const enrolledCoursesSpan = document.getElementById('enrolledCoursesCount');
 
                 if (this.currentUser) {
                     if (authSection) authSection.style.display = 'none';
                     if (userSection) userSection.style.display = 'flex';
+                    if (progressSection) progressSection.style.display = 'block';
                     if (userNameSpan) userNameSpan.textContent = this.currentUser.name;
                     if (enrolledCoursesSpan) enrolledCoursesSpan.textContent = this.currentUser.enrolledCourses.length;
+                    
+                    updateProgressUI();
                 } else {
                     if (authSection) authSection.style.display = 'flex';
                     if (userSection) userSection.style.display = 'none';
+                    if (progressSection) progressSection.style.display = 'none';
                 }
             },
 
@@ -1706,44 +1584,133 @@ fig.show()`,
             }
         };
 
-        function closeAuthModal() {
-            const modal = document.querySelector('.auth-modal-overlay');
-            if (modal) {
-                modal.remove();
+        // ===== NOTIFICATION SYSTEM =====
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                ${type === 'success' ? '✅' : type === 'error' ? '❌' : '⚠️'}
+                ${message}
+            `;
+            
+            const container = document.getElementById('notificationContainer');
+            container.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideInRight 0.3s ease reverse';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // ===== LOADING SYSTEM =====
+        function showLoading() {
+            document.getElementById('loadingSpinner').style.display = 'flex';
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingSpinner').style.display = 'none';
+        }
+
+        // ===== DARK MODE =====
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            darkModeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+            showNotification('Dark mode ' + (document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled'));
+        });
+
+        // ===== SEARCH AND FILTERS =====
+        function searchCourses() {
+            const searchTerm = document.getElementById('courseSearch').value.toLowerCase();
+            const courseCards = document.querySelectorAll('.course-card');
+            let resultsFound = 0;
+            
+            courseCards.forEach(card => {
+                const courseName = card.querySelector('h3').textContent.toLowerCase();
+                const courseDesc = card.querySelector('p').textContent.toLowerCase();
+                
+                if (courseName.includes(searchTerm) || courseDesc.includes(searchTerm)) {
+                    card.style.display = 'block';
+                    card.style.animation = 'highlight 1s';
+                    resultsFound++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            if (searchTerm && resultsFound === 0) {
+                showNotification('No courses found matching your search', 'warning');
             }
         }
 
-        function switchAuthType(type) {
-            closeAuthModal();
-            authSystem.showAuthModal(type);
+        function filterCourses() {
+            const levelFilter = document.getElementById('levelFilter').value;
+            const priceFilter = document.getElementById('priceFilter').value;
+            const durationFilter = document.getElementById('durationFilter').value;
+            
+            Object.keys(coursesData).forEach(courseId => {
+                const course = coursesData[courseId];
+                const courseElement = document.querySelector(`[onclick="showCourseDetails('${courseId}')"]`);
+                if (!courseElement) return;
+                
+                const levelMatch = levelFilter === 'all' || course.level.toLowerCase().includes(levelFilter);
+                const priceMatch = priceFilter === 'all' || 
+                                  (priceFilter === 'free' && course.price === 'Free') ||
+                                  (priceFilter === 'paid' && course.price !== 'Free');
+                
+                let durationMatch = true;
+                if (durationFilter !== 'all') {
+                    const weeks = parseInt(course.duration);
+                    if (durationFilter === 'short') durationMatch = weeks <= 4;
+                    else if (durationFilter === 'medium') durationMatch = weeks > 4 && weeks <= 8;
+                    else if (durationFilter === 'long') durationMatch = weeks > 8;
+                }
+                
+                if (levelMatch && priceMatch && durationMatch) {
+                    courseElement.style.display = 'block';
+                } else {
+                    courseElement.style.display = 'none';
+                }
+            });
         }
 
-        function handleAuthSubmit(event) {
-            event.preventDefault();
+        // ===== PROGRESS TRACKING =====
+        function updateProgressUI() {
+            if (!authSystem.currentUser) return;
             
-            const form = event.target;
-            const isLogin = form.querySelector('#authName') === null;
+            const progressContainer = document.getElementById('progressContainer');
+            progressContainer.innerHTML = '';
             
-            const name = isLogin ? null : document.getElementById('authName').value;
-            const email = document.getElementById('authEmail').value;
-            const password = document.getElementById('authPassword').value;
-            
-            let result;
-            if (isLogin) {
-                result = authSystem.login(email, password);
-            } else {
-                result = authSystem.signUp(name, email, password);
-            }
-            
-            if (result.success) {
-                alert(result.message);
-                closeAuthModal();
-                authSystem.updateAuthUI();
-            } else {
-                alert(result.message);
-            }
+            authSystem.currentUser.enrolledCourses.forEach(courseId => {
+                const course = coursesData[courseId];
+                const progress = authSystem.currentUser.progress?.[courseId] || 0;
+                
+                const progressHTML = `
+                    <div class="progress-item">
+                        <strong>${course.title}</strong>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${progress}%"></div>
+                        </div>
+                        <span>${progress}% Complete</span>
+                        <button class="whatsapp-course-btn" onclick="shareProgress('${courseId}')" style="margin-top: 10px;">
+                            📤 Share Progress
+                        </button>
+                    </div>
+                `;
+                progressContainer.innerHTML += progressHTML;
+            });
         }
 
+        function shareProgress(courseId) {
+            const course = coursesData[courseId];
+            const progress = authSystem.currentUser.progress?.[courseId] || 0;
+            const message = `I've completed ${progress}% of "${course.title}" course on LearnMate! 🎓`;
+            const whatsappURL = `https://wa.me/?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+        }
+
+        // ===== COURSE MANAGEMENT =====
         function showCourseDetails(courseId) {
             const course = coursesData[courseId];
             
@@ -1770,19 +1737,30 @@ fig.show()`,
                                 <h3>What You'll Learn</h3>
                                 <ul>
                                     ${course.modules.map((module, index) => {
-                                        return `<li onclick="showModuleDetail('${courseId}', ${index})" style="cursor: pointer; padding: 8px; border-radius: 5px; margin: 5px 0; transition: background 0.3s;" onmouseover="this.style.background='#f0f8ff'" onmouseout="this.style.background='transparent'">
-                                            ✅ ${module.name} - ${module.description}
+                                        return `<li onclick="showModuleDetail('${courseId}', ${index})" style="cursor: pointer; padding: 12px; border-radius: 8px; margin: 8px 0; transition: background 0.3s; border-left: 3px solid #007bff;" onmouseover="this.style.background='#f0f8ff'" onmouseout="this.style.background='transparent'">
+                                            <strong>✅ ${module.name}</strong><br>
+                                            <small>${module.description}</small>
                                         </li>`;
                                     }).join('')}
                                 </ul>
+                            </div>
+
+                            <div class="rating-section">
+                                <h4>Rate this course:</h4>
+                                <div class="stars" onclick="rateCourse('${courseId}', event)">
+                                    <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+                                </div>
                             </div>
                             
                             <div class="popup-actions">
                                 <button class="enroll-btn-popup" onclick="enrollInCourse('${courseId}')">
                                     ${authSystem.currentUser && authSystem.currentUser.enrolledCourses.includes(courseId) 
-                                        ? 'Already Enrolled' 
+                                        ? '🎓 Already Enrolled' 
                                         : `Enroll Now - ${course.price}`
                                     }
+                                </button>
+                                <button class="whatsapp-course-btn" onclick="contactAboutCourse('${courseId}')">
+                                    💬 Enquire on WhatsApp
                                 </button>
                                 <button class="close-btn-popup" onclick="closeCoursePopup()">Close</button>
                             </div>
@@ -1792,6 +1770,7 @@ fig.show()`,
             `;
             
             document.body.insertAdjacentHTML('beforeend', popupHTML);
+            trackEvent('course_view', 'view_details', courseId);
         }
 
         function closeCoursePopup() {
@@ -1814,19 +1793,19 @@ fig.show()`,
                         </div>
                         <div class="module-content">
                             <div class="module-section">
-                                <h3>Overview</h3>
+                                <h3>📖 Overview</h3>
                                 <p>${module.content.overview}</p>
                             </div>
                             
                             <div class="module-section">
-                                <h3>Topics Covered</h3>
+                                <h3>📚 Topics Covered</h3>
                                 <ul>
-                                    ${module.content.topics.map(topic => `<li>📚 ${topic}</li>`).join('')}
+                                    ${module.content.topics.map(topic => `<li>🎯 ${topic}</li>`).join('')}
                                 </ul>
                             </div>
                             
                             <div class="module-section">
-                                <h3>Key Features</h3>
+                                <h3>✨ Key Features</h3>
                                 <div class="module-features">
                                     ${module.content.features.map(feature => `
                                         <div class="feature-item">
@@ -1837,21 +1816,26 @@ fig.show()`,
                             </div>
                             
                             <div class="module-section">
-                                <h3>Practical Example</h3>
+                                <h3>💻 Practical Example</h3>
                                 <pre class="code-example">${module.content.codeExample}</pre>
                             </div>
                             
                             ${moduleIndex < course.modules.length - 1 ? `
                                 <button class="next-module-btn" onclick="showModuleDetail('${courseId}', ${moduleIndex + 1})">
-                                    Next Module: ${course.modules[moduleIndex + 1].name} →
+                                    ➡️ Next Module: ${course.modules[moduleIndex + 1].name}
                                 </button>
-                            ` : ''}
+                            ` : `
+                                <button class="next-module-btn" onclick="completeModule('${courseId}', ${moduleIndex})">
+                                    ✅ Mark as Complete
+                                </button>
+                            `}
                         </div>
                     </div>
                 </div>
             `;
             
             document.body.insertAdjacentHTML('beforeend', moduleHTML);
+            trackEvent('module_view', 'view_content', `${courseId}_${moduleIndex}`);
         }
 
         function closeModulePopup() {
@@ -1861,15 +1845,152 @@ fig.show()`,
             }
         }
 
+        function completeModule(courseId, moduleIndex) {
+            if (authSystem.currentUser) {
+                const totalModules = coursesData[courseId].modules.length;
+                const progress = Math.round(((moduleIndex + 1) / totalModules) * 100);
+                authSystem.updateProgress(courseId, progress);
+                showNotification(`Module completed! Progress: ${progress}%`);
+                closeModulePopup();
+            }
+        }
+
         function enrollInCourse(courseId) {
             const result = authSystem.enrollInCourse(courseId);
             if (result.success) {
-                alert(result.message);
+                showNotification(result.message);
                 closeCoursePopup();
                 authSystem.updateAuthUI();
+                trackEvent('enrollment', 'enroll_course', courseId);
             } else {
-                alert(result.message);
+                showNotification(result.message, 'error');
             }
+        }
+
+        function rateCourse(courseId, event) {
+            if (!authSystem.currentUser) {
+                showAuthModal('login');
+                return;
+            }
+            
+            const stars = event.currentTarget.querySelectorAll('span');
+            const clickedStar = event.target;
+            const rating = Array.from(stars).indexOf(clickedStar) + 1;
+            
+            stars.forEach((star, index) => {
+                star.style.color = index < rating ? '#ffc107' : '#ccc';
+            });
+            
+            showNotification(`Thanks for your ${rating}-star rating!`);
+            trackEvent('rating', 'rate_course', `${courseId}_${rating}stars`);
+        }
+
+        function contactAboutCourse(courseId) {
+            const course = coursesData[courseId];
+            const message = `Hi, I'm interested in the "${course.title}" course. Can you provide more details about the curriculum and enrollment process?`;
+            const whatsappURL = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+            trackEvent('contact', 'whatsapp_enquiry', courseId);
+        }
+
+        // ===== AUTH MODAL FUNCTIONS =====
+        function closeAuthModal() {
+            const modal = document.querySelector('.auth-modal-overlay');
+            if (modal) {
+                modal.remove();
+            }
+        }
+
+        function switchAuthType(type) {
+            closeAuthModal();
+            authSystem.showAuthModal(type);
+        }
+
+        function handleAuthSubmit(event) {
+            event.preventDefault();
+            showLoading();
+            
+            const form = event.target;
+            const isLogin = form.querySelector('#authName') === null;
+            
+            const name = isLogin ? null : document.getElementById('authName').value;
+            const email = document.getElementById('authEmail').value;
+            const password = document.getElementById('authPassword').value;
+            
+            setTimeout(() => {
+                let result;
+                if (isLogin) {
+                    result = authSystem.login(email, password);
+                } else {
+                    result = authSystem.signUp(name, email, password);
+                }
+                
+                if (result.success) {
+                    showNotification(result.message);
+                    closeAuthModal();
+                    authSystem.updateAuthUI();
+                    trackEvent('auth', isLogin ? 'login' : 'signup', 'success');
+                } else {
+                    showNotification(result.message, 'error');
+                    trackEvent('auth', isLogin ? 'login' : 'signup', 'failed');
+                }
+                hideLoading();
+            }, 1000);
+        }
+
+        // ===== PWA INSTALL PROMPT =====
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById('installBtn').style.display = 'block';
+        });
+
+        document.getElementById('installBtn').addEventListener('click', () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then(() => {
+                    document.getElementById('installBtn').style.display = 'none';
+                });
+            }
+        });
+
+        // ===== ANALYTICS =====
+        function trackEvent(category, action, label) {
+            // Simple analytics tracking
+            const analytics = JSON.parse(localStorage.getItem('analytics')) || [];
+            analytics.push({
+                timestamp: new Date().toISOString(),
+                category,
+                action,
+                label
+            });
+            localStorage.setItem('analytics', JSON.stringify(analytics));
+        }
+
+        // ===== INITIALIZATION =====
+        function initializeCourses() {
+            const courseGrid = document.getElementById('courseGrid');
+            courseGrid.innerHTML = '';
+            
+            Object.keys(coursesData).forEach(courseId => {
+                const course = coursesData[courseId];
+                const courseHTML = `
+                    <div class="course-card" onclick="showCourseDetails('${courseId}')">
+                        <h3>${course.title}</h3>
+                        <p>${course.description}</p>
+                        <div class="course-meta">
+                            <span class="duration">⏱️ ${course.duration}</span>
+                            <span class="level">🎯 ${course.level}</span>
+                        </div>
+                        <span class="price">${course.price}</span>
+                        <button class="whatsapp-course-btn" onclick="event.stopPropagation(); contactAboutCourse('${courseId}')">
+                            💬 Enquire
+                        </button>
+                    </div>
+                `;
+                courseGrid.innerHTML += courseHTML;
+            });
         }
 
         function scrollToCourses() {
@@ -1880,31 +2001,49 @@ fig.show()`,
 
         function logout() {
             authSystem.logout();
-            alert('Logged out successfully!');
-            window.location.reload();
+            showNotification('Logged out successfully!');
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
         }
 
+        // ===== EVENT LISTENERS =====
         document.addEventListener('DOMContentLoaded', function() {
-            authSystem.updateAuthUI();
+            // Initialize dark mode
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.textContent = '☀️';
+            }
             
+            // Initialize auth
+            authSystem.updateAuthUI();
+            initializeCourses();
+            
+            // Contact form
             const contactForm = document.querySelector('.contact-form');
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
                     e.preventDefault();
+                    showLoading();
                     
                     const name = this.querySelector('input[type="text"]').value;
                     const email = this.querySelector('input[type="email"]').value;
                     const message = this.querySelector('textarea').value;
                     
-                    if (name && email && message) {
-                        alert('Thank you for your message! We will contact you soon.');
-                        this.reset();
-                    } else {
-                        alert('Please fill all fields.');
-                    }
+                    setTimeout(() => {
+                        if (name && email && message) {
+                            showNotification('Thank you for your message! We will contact you soon.');
+                            this.reset();
+                            trackEvent('contact', 'submit_form', 'success');
+                        } else {
+                            showNotification('Please fill all fields.', 'error');
+                        }
+                        hideLoading();
+                    }, 1000);
                 });
             }
 
+            // Smooth scrolling
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -1917,6 +2056,16 @@ fig.show()`,
                     }
                 });
             });
+
+            // Search on Enter key
+            document.getElementById('courseSearch').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchCourses();
+                }
+            });
+
+            showNotification('Welcome to LearnMate! 🎓', 'success');
+            trackEvent('page', 'load', 'homepage');
         });
     </script>
 </body>
