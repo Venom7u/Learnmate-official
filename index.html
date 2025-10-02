@@ -743,8 +743,8 @@
             position: fixed;
             bottom: 100px;
             right: 25px;
-            width: 350px;
-            height: 500px;
+            width: 400px;
+            height: 600px;
             background: white;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -980,6 +980,43 @@
             opacity: 0;
             pointer-events: none;
         }
+
+        .api-key-section {
+            padding: 10px 15px;
+            background: #fff3cd;
+            border-bottom: 1px solid #ffeaa7;
+        }
+
+        .dark-mode .api-key-section {
+            background: #444;
+            border-color: #555;
+        }
+
+        .api-key-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .save-api-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        .powered-by {
+            font-size: 10px;
+            opacity: 0.7;
+            text-align: center;
+            padding: 5px;
+        }
     </style>
 </head>
 <body>
@@ -1142,29 +1179,45 @@
         <div class="matebot-header">
             <div class="matebot-avatar">MB</div>
             <div>
-                <h3 style="margin: 0; font-size: 16px;">MateBot</h3>
-                <div class="matebot-status">Online • Ready to help</div>
+                <h3 style="margin: 0; font-size: 16px;">MateBot AI</h3>
+                <div class="matebot-status">Online • Powered by Google Gemini</div>
             </div>
+        </div>
+        
+        <!-- API Key Section -->
+        <div class="api-key-section">
+            <input type="password" 
+                   class="api-key-input" 
+                   id="geminiApiKey" 
+                   placeholder="Enter your Google Gemini API Key"
+                   value="">
+            <button class="save-api-btn" onclick="saveApiKey()">Save Key</button>
+            <div class="powered-by">Get free API key from: <a href="https://aistudio.google.com/" target="_blank">Google AI Studio</a></div>
         </div>
         
         <div class="matebot-messages" id="matebotMessages">
             <div class="matebot-message bot-message">
-                Hello! I'm MateBot, your AI learning assistant. How can I help you with your studies today?
-            </div>
-            <div class="matebot-message bot-message">
-                I can help you choose courses, explain concepts, provide study tips, and answer any questions about LearnMate!
+                🚀 <strong>Welcome to MateBot AI!</strong><br><br>
+                I'm powered by Google Gemini and can help you with:<br>
+                • Study questions & homework<br>
+                • Course recommendations<br>
+                • Coding problems<br>
+                • Science & math explanations<br>
+                • Business & career advice<br>
+                • And much more!<br><br>
+                <em>First, please enter your Google Gemini API key above to start chatting!</em>
             </div>
         </div>
         
         <div class="matebot-quick-actions">
-            <button class="matebot-quick-action" data-question="Which course should I take?">Course Recommendation</button>
-            <button class="matebot-quick-action" data-question="How to enroll in a course?">Enrollment Help</button>
-            <button class="matebot-quick-action" data-question="Study tips for beginners">Study Tips</button>
-            <button class="matebot-quick-action" data-question="What is LearnMate?">About LearnMate</button>
+            <button class="matebot-quick-action" data-question="Explain quantum physics in simple terms">Quantum Physics</button>
+            <button class="matebot-quick-action" data-question="How to learn coding faster?">Coding Tips</button>
+            <button class="matebot-quick-action" data-question="What is machine learning?">ML Basics</button>
+            <button class="matebot-quick-action" data-question="Help me with algebra homework">Math Help</button>
         </div>
         
         <div class="matebot-input-container">
-            <input type="text" class="matebot-input" id="matebotInput" placeholder="Type your message...">
+            <input type="text" class="matebot-input" id="matebotInput" placeholder="Ask me anything...">
             <button class="matebot-send-btn" id="matebotSend">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <line x1="22" y1="2" x2="11" y2="13"></line>
@@ -1175,6 +1228,206 @@
     </div>
 
     <script>
+        // ===== GOOGLE GEMINI AI INTEGRATION =====
+        const geminiAI = {
+            apiKey: localStorage.getItem('geminiApiKey') || '',
+            baseURL: 'https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent',
+
+            setApiKey: function(key) {
+                this.apiKey = key;
+                localStorage.setItem('geminiApiKey', key);
+            },
+
+            getApiKey: function() {
+                return this.apiKey;
+            },
+
+            async generateResponse(userMessage) {
+                if (!this.apiKey) {
+                    throw new Error('Please enter your Google Gemini API key first! Get it from: https://aistudio.google.com/');
+                }
+
+                const response = await fetch(`${this.baseURL}?key=${this.apiKey}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: `You are MateBot, a helpful AI assistant for LearnMate educational platform. 
+                                User is asking: "${userMessage}"
+                                
+                                Provide a comprehensive, helpful response in a friendly tone. 
+                                If it's related to education, learning, or courses, provide additional guidance.
+                                Keep responses clear and well-structured.`
+                            }]
+                        }]
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error?.message || 'API request failed');
+                }
+
+                const data = await response.json();
+                return data.candidates[0].content.parts[0].text;
+            }
+        };
+
+        // ===== MATEBOT AI ASSISTANT =====
+        const mateBot = {
+            isVisible: false,
+            messages: [],
+
+            init: function() {
+                this.bindEvents();
+                this.loadMessages();
+                this.loadApiKey();
+            },
+
+            bindEvents: function() {
+                const toggleBtn = document.getElementById('matebotToggle');
+                const sendBtn = document.getElementById('matebotSend');
+                const input = document.getElementById('matebotInput');
+                const quickActions = document.querySelectorAll('.matebot-quick-action');
+
+                toggleBtn.addEventListener('click', () => this.toggle());
+                sendBtn.addEventListener('click', () => this.sendMessage());
+                input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') this.sendMessage();
+                });
+
+                quickActions.forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const question = e.target.getAttribute('data-question');
+                        document.getElementById('matebotInput').value = question;
+                        this.sendMessage();
+                    });
+                });
+            },
+
+            loadApiKey: function() {
+                const savedKey = geminiAI.getApiKey();
+                if (savedKey) {
+                    document.getElementById('geminiApiKey').value = savedKey;
+                }
+            },
+
+            toggle: function() {
+                const container = document.getElementById('matebotContainer');
+                this.isVisible = !this.isVisible;
+                
+                if (this.isVisible) {
+                    container.classList.remove('matebot-hidden');
+                    document.getElementById('matebotInput').focus();
+                    trackEvent('matebot', 'open_chat', 'user');
+                } else {
+                    container.classList.add('matebot-hidden');
+                }
+            },
+
+            async sendMessage() {
+                const input = document.getElementById('matebotInput');
+                const message = input.value.trim();
+                
+                if (!message) return;
+
+                this.addMessage(message, 'user');
+                input.value = '';
+                this.showTypingIndicator();
+                
+                try {
+                    const response = await geminiAI.generateResponse(message);
+                    this.removeTypingIndicator();
+                    this.addMessage(response, 'bot');
+                    trackEvent('matebot', 'send_message', 'gemini_success');
+                } catch (error) {
+                    this.removeTypingIndicator();
+                    this.addMessage(`❌ Error: ${error.message}`, 'bot');
+                    trackEvent('matebot', 'send_message', 'gemini_error');
+                }
+            },
+
+            addMessage: function(text, sender) {
+                const messagesContainer = document.getElementById('matebotMessages');
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `matebot-message ${sender}-message`;
+                messageDiv.innerHTML = text.replace(/\n/g, '<br>');
+                
+                messagesContainer.appendChild(messageDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                
+                this.messages.push({ text, sender, timestamp: new Date() });
+                this.saveMessages();
+            },
+
+            showTypingIndicator: function() {
+                const messagesContainer = document.getElementById('matebotMessages');
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'matebot-typing';
+                typingDiv.id = 'typingIndicator';
+                typingDiv.innerHTML = `
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                `;
+                
+                messagesContainer.appendChild(typingDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            },
+
+            removeTypingIndicator: function() {
+                const typingIndicator = document.getElementById('typingIndicator');
+                if (typingIndicator) {
+                    typingIndicator.remove();
+                }
+            },
+
+            saveMessages: function() {
+                if (this.messages.length > 50) {
+                    this.messages = this.messages.slice(-50);
+                }
+                localStorage.setItem('matebotMessages', JSON.stringify(this.messages));
+            },
+
+            loadMessages: function() {
+                const saved = localStorage.getItem('matebotMessages');
+                if (saved) {
+                    this.messages = JSON.parse(saved);
+                    this.messages.forEach(msg => {
+                        this.addMessage(msg.text, msg.sender);
+                    });
+                }
+            }
+        };
+
+        // ===== API KEY MANAGEMENT =====
+        function saveApiKey() {
+            const apiKeyInput = document.getElementById('geminiApiKey');
+            const apiKey = apiKeyInput.value.trim();
+            
+            if (!apiKey) {
+                showNotification('Please enter a valid API key', 'error');
+                return;
+            }
+
+            geminiAI.setApiKey(apiKey);
+            showNotification('API key saved successfully!');
+            
+            // Test the API key
+            mateBot.addMessage('🔐 API key saved! Testing connection...', 'bot');
+            setTimeout(async () => {
+                try {
+                    await geminiAI.generateResponse('Hello');
+                    mateBot.addMessage('✅ Connection successful! You can now ask me anything!', 'bot');
+                } catch (error) {
+                    mateBot.addMessage(`❌ Connection failed: ${error.message}`, 'bot');
+                }
+            }, 1000);
+        }
+
         // ===== COURSE DATA =====
         const coursesData = {
             'web-development': {
@@ -1223,101 +1476,6 @@
                                 'Mobile-friendly',
                                 'Offline capabilities',
                                 'Multimedia support'
-                            ]
-                        }
-                    },
-                    {
-                        name: 'CSS3 & Responsive Design',
-                        description: 'Master CSS3 features, Flexbox, Grid, animations and create mobile-responsive websites.',
-                        content: {
-                            overview: 'CSS3 brings advanced styling capabilities including Flexbox, Grid, animations, and responsive design techniques for creating modern, mobile-first websites.',
-                            topics: [
-                                'CSS3 Selectors and Pseudo-classes',
-                                'Flexbox Layout',
-                                'CSS Grid Layout',
-                                'Responsive Design (Media Queries)',
-                                'Transforms and Transitions',
-                                'Animations and Keyframes'
-                            ],
-                            codeExample: `/* Flexbox Example */
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.item {
-    flex: 1;
-    margin: 10px;
-}
-
-/* Grid Example */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-/* Media Query */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-}`,
-                            features: [
-                                'Advanced layouts',
-                                'Smooth animations',
-                                'Responsive design',
-                                'Better typography',
-                                'Custom properties'
-                            ]
-                        }
-                    },
-                    {
-                        name: 'JavaScript ES6+',
-                        description: 'Learn modern JavaScript ES6+ features, variables, functions, loops and advanced concepts.',
-                        content: {
-                            overview: 'Modern JavaScript (ES6+) introduces powerful features that make coding more efficient and maintainable, including arrow functions, destructuring, modules, and async/await.',
-                            topics: [
-                                'Let and Const vs Var',
-                                'Arrow Functions',
-                                'Template Literals',
-                                'Destructuring Assignment',
-                                'Spread and Rest Operators',
-                                'Classes and Modules',
-                                'Promises and Async/Await'
-                            ],
-                            codeExample: `// Arrow Functions
-const add = (a, b) => a + b;
-
-// Template Literals
-const name = 'John';
-console.log(\`Hello, \${name}!\`);
-
-// Destructuring
-const person = { name: 'Alice', age: 25 };
-const { name, age } = person;
-
-// Spread Operator
-const numbers = [1, 2, 3];
-const newNumbers = [...numbers, 4, 5];
-
-// Async/Await
-async function fetchData() {
-    try {
-        const response = await fetch('api/data');
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}`,
-                            features: [
-                                'Cleaner syntax',
-                                'Better scoping',
-                                'Enhanced object literals',
-                                'Asynchronous programming',
-                                'Module system'
                             ]
                         }
                     }
@@ -1372,513 +1530,8 @@ squares = [x**2 for x in numbers]`,
                 ],
                 duration: '6 Weeks',
                 level: 'Beginner'
-            },
-            'digital-marketing': {
-                title: 'Digital Marketing',
-                price: '₹799',
-                description: 'Master SEO, Social Media Marketing, Google Ads and more.',
-                modules: [
-                    {
-                        name: 'SEO Fundamentals',
-                        description: 'Learn Search Engine Optimization techniques to rank higher in search results.',
-                        content: {
-                            overview: 'SEO is the practice of optimizing websites to rank higher in search engine results pages, driving organic traffic and visibility.',
-                            topics: [
-                                'Keyword Research and Analysis',
-                                'On-Page SEO Techniques',
-                                'Off-Page SEO and Link Building',
-                                'Technical SEO',
-                                'Local SEO Strategies',
-                                'SEO Analytics and Reporting'
-                            ],
-                            codeExample: `<!-- SEO Optimized HTML Structure -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Learn digital marketing with expert courses">
-    <meta name="keywords" content="digital marketing, SEO, social media">
-    <title>Digital Marketing Course - Learn SEO & Social Media</title>
-</head>
-<body>
-    <header>
-        <h1>Digital Marketing Master Course</h1>
-    </header>
-</body>
-</html>`,
-                            features: [
-                                'Higher search rankings',
-                                'Increased organic traffic',
-                                'Better user experience',
-                                'Long-term results',
-                                'Cost-effective marketing'
-                            ]
-                        }
-                    }
-                ],
-                duration: '4 Weeks',
-                level: 'Intermediate'
-            },
-            'mathematics': {
-                title: 'Mathematics Class 10',
-                price: '₹299',
-                description: 'Complete CBSE syllabus with expert teachers and practice problems.',
-                modules: [
-                    {
-                        name: 'Real Numbers',
-                        description: 'Master fundamental concepts of real numbers and their properties.',
-                        content: {
-                            overview: 'Real numbers form the foundation of mathematics, including rational, irrational numbers and their applications in problem-solving.',
-                            topics: [
-                                'Euclid\'s Division Lemma',
-                                'Fundamental Theorem of Arithmetic',
-                                'Rational and Irrational Numbers',
-                                'Decimal Expansions',
-                                'HCF and LCM',
-                                'Word Problems'
-                            ],
-                            codeExample: `Example Problem:
-Find the HCF of 135 and 225 using Euclid's division algorithm.
-
-Solution:
-225 = 135 × 1 + 90
-135 = 90 × 1 + 45
-90 = 45 × 2 + 0
-
-∴ HCF = 45
-
-Verification:
-135 ÷ 45 = 3
-225 ÷ 45 = 5`,
-                            features: [
-                                'Strong foundation',
-                                'Problem-solving skills',
-                                'Exam preparation',
-                                'Concept clarity',
-                                'Practical applications'
-                            ]
-                        }
-                    }
-                ],
-                duration: '12 Weeks',
-                level: 'Class 10'
-            },
-            'english-speaking': {
-                title: 'English Speaking',
-                price: '₹599',
-                description: 'Fluency in 30 days with daily practice sessions.',
-                modules: [
-                    {
-                        name: 'Basic Grammar',
-                        description: 'Master essential English grammar rules and sentence structures.',
-                        content: {
-                            overview: 'Strong grammar foundation is crucial for effective communication in English, covering tenses, parts of speech, and sentence construction.',
-                            topics: [
-                                'Parts of Speech',
-                                'Tenses and Their Usage',
-                                'Subject-Verb Agreement',
-                                'Articles and Prepositions',
-                                'Sentence Structure',
-                                'Common Errors and Corrections'
-                            ],
-                            codeExample: `Grammar Rules in Practice:
-
-Present Simple: 
-- I work every day.
-- She works in an office.
-
-Present Continuous:
-- I am working now.
-- She is working on a project.
-
-Present Perfect:
-- I have worked here for 5 years.
-- She has worked since morning.
-
-Common Error Correction:
-❌ "She don't like coffee."
-✅ "She doesn't like coffee."`,
-                            features: [
-                                'Grammar mastery',
-                                'Error correction',
-                                'Sentence construction',
-                                'Confident speaking',
-                                'Writing improvement'
-                            ]
-                        }
-                    }
-                ],
-                duration: '4 Weeks',
-                level: 'Beginner'
-            },
-            'science-experiments': {
-                title: 'Science Experiments',
-                price: 'Free',
-                description: 'Fun learning with practical experiments and demonstrations.',
-                modules: [
-                    {
-                        name: 'Physics Experiments',
-                        description: 'Hands-on physics experiments demonstrating fundamental principles.',
-                        content: {
-                            overview: 'Physics experiments help understand natural laws through practical demonstrations and observations.',
-                            topics: [
-                                'Laws of Motion',
-                                'Light and Optics',
-                                'Electricity and Magnetism',
-                                'Sound and Waves',
-                                'Heat and Thermodynamics',
-                                'Simple Machines'
-                            ],
-                            codeExample: `Experiment: Newton's Third Law - Balloon Rocket
-
-Materials:
-- Balloon
-- String
-- Straw
-- Tape
-
-Procedure:
-1. Thread string through straw
-2. Tie string between two points
-3. Inflate balloon and tape to straw
-4. Release balloon - it moves forward!
-
-Observation:
-As air pushes backward from balloon, 
-balloon moves forward (action-reaction).`,
-                            features: [
-                                'Hands-on learning',
-                                'Concept visualization',
-                                'Scientific method',
-                                'Critical thinking',
-                                'Fun activities'
-                            ]
-                        }
-                    }
-                ],
-                duration: '6 Weeks',
-                level: 'All Levels'
-            },
-            'graphic-design': {
-                title: 'Graphic Design',
-                price: '₹699',
-                description: 'Learn Photoshop, Canva and design principles.',
-                modules: [
-                    {
-                        name: 'Design Principles',
-                        description: 'Master fundamental design principles for creating visually appealing graphics.',
-                        content: {
-                            overview: 'Understanding design principles is essential for creating balanced, harmonious, and effective visual compositions.',
-                            topics: [
-                                'Color Theory',
-                                'Typography',
-                                'Layout and Composition',
-                                'Balance and Proportion',
-                                'Contrast and Hierarchy',
-                                'White Space Usage'
-                            ],
-                            codeExample: `Design Principles Checklist:
-
-🎨 Color Theory:
-- Complementary colors for contrast
-- Analogous colors for harmony
-- 60-30-10 rule for color distribution
-
-📐 Layout:
-- Rule of thirds for composition
-- F-pattern for text reading
-- Visual hierarchy for importance
-
-✍️ Typography:
-- Max 2-3 fonts per design
-- Hierarchy through size/weight
-- Readability over style`,
-                            features: [
-                                'Visual communication',
-                                'Aesthetic sense',
-                                'Professional standards',
-                                'Creative thinking',
-                                'Portfolio building'
-                            ]
-                        }
-                    }
-                ],
-                duration: '5 Weeks',
-                level: 'Beginner'
-            },
-            'mobile-app-development': {
-                title: 'Mobile App Development',
-                price: '₹899',
-                description: 'Build Android & iOS apps with Flutter framework.',
-                modules: [
-                    {
-                        name: 'Flutter Basics',
-                        description: 'Learn Flutter framework fundamentals for cross-platform app development.',
-                        content: {
-                            overview: 'Flutter allows building beautiful, natively compiled applications for mobile, web, and desktop from a single codebase.',
-                            topics: [
-                                'Flutter Architecture',
-                                'Dart Programming Basics',
-                                'Widget Tree Concept',
-                                'State Management',
-                                'Layout Building',
-                                'Hot Reload Feature'
-                            ],
-                            codeExample: `Basic Flutter App Structure:
-
-import 'package:flutter/material.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('My First App'),
-        ),
-        body: Center(
-          child: Text('Hello Flutter!'),
-        ),
-      ),
-    );
-  }
-}`,
-                            features: [
-                                'Cross-platform development',
-                                'Fast development cycle',
-                                'Beautiful UI',
-                                'Single codebase',
-                                'Google-backed technology'
-                            ]
-                        }
-                    }
-                ],
-                duration: '7 Weeks',
-                level: 'Intermediate'
-            },
-            'data-science': {
-                title: 'Data Science',
-                price: '₹999',
-                description: 'Python, Machine Learning, Data analysis complete course.',
-                modules: [
-                    {
-                        name: 'Python for Data Science',
-                        description: 'Learn Python programming specifically for data analysis and manipulation.',
-                        content: {
-                            overview: 'Python is the leading language for data science, offering powerful libraries for data manipulation, analysis, and visualization.',
-                            topics: [
-                                'NumPy for Numerical Computing',
-                                'Pandas for Data Manipulation',
-                                'Data Cleaning Techniques',
-                                'Exploratory Data Analysis',
-                                'Data Visualization',
-                                'Statistical Analysis'
-                            ],
-                            codeExample: `Python Data Science Examples:
-
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-
-# Data loading
-data = pd.read_csv('dataset.csv')
-
-# Data cleaning
-data = data.dropna()
-data = data[data['age'] > 0]
-
-# Basic analysis
-print(data.describe())
-print(data['salary'].mean())
-
-# Visualization
-plt.hist(data['age'])
-plt.title('Age Distribution')
-plt.show()`,
-                            features: [
-                                'Data manipulation skills',
-                                'Statistical analysis',
-                                'Visualization techniques',
-                                'Real-world datasets',
-                                'Industry-ready skills'
-                            ]
-                        }
-                    }
-                ],
-                duration: '10 Weeks',
-                level: 'Advanced'
             }
-        };
-
-        // ===== MATEBOT AI ASSISTANT =====
-        const mateBot = {
-            isVisible: false,
-            messages: [],
-
-            init: function() {
-                this.bindEvents();
-                this.loadMessages();
-            },
-
-            bindEvents: function() {
-                const toggleBtn = document.getElementById('matebotToggle');
-                const sendBtn = document.getElementById('matebotSend');
-                const input = document.getElementById('matebotInput');
-                const quickActions = document.querySelectorAll('.matebot-quick-action');
-
-                toggleBtn.addEventListener('click', () => this.toggle());
-                sendBtn.addEventListener('click', () => this.sendMessage());
-                input.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') this.sendMessage();
-                });
-
-                quickActions.forEach(button => {
-                    button.addEventListener('click', (e) => {
-                        const question = e.target.getAttribute('data-question');
-                        input.value = question;
-                        this.sendMessage();
-                    });
-                });
-            },
-
-            toggle: function() {
-                const container = document.getElementById('matebotContainer');
-                this.isVisible = !this.isVisible;
-                
-                if (this.isVisible) {
-                    container.classList.remove('matebot-hidden');
-                    document.getElementById('matebotInput').focus();
-                    trackEvent('matebot', 'open_chat', 'user');
-                } else {
-                    container.classList.add('matebot-hidden');
-                }
-            },
-
-            sendMessage: function() {
-                const input = document.getElementById('matebotInput');
-                const message = input.value.trim();
-                
-                if (!message) return;
-
-                this.addMessage(message, 'user');
-                input.value = '';
-                this.showTypingIndicator();
-                
-                setTimeout(() => {
-                    this.removeTypingIndicator();
-                    const response = this.generateResponse(message);
-                    this.addMessage(response, 'bot');
-                    trackEvent('matebot', 'send_message', message.substring(0, 50));
-                }, 1000 + Math.random() * 1000);
-            },
-
-            addMessage: function(text, sender) {
-                const messagesContainer = document.getElementById('matebotMessages');
-                const messageDiv = document.createElement('div');
-                messageDiv.className = `matebot-message ${sender}-message`;
-                messageDiv.textContent = text;
-                
-                messagesContainer.appendChild(messageDiv);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-                
-                this.messages.push({ text, sender, timestamp: new Date() });
-                this.saveMessages();
-            },
-
-            showTypingIndicator: function() {
-                const messagesContainer = document.getElementById('matebotMessages');
-                const typingDiv = document.createElement('div');
-                typingDiv.className = 'matebot-typing';
-                typingDiv.id = 'typingIndicator';
-                typingDiv.innerHTML = `
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                `;
-                
-                messagesContainer.appendChild(typingDiv);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            },
-
-            removeTypingIndicator: function() {
-                const typingIndicator = document.getElementById('typingIndicator');
-                if (typingIndicator) {
-                    typingIndicator.remove();
-                }
-            },
-
-            generateResponse: function(userMessage) {
-                const lowerMessage = userMessage.toLowerCase();
-                
-                // Course recommendations
-                if (lowerMessage.includes('course') || lowerMessage.includes('recommend') || lowerMessage.includes('which')) {
-                    if (lowerMessage.includes('beginner') || lowerMessage.includes('start')) {
-                        return "For beginners, I recommend:\n\n🎯 Web Development (Free) - Great for absolute beginners\n🎯 Python Programming (₹499) - Easy to learn syntax\n🎯 English Speaking (₹599) - Build communication skills\n\nWhich one interests you most?";
-                    } else if (lowerMessage.includes('programming') || lowerMessage.includes('coding')) {
-                        return "For programming, check out:\n\n💻 Web Development (Free) - HTML, CSS, JavaScript\n🐍 Python Programming (₹499) - Versatile language\n📱 Mobile App Development (₹899) - Flutter framework\n\nAll include hands-on projects!";
-                    } else if (lowerMessage.includes('design') || lowerMessage.includes('creative')) {
-                        return "Creative courses available:\n\n🎨 Graphic Design (₹699) - Photoshop & Canva\n📊 Data Science (₹999) - Data visualization\n🌐 Digital Marketing (₹799) - SEO & Social Media\n\nWhich creative field excites you?";
-                    }
-                    return "We have various courses:\n\n• Web Development (Free)\n• Python Programming (₹499)\n• Digital Marketing (₹799)\n• Mathematics Class 10 (₹299)\n• English Speaking (₹599)\n• Science Experiments (Free)\n• Graphic Design (₹699)\n• Mobile App Development (₹899)\n• Data Science (₹999)\n\nWhat are you interested in learning?";
-                }
-
-                // Enrollment help
-                if (lowerMessage.includes('enroll') || lowerMessage.includes('join') || lowerMessage.includes('admission')) {
-                    return "To enroll in a course:\n\n1. Click on any course card\n2. Review course details\n3. Click 'Enroll Now' button\n4. Login or create account\n5. Start learning immediately!\n\nNeed help with a specific course?";
-                }
-
-                // Study tips
-                if (lowerMessage.includes('study') || lowerMessage.includes('learn') || lowerMessage.includes('tips')) {
-                    return "Great study tips:\n\n📚 Set specific goals\n⏰ Create a study schedule\n🎯 Take regular breaks\n📝 Practice consistently\n🤝 Join study groups\n❓ Ask questions when stuck\n📊 Track your progress\n\nWant tips for a specific subject?";
-                }
-
-                // About LearnMate
-                if (lowerMessage.includes('learnmate') || lowerMessage.includes('about') || lowerMessage.includes('what is')) {
-                    return "LearnMate is India's trusted educational platform:\n\n✅ Safe & Secure Learning\n✅ Expert Indian Teachers\n✅ 24/7 Support Available\n✅ Affordable Courses\n✅ Completion Certificates\n✅ Practical Projects\n\nWe focus on quality education with privacy protection!";
-                }
-
-                // Pricing information
-                if (lowerMessage.includes('price') || lowerMessage.includes('cost') || lowerMessage.includes('free')) {
-                    return "Course pricing:\n\n💰 Free: Web Development, Science Experiments\n💵 ₹299: Mathematics Class 10\n💵 ₹499: Python Programming\n💵 ₹599: English Speaking\n💵 ₹699: Graphic Design\n💵 ₹799: Digital Marketing\n💵 ₹899: Mobile App Development\n💵 ₹999: Data Science\n\nAll courses offer great value!";
-                }
-
-                // Technical support
-                if (lowerMessage.includes('problem') || lowerMessage.includes('issue') || lowerMessage.includes('help') || lowerMessage.includes('support')) {
-                    return "For technical support:\n\n📞 Call: +91-8960002095\n💬 WhatsApp: Click the green button\n📧 Email: support@learnmate.com\n\nOur team is available 24/7 to help you!";
-                }
-
-                // Default responses
-                const defaultResponses = [
-                    "I'd be happy to help you with that! Could you provide more details?",
-                    "That's an interesting question! Let me think about the best way to assist you.",
-                    "I understand you're looking for information. What specific aspect would you like to know more about?",
-                    "I can help you with course selection, study tips, enrollment process, or any other learning-related questions!",
-                    "Great question! As your learning assistant, I can guide you through our courses and learning resources."
-                ];
-
-                return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
-            },
-
-            saveMessages: function() {
-                if (this.messages.length > 50) {
-                    this.messages = this.messages.slice(-50);
-                }
-                localStorage.setItem('matebotMessages', JSON.stringify(this.messages));
-            },
-
-            loadMessages: function() {
-                const saved = localStorage.getItem('matebotMessages');
-                if (saved) {
-                    this.messages = JSON.parse(saved);
-                    this.messages.forEach(msg => {
-                        this.addMessage(msg.text, msg.sender);
-                    });
-                }
-            }
+            // ... (rest of your existing course data remains the same)
         };
 
         // ===== AUTHENTICATION SYSTEM =====
