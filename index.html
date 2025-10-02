@@ -1228,10 +1228,12 @@
     </div>
 
     <script>
-        // ===== GOOGLE GEMINI AI INTEGRATION =====
+        // ===== GOOGLE GEMINI AI INTEGRATION - UPDATED FIXED VERSION =====
         const geminiAI = {
             apiKey: localStorage.getItem('geminiApiKey') || '',
-            baseURL: 'https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent',
+            
+            // ✅ UPDATED WORKING API ENDPOINT
+            baseURL: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent',
 
             setApiKey: function(key) {
                 this.apiKey = key;
@@ -1276,7 +1278,7 @@
             }
         };
 
-        // ===== MATEBOT AI ASSISTANT =====
+        // ===== MATEBOT AI ASSISTANT - UPDATED =====
         const mateBot = {
             isVisible: false,
             messages: [],
@@ -1530,8 +1532,346 @@ squares = [x**2 for x in numbers]`,
                 ],
                 duration: '6 Weeks',
                 level: 'Beginner'
+            },
+            'digital-marketing': {
+                title: 'Digital Marketing',
+                price: '₹799',
+                description: 'Master SEO, Social Media Marketing, Google Ads and more.',
+                modules: [
+                    {
+                        name: 'SEO Fundamentals',
+                        description: 'Learn Search Engine Optimization techniques to rank higher in search results.',
+                        content: {
+                            overview: 'SEO is the practice of optimizing websites to rank higher in search engine results pages, driving organic traffic and visibility.',
+                            topics: [
+                                'Keyword Research and Analysis',
+                                'On-Page SEO Techniques',
+                                'Off-Page SEO and Link Building',
+                                'Technical SEO',
+                                'Local SEO Strategies',
+                                'SEO Analytics and Reporting'
+                            ],
+                            codeExample: `<!-- SEO Optimized HTML Structure -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Learn digital marketing with expert courses">
+    <meta name="keywords" content="digital marketing, SEO, social media">
+    <title>Digital Marketing Course - Learn SEO & Social Media</title>
+</head>
+<body>
+    <header>
+        <h1>Digital Marketing Master Course</h1>
+    </header>
+</body>
+</html>`,
+                            features: [
+                                'Higher search rankings',
+                                'Increased organic traffic',
+                                'Better user experience',
+                                'Long-term results',
+                                'Cost-effective marketing'
+                            ]
+                        }
+                    }
+                ],
+                duration: '4 Weeks',
+                level: 'Intermediate'
+            },
+            'mathematics': {
+                title: 'Mathematics Class 10',
+                price: '₹299',
+                description: 'Complete CBSE syllabus with expert teachers and practice problems.',
+                modules: [
+                    {
+                        name: 'Real Numbers',
+                        description: 'Master fundamental concepts of real numbers and their properties.',
+                        content: {
+                            overview: 'Real numbers form the foundation of mathematics, including rational, irrational numbers and their applications in problem-solving.',
+                            topics: [
+                                'Euclid\'s Division Lemma',
+                                'Fundamental Theorem of Arithmetic',
+                                'Rational and Irrational Numbers',
+                                'Decimal Expansions',
+                                'HCF and LCM',
+                                'Word Problems'
+                            ],
+                            codeExample: `Example Problem:
+Find the HCF of 135 and 225 using Euclid's division algorithm.
+
+Solution:
+225 = 135 × 1 + 90
+135 = 90 × 1 + 45
+90 = 45 × 2 + 0
+
+∴ HCF = 45
+
+Verification:
+135 ÷ 45 = 3
+225 ÷ 45 = 5`,
+                            features: [
+                                'Strong foundation',
+                                'Problem-solving skills',
+                                'Exam preparation',
+                                'Concept clarity',
+                                'Practical applications'
+                            ]
+                        }
+                    }
+                ],
+                duration: '12 Weeks',
+                level: 'Class 10'
+            },
+            'english-speaking': {
+                title: 'English Speaking',
+                price: '₹599',
+                description: 'Fluency in 30 days with daily practice sessions.',
+                modules: [
+                    {
+                        name: 'Basic Grammar',
+                        description: 'Master essential English grammar rules and sentence structures.',
+                        content: {
+                            overview: 'Strong grammar foundation is crucial for effective communication in English, covering tenses, parts of speech, and sentence construction.',
+                            topics: [
+                                'Parts of Speech',
+                                'Tenses and Their Usage',
+                                'Subject-Verb Agreement',
+                                'Articles and Prepositions',
+                                'Sentence Structure',
+                                'Common Errors and Corrections'
+                            ],
+                            codeExample: `Grammar Rules in Practice:
+
+Present Simple: 
+- I work every day.
+- She works in an office.
+
+Present Continuous:
+- I am working now.
+- She is working on a project.
+
+Present Perfect:
+- I have worked here for 5 years.
+- She has worked since morning.
+
+Common Error Correction:
+❌ "She don't like coffee."
+✅ "She doesn't like coffee."`,
+                            features: [
+                                'Grammar mastery',
+                                'Error correction',
+                                'Sentence construction',
+                                'Confident speaking',
+                                'Writing improvement'
+                            ]
+                        }
+                    }
+                ],
+                duration: '4 Weeks',
+                level: 'Beginner'
+            },
+            'science-experiments': {
+                title: 'Science Experiments',
+                price: 'Free',
+                description: 'Fun learning with practical experiments and demonstrations.',
+                modules: [
+                    {
+                        name: 'Physics Experiments',
+                        description: 'Hands-on physics experiments demonstrating fundamental principles.',
+                        content: {
+                            overview: 'Physics experiments help understand natural laws through practical demonstrations and observations.',
+                            topics: [
+                                'Laws of Motion',
+                                'Light and Optics',
+                                'Electricity and Magnetism',
+                                'Sound and Waves',
+                                'Heat and Thermodynamics',
+                                'Simple Machines'
+                            ],
+                            codeExample: `Experiment: Newton's Third Law - Balloon Rocket
+
+Materials:
+- Balloon
+- String
+- Straw
+- Tape
+
+Procedure:
+1. Thread string through straw
+2. Tie string between two points
+3. Inflate balloon and tape to straw
+4. Release balloon - it moves forward!
+
+Observation:
+As air pushes backward from balloon, 
+balloon moves forward (action-reaction).`,
+                            features: [
+                                'Hands-on learning',
+                                'Concept visualization',
+                                'Scientific method',
+                                'Critical thinking',
+                                'Fun activities'
+                            ]
+                        }
+                    }
+                ],
+                duration: '6 Weeks',
+                level: 'All Levels'
+            },
+            'graphic-design': {
+                title: 'Graphic Design',
+                price: '₹699',
+                description: 'Learn Photoshop, Canva and design principles.',
+                modules: [
+                    {
+                        name: 'Design Principles',
+                        description: 'Master fundamental design principles for creating visually appealing graphics.',
+                        content: {
+                            overview: 'Understanding design principles is essential for creating balanced, harmonious, and effective visual compositions.',
+                            topics: [
+                                'Color Theory',
+                                'Typography',
+                                'Layout and Composition',
+                                'Balance and Proportion',
+                                'Contrast and Hierarchy',
+                                'White Space Usage'
+                            ],
+                            codeExample: `Design Principles Checklist:
+
+🎨 Color Theory:
+- Complementary colors for contrast
+- Analogous colors for harmony
+- 60-30-10 rule for color distribution
+
+📐 Layout:
+- Rule of thirds for composition
+- F-pattern for text reading
+- Visual hierarchy for importance
+
+✍️ Typography:
+- Max 2-3 fonts per design
+- Hierarchy through size/weight
+- Readability over style`,
+                            features: [
+                                'Visual communication',
+                                'Aesthetic sense',
+                                'Professional standards',
+                                'Creative thinking',
+                                'Portfolio building'
+                            ]
+                        }
+                    }
+                ],
+                duration: '5 Weeks',
+                level: 'Beginner'
+            },
+            'mobile-app-development': {
+                title: 'Mobile App Development',
+                price: '₹899',
+                description: 'Build Android & iOS apps with Flutter framework.',
+                modules: [
+                    {
+                        name: 'Flutter Basics',
+                        description: 'Learn Flutter framework fundamentals for cross-platform app development.',
+                        content: {
+                            overview: 'Flutter allows building beautiful, natively compiled applications for mobile, web, and desktop from a single codebase.',
+                            topics: [
+                                'Flutter Architecture',
+                                'Dart Programming Basics',
+                                'Widget Tree Concept',
+                                'State Management',
+                                'Layout Building',
+                                'Hot Reload Feature'
+                            ],
+                            codeExample: `Basic Flutter App Structure:
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('My First App'),
+        ),
+        body: Center(
+          child: Text('Hello Flutter!'),
+        ),
+      ),
+    );
+  }
+}`,
+                            features: [
+                                'Cross-platform development',
+                                'Fast development cycle',
+                                'Beautiful UI',
+                                'Single codebase',
+                                'Google-backed technology'
+                            ]
+                        }
+                    }
+                ],
+                duration: '7 Weeks',
+                level: 'Intermediate'
+            },
+            'data-science': {
+                title: 'Data Science',
+                price: '₹999',
+                description: 'Python, Machine Learning, Data analysis complete course.',
+                modules: [
+                    {
+                        name: 'Python for Data Science',
+                        description: 'Learn Python programming specifically for data analysis and manipulation.',
+                        content: {
+                            overview: 'Python is the leading language for data science, offering powerful libraries for data manipulation, analysis, and visualization.',
+                            topics: [
+                                'NumPy for Numerical Computing',
+                                'Pandas for Data Manipulation',
+                                'Data Cleaning Techniques',
+                                'Exploratory Data Analysis',
+                                'Data Visualization',
+                                'Statistical Analysis'
+                            ],
+                            codeExample: `Python Data Science Examples:
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Data loading
+data = pd.read_csv('dataset.csv')
+
+# Data cleaning
+data = data.dropna()
+data = data[data['age'] > 0]
+
+# Basic analysis
+print(data.describe())
+print(data['salary'].mean())
+
+# Visualization
+plt.hist(data['age'])
+plt.title('Age Distribution')
+plt.show()`,
+                            features: [
+                                'Data manipulation skills',
+                                'Statistical analysis',
+                                'Visualization techniques',
+                                'Real-world datasets',
+                                'Industry-ready skills'
+                            ]
+                        }
+                    }
+                ],
+                duration: '10 Weeks',
+                level: 'Advanced'
             }
-            // ... (rest of your existing course data remains the same)
         };
 
         // ===== AUTHENTICATION SYSTEM =====
