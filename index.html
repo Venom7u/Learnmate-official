@@ -5,32 +5,563 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LearnMate - Free Online Courses | Maths, Science, Programming Classes</title>
     
-    <!-- ===== SEO META TAGS ===== -->
+    <!-- SEO META TAGS -->
     <meta name="description" content="LearnMate - India's best free educational platform. Master Class 10 Maths, Science, Web Development, Python with expert teachers. 100% Free courses with certificates.">
-    <meta name="keywords" content="learnmate, maths class 10, free online courses, cbse syllabus, python programming, web development, science experiments, digital marketing, learn hindi">
+    <meta name="keywords" content="learnmate, maths class 10, free online courses, cbse syllabus, python programming, web development, science experiments, digital marketing">
     <meta name="author" content="LearnMate Education">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#007bff">
     
     <!-- Open Graph Tags -->
     <meta property="og:title" content="LearnMate - Free Online Courses with Certificates">
     <meta property="og:description" content="Master Class 10 Maths, Science, Programming with expert teachers. Join India's fastest growing educational platform.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://learnmate-official.netlify.app/">
-    <meta property="og:image" content="https://learnmate-official.netlify.app/logo.png">
     
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="LearnMate - Free Education Platform">
-    <meta name="twitter:description" content="Free online courses with certificates for Indian students.">
-    
-    <!-- Google Adsense Ready -->
-    <!-- <meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXXX"> -->
-    <!-- Uncomment when you get Adsense code -->
-    
-    <link rel="stylesheet" href="style.css">
     <style>
-        /* === ALL YOUR EXISTING CSS + NEW IMPROVEMENTS === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .dark-mode {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .dark-mode .navbar {
+            background: #2d2d2d;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo h2 {
+            color: #007bff;
+            font-size: 24px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .dark-mode .nav-menu a {
+            color: white;
+        }
+
+        .nav-menu a:hover {
+            color: #007bff;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+
+        .dark-mode .hero {
+            background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Courses Section */
+        .courses {
+            padding: 80px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .dark-mode h2 {
+            color: white;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            color: #666;
+        }
+
+        .dark-mode .section-subtitle {
+            color: #ccc;
+        }
+
+        /* Course Grid */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .dark-mode .course-card {
+            background: #2d2d2d;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .course-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #dc3545;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .badge-popular {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+        }
+
+        .badge-free {
+            background: linear-gradient(135deg, #28a745, #20c997);
+        }
+
+        .badge-new {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+        }
+
+        .course-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .dark-mode .course-card h3 {
+            color: white;
+        }
+
+        .course-card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .dark-mode .course-card p {
+            color: #ccc;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .certificate-badge {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #8b6914;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        /* Buttons */
+        .whatsapp-course-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .whatsapp-course-btn:hover {
+            background: #128C7E;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .share-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            transition: all 0.3s;
+        }
+
+        .share-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        /* Progress Section */
+        .progress-section {
+            margin: 40px 0;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #007bff;
+        }
+
+        .dark-mode .progress-section {
+            background: #2d2d2d;
+        }
+
+        .progress-item {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .dark-mode .progress-item {
+            background: #363636;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #e9ecef;
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .dark-mode .progress-bar {
+            background: #444;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #28a745, #20c997);
+            transition: width 0.5s ease;
+            border-radius: 6px;
+        }
+
+        /* Achievements */
+        .achievement-section {
+            margin: 60px 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .achievement-card {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Invite Friends */
+        .invite-friends {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .invite-code {
+            background: rgba(255,255,255,0.2);
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-family: monospace;
+            font-size: 1.2rem;
+            margin: 20px 0;
+            display: inline-block;
+        }
+
+        .referral-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .feature {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .dark-mode .feature {
+            background: #2d2d2d;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .dark-mode .contact {
+            background: #2d2d2d;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .dark-mode .contact-form input,
+        .dark-mode .contact-form textarea {
+            background: #2d2d2d;
+            color: white;
+            border-color: #444;
+        }
+
+        .contact-form button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .dark-mode .footer {
+            background: #1a1a1a;
+        }
+
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px;
+            margin-left: 15px;
+        }
+
+        /* Notifications */
+        .notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+        }
+
+        .notification {
+            background: #28a745;
+            color: white;
+            padding: 15px 25px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: slideInRight 0.3s ease;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Auth Buttons */
+        .btn-login, .btn-signup, .btn-logout {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .btn-login {
+            background: transparent;
+            border: 2px solid #007bff;
+            color: #007bff;
+        }
+
+        .btn-signup {
+            background: #007bff;
+            color: white;
+        }
+
+        .btn-logout {
+            background: #dc3545;
+            color: white;
+        }
+
+        .nav-auth {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+        }
+
+        /* Loading Spinner */
         .loading-spinner {
             position: fixed;
             top: 0;
@@ -58,49 +589,13 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* === DARK MODE IMPROVED === */
-        .dark-mode-toggle {
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 10px;
-            margin-left: 15px;
-            transition: transform 0.3s ease;
-        }
-
-        .dark-mode-toggle:hover {
-            transform: scale(1.1);
-        }
-
-        .dark-mode {
-            background: #1a1a1a;
-            color: #ffffff;
-        }
-
-        .dark-mode .navbar {
-            background: #2d2d2d;
-            border-bottom: 1px solid #444;
-        }
-
-        .dark-mode .course-card {
-            background: #2d2d2d;
-            color: white;
-            border: 1px solid #444;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-
-        .dark-mode .hero {
-            background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
-        }
-
-        /* === NEW: ADSENSE CONTAINERS === */
+        /* Ad Containers */
         .ad-container {
             background: #f8f9fa;
             border: 2px dashed #007bff;
             border-radius: 10px;
             padding: 20px;
-            margin: 20px 0;
+            margin: 30px 0;
             text-align: center;
             color: #666;
         }
@@ -116,278 +611,6 @@
             color: #999;
             margin-bottom: 10px;
         }
-
-        .dark-mode .ad-label {
-            color: #777;
-        }
-
-        /* === NEW: SOCIAL SHARING === */
-        .share-buttons {
-            display: flex;
-            gap: 10px;
-            margin: 15px 0;
-            justify-content: center;
-        }
-
-        .share-btn {
-            padding: 8px 15px;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .share-whatsapp {
-            background: #25D366;
-            color: white;
-        }
-
-        .share-facebook {
-            background: #1877F2;
-            color: white;
-        }
-
-        .share-twitter {
-            background: #1DA1F2;
-            color: white;
-        }
-
-        .share-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-
-        /* === NEW: CERTIFICATE BADGES === */
-        .certificate-badge {
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
-            color: #8b6914;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 11px;
-            font-weight: bold;
-            margin-left: 10px;
-            border: 1px solid #e6c200;
-        }
-
-        .dark-mode .certificate-badge {
-            background: linear-gradient(135deg, #d4af37, #f7ef8a);
-            color: #5d4200;
-        }
-
-        /* === NEW: PROGRESS ANIMATIONS === */
-        @keyframes progress-glow {
-            0% { box-shadow: 0 0 5px rgba(40, 167, 69, 0.5); }
-            50% { box-shadow: 0 0 20px rgba(40, 167, 69, 0.8); }
-            100% { box-shadow: 0 0 5px rgba(40, 167, 69, 0.5); }
-        }
-
-        .progress-fill {
-            animation: progress-glow 2s infinite;
-        }
-
-        /* === NEW: COURSE BADGES === */
-        .course-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #dc3545;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 10px;
-            font-size: 10px;
-            font-weight: bold;
-        }
-
-        .badge-popular {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-        }
-
-        .badge-free {
-            background: linear-gradient(135deg, #28a745, #20c997);
-        }
-
-        .badge-new {
-            background: linear-gradient(135deg, #007bff, #0056b3);
-        }
-
-        /* === NEW: ACHIEVEMENT SYSTEM === */
-        .achievement-section {
-            margin: 30px 0;
-            padding: 25px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 15px;
-            color: white;
-            text-align: center;
-        }
-
-        .dark-mode .achievement-section {
-            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
-        }
-
-        .achievement-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .achievement-card {
-            background: rgba(255,255,255,0.1);
-            padding: 15px;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-        }
-
-        /* === REST OF YOUR EXISTING CSS === */
-        .search-container {
-            display: flex;
-            max-width: 500px;
-            margin: 20px auto 40px;
-        }
-
-        .search-input {
-            flex: 1;
-            padding: 12px 20px;
-            border: 2px solid #007bff;
-            border-radius: 25px 0 0 25px;
-            font-size: 16px;
-            outline: none;
-        }
-
-        .search-btn {
-            padding: 12px 25px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 0 25px 25px 0;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .progress-section {
-            margin: 30px 0;
-            padding: 25px;
-            background: #f8f9fa;
-            border-radius: 15px;
-            border-left: 5px solid #007bff;
-        }
-
-        .dark-mode .progress-section {
-            background: #2d2d2d;
-        }
-
-        /* === NEW: VIRAL FEATURES === */
-        .invite-friends {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            margin: 30px 0;
-        }
-
-        .invite-code {
-            background: rgba(255,255,255,0.2);
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-family: monospace;
-            font-size: 18px;
-            margin: 15px 0;
-            display: inline-block;
-        }
-
-        .referral-stats {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 24px;
-            font-weight: bold;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 12px;
-            opacity: 0.9;
-        }
-
-        /* === CONTINUE WITH ALL YOUR EXISTING CSS... === */
-        /* I'm including all your original CSS here */
-        .notification-container {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 10000;
-        }
-
-        .notification {
-            background: #28a745;
-            color: white;
-            padding: 15px 25px;
-            margin: 10px 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            animation: slideInRight 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        @keyframes slideInRight {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        /* === ALL YOUR OTHER EXISTING CSS STYLES === */
-        /* Filter styles, auth modal, module popup, course popup, matebot styles, etc. */
-        /* ... (Your complete existing CSS remains here) ... */
-
-        .filter-container {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin: 20px 0 30px;
-            flex-wrap: wrap;
-        }
-
-        .filter-select {
-            padding: 10px 15px;
-            border: 2px solid #007bff;
-            border-radius: 8px;
-            background: white;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        .whatsapp-float {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background: #25D366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 30px;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        /* === CONTINUATION OF ALL YOUR ORIGINAL CSS === */
-        /* I'm maintaining all your original styles and adding new ones */
-
     </style>
 </head>
 <body>
@@ -395,9 +618,6 @@
     <div id="loadingSpinner" class="loading-spinner" style="display: none;">
         <div class="spinner"></div>
     </div>
-
-    <!-- Skip Link -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- Navigation Bar -->
     <nav class="navbar">
@@ -416,19 +636,15 @@
                     <!-- Dark Mode Toggle -->
                     <button id="darkModeToggle" class="dark-mode-toggle">🌙</button>
                     
-                    <!-- Install App Button -->
-                    <button id="installBtn" class="install-btn" style="display: none;">📱 Install App</button>
-                    
                     <!-- Login/Signup Buttons -->
                     <div id="authSection">
-                        <button class="btn-login" onclick="authSystem.showAuthModal('login')">Login</button>
-                        <button class="btn-signup" onclick="authSystem.showAuthModal('signup')">Sign Up</button>
+                        <button class="btn-login" onclick="showAuthModal('login')">Login</button>
+                        <button class="btn-signup" onclick="showAuthModal('signup')">Sign Up</button>
                     </div>
                     
                     <!-- User Info -->
                     <div id="userSection" style="display: none;">
-                        <span class="user-welcome">Welcome, <span id="userName"></span>!</span>
-                        <span class="user-courses">Courses: <span id="enrolledCoursesCount">0</span></span>
+                        <span style="margin-right: 10px;">Welcome, <span id="userName"></span>!</span>
                         <button class="btn-logout" onclick="logout()">Logout</button>
                     </div>
                 </div>
@@ -437,17 +653,19 @@
     </nav>
 
     <!-- Main Content -->
-    <main id="main-content">
+    <main>
         <!-- Hero Section -->
         <section id="home" class="hero">
-            <div class="hero-content">
-                <h1>Welcome to LearnMate 🚀</h1>
-                <p>India's most trusted educational platform with <strong>FREE courses, certificates,</strong> and expert guidance</p>
-                <button class="cta-button" onclick="scrollToCourses()">Start Learning Today - 100% Free</button>
-                
-                <!-- Social Proof -->
-                <div class="social-proof">
-                    <p>🎯 <strong>10,000+</strong> Students Learning • ⭐ <strong>4.9/5</strong> Rating • 🎓 <strong>2,500+</strong> Certificates Issued</p>
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Welcome to LearnMate 🚀</h1>
+                    <p>India's most trusted educational platform with <strong>FREE courses, certificates,</strong> and expert guidance</p>
+                    <button class="cta-button" onclick="scrollToCourses()">Start Learning Today - 100% Free</button>
+                    
+                    <!-- Social Proof -->
+                    <div style="margin-top: 30px;">
+                        <p>🎯 <strong>10,000+</strong> Students Learning • ⭐ <strong>4.9/5</strong> Rating • 🎓 <strong>2,500+</strong> Certificates Issued</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -455,7 +673,6 @@
         <!-- Ad Container 1 -->
         <div class="ad-container" id="ad-banner-top">
             <div class="ad-label">Advertisement</div>
-            <!-- Adsense Code will go here -->
             <p>📢 Your ad could be here! Contact us for advertising.</p>
         </div>
 
@@ -465,34 +682,6 @@
                 <h2>🎓 Our Popular Courses</h2>
                 <p class="section-subtitle">Master new skills with our expertly designed courses. <strong>All courses include FREE certificates!</strong></p>
                 
-                <!-- Search and Filters -->
-                <div class="search-container">
-                    <input type="text" id="courseSearch" placeholder="🔍 Search courses (Maths, Python, Web Development...)" class="search-input">
-                    <button onclick="searchCourses()" class="search-btn">Search</button>
-                </div>
-
-                <div class="filter-container">
-                    <select id="levelFilter" class="filter-select" onchange="filterCourses()">
-                        <option value="all">All Levels</option>
-                        <option value="beginner">Beginner</option>
-                        <option value="intermediate">Intermediate</option>
-                        <option value="advanced">Advanced</option>
-                    </select>
-                    
-                    <select id="priceFilter" class="filter-select" onchange="filterCourses()">
-                        <option value="all">All Prices</option>
-                        <option value="free">Free</option>
-                        <option value="paid">Paid</option>
-                    </select>
-
-                    <select id="durationFilter" class="filter-select" onchange="filterCourses()">
-                        <option value="all">Any Duration</option>
-                        <option value="short">Short (1-4 weeks)</option>
-                        <option value="medium">Medium (5-8 weeks)</option>
-                        <option value="long">Long (9+ weeks)</option>
-                    </select>
-                </div>
-
                 <!-- Progress Section -->
                 <div class="progress-section" id="progressSection" style="display: none;">
                     <h3>📊 Your Learning Progress</h3>
@@ -507,7 +696,6 @@
                 <!-- Ad Container 2 -->
                 <div class="ad-container" id="ad-inline-courses">
                     <div class="ad-label">Advertisement</div>
-                    <!-- Adsense Code will go here -->
                     <p>🚀 Boost your learning with our premium features!</p>
                 </div>
             </div>
@@ -521,20 +709,20 @@
                 
                 <div class="achievement-grid">
                     <div class="achievement-card">
-                        <div class="stat-number" id="coursesCompleted">0</div>
-                        <div class="stat-label">Courses Completed</div>
+                        <span class="stat-number" id="coursesCompleted">0</span>
+                        <span class="stat-label">Courses Completed</span>
                     </div>
                     <div class="achievement-card">
-                        <div class="stat-number" id="streakDays">0</div>
-                        <div class="stat-label">Day Streak</div>
+                        <span class="stat-number" id="streakDays">0</span>
+                        <span class="stat-label">Day Streak</span>
                     </div>
                     <div class="achievement-card">
-                        <div class="stat-number" id="pointsEarned">0</div>
-                        <div class="stat-label">Points Earned</div>
+                        <span class="stat-number" id="pointsEarned">0</span>
+                        <span class="stat-label">Points Earned</span>
                     </div>
                     <div class="achievement-card">
-                        <div class="stat-number" id="certificatesEarned">0</div>
-                        <div class="stat-label">Certificates</div>
+                        <span class="stat-number" id="certificatesEarned">0</span>
+                        <span class="stat-label">Certificates</span>
                     </div>
                 </div>
             </div>
@@ -551,9 +739,6 @@
                 <div class="share-buttons">
                     <button class="share-btn share-whatsapp" onclick="shareOnWhatsApp()">
                         📱 Share on WhatsApp
-                    </button>
-                    <button class="share-btn share-facebook" onclick="shareOnFacebook()">
-                        📘 Share on Facebook
                     </button>
                 </div>
 
@@ -590,7 +775,7 @@
         <section id="contact" class="contact">
             <div class="container">
                 <h2>Contact Us</h2>
-                <form class="contact-form">
+                <form class="contact-form" onsubmit="handleContactSubmit(event)">
                     <input type="text" placeholder="Your Name" required>
                     <input type="email" placeholder="Your Email" required>
                     <textarea placeholder="Your Message" rows="5" required></textarea>
@@ -603,10 +788,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 LearnMate. All rights reserved. | 
-               <a href="#">Privacy Policy</a> | 
-               <a href="#">Terms of Service</a> | 
-               <a href="#">Refund Policy</a></p>
+            <p>&copy; 2024 LearnMate. All rights reserved.</p>
             <p>📧 Contact: learnmate@education.com | 📱 WhatsApp: +91 8960002095</p>
         </div>
     </footer>
@@ -622,67 +804,10 @@
        💬
     </a>
 
-    <!-- MateBot AI Assistant -->
-    <button class="matebot-toggle" id="matebotToggle" title="Chat with MateBot">
-        🤖
-    </button>
-
-    <div class="matebot-container matebot-hidden" id="matebotContainer">
-        <div class="matebot-header">
-            <div class="matebot-avatar">MB</div>
-            <div>
-                <h3 style="margin: 0; font-size: 16px;">MateBot AI</h3>
-                <div class="matebot-status">Online • Powered by Google Gemini Pro</div>
-            </div>
-        </div>
-        
-        <!-- API Key Section -->
-        <div class="api-key-section">
-            <input type="password" 
-                   class="api-key-input" 
-                   id="geminiApiKey" 
-                   placeholder="Enter your Google Gemini API Key"
-                   value="">
-            <button class="save-api-btn" onclick="saveApiKey()">Save Key</button>
-            <div class="powered-by">Get free API key from: <a href="https://aistudio.google.com/" target="_blank">Google AI Studio</a></div>
-        </div>
-        
-        <div class="matebot-messages" id="matebotMessages">
-            <div class="matebot-message bot-message">
-                🚀 <strong>Welcome to MateBot AI!</strong><br><br>
-                I'm powered by Google Gemini and can help you with:<br>
-                • Study questions & homework<br>
-                • Course recommendations<br>
-                • Coding problems<br>
-                • Science & math explanations<br>
-                • Business & career advice<br>
-                • And much more!<br><br>
-                <em>First, please enter your Google Gemini API key above to start chatting!</em>
-            </div>
-        </div>
-        
-        <div class="matebot-quick-actions">
-            <button class="matebot-quick-action" data-question="Explain quantum physics in simple terms">Quantum Physics</button>
-            <button class="matebot-quick-action" data-question="How to learn coding faster?">Coding Tips</button>
-            <button class="matebot-quick-action" data-question="What is machine learning?">ML Basics</button>
-            <button class="matebot-quick-action" data-question="Help me with algebra homework">Math Help</button>
-        </div>
-        
-        <div class="matebot-input-container">
-            <input type="text" class="matebot-input" id="matebotInput" placeholder="Ask me anything...">
-            <button class="matebot-send-btn" id="matebotSend">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="22" y1="2" x2="11" y2="13"></line>
-                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                </svg>
-            </button>
-        </div>
-    </div>
-
     <script>
-        // ===== UPDATED COURSES DATA WITH 6 DETAILED MATHS CHAPTERS =====
+        // ===== COURSE DATA WITH 6 DETAILED MATHS CHAPTERS =====
         const coursesData = {
-            // === CHAPTER 1: REAL NUMBERS (DETAILED) ===
+            // === CHAPTER 1: REAL NUMBERS ===
             'real-numbers': {
                 title: 'Mathematics Class 10 - Real Numbers',
                 price: 'Free',
@@ -707,16 +832,6 @@
                                 '➗ **Rational Numbers** - Properties and decimal expansions', 
                                 '❌ **Irrational Numbers** - Identification and proofs'
                             ],
-
-                            theory: `# 🧮 **1. EUCLID\'S DIVISION LEMMA**
-## **Statement:**
-For any two positive integers **a** and **b**, there exist unique integers **q** and **r** satisfying:
-**a = bq + r**, where **0 ≤ r < b**
-
-## **Example:**
-Let a = 25, b = 4
-25 = 4 × 6 + 1
-Here: q = 6, r = 1 (0 ≤ 1 < 4)`,
 
                             solvedExamples: [
                                 {
@@ -744,6 +859,26 @@ Here: q = 6, r = 1 (0 ≤ 1 < 4)`,
                                 ]
                             },
 
+                            resources: {
+                                pdfs: [
+                                    "Real Numbers - Complete Theory Notes.pdf",
+                                    "Practice Worksheet - 50 Questions.pdf", 
+                                    "Previous Year Questions (2014-2024).pdf"
+                                ],
+                                videos: [
+                                    {
+                                        title: "Euclid's Division Lemma - Full Explanation",
+                                        url: "https://youtube.com/embed/example1",
+                                        duration: "15:30"
+                                    }
+                                ],
+                                mockTest: {
+                                    questions: 20,
+                                    time: 60,
+                                    marks: 20
+                                }
+                            },
+
                             features: [
                                 '📚 **50+ Solved Examples** with step-by-step solutions',
                                 '🎯 **100+ Practice Questions** from easy to advanced',
@@ -751,18 +886,6 @@ Here: q = 6, r = 1 (0 ≤ 1 < 4)`,
                                 '🧠 **Mind Maps & Quick Revision Notes**',
                                 '📹 **Video Explanations** for complex concepts',
                                 '📝 **Downloadable PDF Worksheets**'
-                            ]
-                        }
-                    },
-                    {
-                        name: 'Real Numbers - Practice & PYQs',
-                        description: 'Solve 100+ practice questions and 10 years of CBSE board questions.',
-                        content: {
-                            overview: 'Master problem-solving with extensive practice and real exam questions.',
-                            topics: [
-                                'CBSE 2024 - Complete solved paper',
-                                'Application-based problems',
-                                'Competitive level questions'
                             ]
                         }
                     }
@@ -783,32 +906,25 @@ Here: q = 6, r = 1 (0 ≤ 1 < 4)`,
                         description: 'Understand polynomial degrees, types, graphs, and geometric meaning of zeroes.',
                         content: {
                             overview: `# POLYNOMIALS - CLASS 10 MATHS
-**Polynomials** are algebraic expressions with one or more terms. We explore their geometric representations and relationships.
-
-## 📊 **Chapter Importance:**
-- **Weightage:** 4-6 marks  
-- **Key Concepts:** Zeroes, Graphs, Division Algorithm`,
+**Polynomials** are algebraic expressions with one or more terms. We explore their geometric representations and relationships.`,
 
                             topics: [
                                 '📈 **Polynomial Basics** - Degree, Types, Examples',
                                 '🎯 **Zeroes of Polynomials** - Finding and verification', 
-                                '📊 **Geometric Meaning** - Graphs and intersections',
-                                '➗ **Division Algorithm** - Step-by-step process'
+                                '📊 **Geometric Meaning** - Graphs and intersections'
                             ],
 
-                            solvedExamples: [
-                                {
-                                    question: "Find zeroes of polynomial x² - 5x + 6",
-                                    solution: "x² - 5x + 6 = (x-2)(x-3)\nZeroes: x = 2, 3",
-                                    explanation: "Factorize the quadratic polynomial"
-                                }
-                            ],
+                            resources: {
+                                pdfs: [
+                                    "Polynomials - Complete Theory.pdf",
+                                    "Practice Worksheet - 60 Questions.pdf"
+                                ]
+                            },
 
                             features: [
                                 '📚 60+ Solved Examples',
                                 '📊 Graphical Representations', 
-                                '🎯 Relationship Formulas',
-                                '📝 Downloadable Worksheets'
+                                '🎯 Relationship Formulas'
                             ]
                         }
                     }
@@ -831,24 +947,12 @@ Here: q = 6, r = 1 (0 ≤ 1 < 4)`,
                             overview: `# PAIR OF LINEAR EQUATIONS
 Solve equations like:  
 a₁x + b₁y + c₁ = 0  
-a₂x + b₂y + c₂ = 0
-
-## 📊 **Chapter Importance:**
-- **Weightage:** 6-8 marks
-- **Methods:** Graphical, Substitution, Elimination`,
+a₂x + b₂y + c₂ = 0`,
 
                             topics: [
                                 '📈 **Graphical Method** - Intersecting, parallel lines',
                                 '🔄 **Substitution Method** - Step-by-step solving',
                                 '❌ **Elimination Method** - Removing variables'
-                            ],
-
-                            solvedExamples: [
-                                {
-                                    question: "Solve: 2x + 3y = 8 and x + 2y = 5",
-                                    solution: "Using substitution: x = 5 - 2y\n2(5-2y) + 3y = 8\n10 - 4y + 3y = 8\ny = 2, x = 1",
-                                    explanation: "Substitution method used"
-                                }
                             ],
 
                             features: [
@@ -876,24 +980,12 @@ a₂x + b₂y + c₂ = 0
                         content: {
                             overview: `# QUADRATIC EQUATIONS
 Standard form: ax² + bx + c = 0  
-Where a ≠ 0
-
-## 📊 **Chapter Importance:**
-- **Weightage:** 5-7 marks
-- **Methods:** Factorization, Completing Square, Formula`,
+Where a ≠ 0`,
 
                             topics: [
                                 '🎯 **Factorization Method** - Splitting middle term',
                                 '📐 **Completing Square** - Perfect square method',
                                 '📝 **Quadratic Formula** - x = [-b ± √(b²-4ac)]/2a'
-                            ],
-
-                            solvedExamples: [
-                                {
-                                    question: "Solve x² - 5x + 6 = 0",
-                                    solution: "x² - 2x - 3x + 6 = 0\nx(x-2) -3(x-2) = 0\n(x-2)(x-3) = 0\nx = 2, 3",
-                                    explanation: "Factorization by splitting middle term"
-                                }
                             ],
 
                             features: [
@@ -920,24 +1012,12 @@ Where a ≠ 0
                         description: 'Learn SSS, SAS, ASA, AAS congruence rules and similarity criteria with proofs.',
                         content: {
                             overview: `# TRIANGLES - CLASS 10
-Study of triangle properties, congruence, similarity, and important theorems.
-
-## 📊 **Chapter Importance:**
-- **Weightage:** 6-8 marks  
-- **Key Theorems:** BPT, Pythagoras, Similarity`,
+Study of triangle properties, congruence, similarity, and important theorems.`,
 
                             topics: [
                                 '📐 **Congruence Rules** - SSS, SAS, ASA, AAS, RHS',
                                 '🔺 **Similarity Criteria** - AA, SSS, SAS similarity',
                                 '📏 **Basic Proportionality Theorem** - Proof and applications'
-                            ],
-
-                            solvedExamples: [
-                                {
-                                    question: "Prove Basic Proportionality Theorem",
-                                    solution: "Using parallel lines and similar triangles\nDraw DE || BC in ΔABC\nThen AD/DB = AE/EC",
-                                    explanation: "BPT proof using similarity"
-                                }
                             ],
 
                             features: [
@@ -964,24 +1044,12 @@ Study of triangle properties, congruence, similarity, and important theorems.
                         description: 'Master sin, cos, tan ratios, trigonometric identities, and complementary angle relations.',
                         content: {
                             overview: `# INTRODUCTION TO TRIGONOMETRY
-Study of relationships between angles and sides of triangles.
-
-## 📊 **Chapter Importance:**
-- **Weightage:** 8-10 marks
-- **Key Concepts:** Ratios, Identities, Applications`,
+Study of relationships between angles and sides of triangles.`,
 
                             topics: [
                                 '📐 **Trigonometric Ratios** - sin, cos, tan, cosec, sec, cot',
                                 '🎯 **Reciprocal Relations** - Between ratios',
                                 '📝 **Trigonometric Identities** - sin²θ + cos²θ = 1 etc.'
-                            ],
-
-                            solvedExamples: [
-                                {
-                                    question: "If sin A = 3/5, find cos A and tan A",
-                                    solution: "sin A = 3/5 = opposite/hypotenuse\nUsing Pythagoras: adjacent = 4\ncos A = 4/5, tan A = 3/4",
-                                    explanation: "Using right triangle and Pythagoras theorem"
-                                }
                             ],
 
                             features: [
@@ -997,57 +1065,12 @@ Study of relationships between angles and sides of triangles.
                 badge: 'badge-new'
             },
 
-            // === YOUR EXISTING OTHER COURSES ===
+            // === OTHER COURSES ===
             'web-development': {
                 title: 'Web Development Master Course',
                 price: 'Free',
-                description: 'Complete web development course covering HTML, CSS, JavaScript from basics to advanced level. Build real-world projects and become a professional web developer.',
-                modules: [
-                    {
-                        name: 'HTML5 & Semantic HTML',
-                        description: 'Learn modern HTML5 tags, semantic structure, forms, tables and SEO-friendly coding practices.',
-                        content: {
-                            overview: 'HTML5 is the latest version of HyperText Markup Language, the code that describes web pages. It provides better structure and semantic elements for modern web development.',
-                            topics: [
-                                'HTML5 Document Structure',
-                                'Semantic Elements (header, nav, section, article, footer)',
-                                'Forms and Input Types',
-                                'Multimedia (audio, video)',
-                                'Canvas and SVG',
-                                'Web Storage APIs'
-                            ],
-                            codeExample: `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>My Web Page</title>
-</head>
-<body>
-    <header>
-        <h1>Welcome to My Website</h1>
-    </header>
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-    </nav>
-    <main>
-        <article>
-            <h2>Article Title</h2>
-            <p>This is article content.</p>
-        </article>
-    </main>
-</body>
-</html>`,
-                            features: [
-                                'Better page structure',
-                                'Improved accessibility',
-                                'Mobile-friendly',
-                                'Offline capabilities',
-                                'Multimedia support'
-                            ]
-                        }
-                    }
-                ],
+                description: 'Complete web development course covering HTML, CSS, JavaScript from basics to advanced level. Build real-world projects.',
+                modules: [],
                 duration: '8 Weeks',
                 level: 'Beginner',
                 badge: 'badge-popular'
@@ -1056,107 +1079,18 @@ Study of relationships between angles and sides of triangles.
                 title: 'Python Programming',
                 price: 'Free',
                 description: 'Learn Python from scratch to advanced level with practical projects. Build real-world applications and automate tasks.',
-                modules: [
-                    {
-                        name: 'Python Basics & Syntax',
-                        description: 'Master Python fundamentals, syntax, and basic programming concepts.',
-                        content: {
-                            overview: 'Python is a versatile, beginner-friendly programming language known for its clean syntax and readability. Perfect for beginners and professionals alike.',
-                            topics: [
-                                'Variables and Data Types',
-                                'Operators and Expressions',
-                                'Control Structures (if-else, loops)',
-                                'Functions and Modules',
-                                'Basic Input/Output',
-                                'Error Handling'
-                            ],
-                            codeExample: `# Basic Python Syntax
-name = "Alice"
-age = 25
-
-# Conditional statement
-if age >= 18:
-    print(f"{name} is an adult")
-else:
-    print(f"{name} is a minor")
-
-# Function definition
-def greet(name):
-    return f"Hello, {name}!"
-
-# List comprehension
-numbers = [1, 2, 3, 4, 5]
-squares = [x**2 for x in numbers]`,
-                            features: [
-                                'Easy to learn syntax',
-                                'Versatile applications',
-                                'Large standard library',
-                                'Cross-platform compatibility',
-                                'Strong community support'
-                            ]
-                        }
-                    }
-                ],
+                modules: [],
                 duration: '6 Weeks',
                 level: 'Beginner',
                 badge: 'badge-popular'
-            },
-            'digital-marketing': {
-                title: 'Digital Marketing',
-                price: 'Free',
-                description: 'Master SEO, Social Media Marketing, Google Ads and more. Learn to build successful digital marketing campaigns.',
-                modules: [
-                    {
-                        name: 'SEO Fundamentals',
-                        description: 'Learn Search Engine Optimization techniques to rank higher in search results.',
-                        content: {
-                            overview: 'SEO is the practice of optimizing websites to rank higher in search engine results pages, driving organic traffic and visibility.',
-                            topics: [
-                                'Keyword Research and Analysis',
-                                'On-Page SEO Techniques',
-                                'Off-Page SEO and Link Building',
-                                'Technical SEO',
-                                'Local SEO Strategies',
-                                'SEO Analytics and Reporting'
-                            ],
-                            codeExample: `<!-- SEO Optimized HTML Structure -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Learn digital marketing with expert courses">
-    <meta name="keywords" content="digital marketing, SEO, social media">
-    <title>Digital Marketing Course - Learn SEO & Social Media</title>
-</head>
-<body>
-    <header>
-        <h1>Digital Marketing Master Course</h1>
-    </header>
-</body>
-</html>`,
-                            features: [
-                                'Higher search rankings',
-                                'Increased organic traffic',
-                                'Better user experience',
-                                'Long-term results',
-                                'Cost-effective marketing'
-                            ]
-                        }
-                    }
-                ],
-                duration: '4 Weeks',
-                level: 'Intermediate',
-                badge: 'badge-free'
             }
         };
 
-        // ===== NEW VIRAL FEATURES =====
-        
-        // Achievement System
+        // ===== ACHIEVEMENT SYSTEM =====
         const achievementSystem = {
             achievements: JSON.parse(localStorage.getItem('userAchievements')) || {
                 coursesCompleted: 0,
-                streakDays: 0,
+                streakDays: 1,
                 pointsEarned: 0,
                 certificatesEarned: 0,
                 friendsReferred: 0,
@@ -1178,31 +1112,12 @@ squares = [x**2 for x in numbers]`,
                 if (this.achievements[type] !== undefined) {
                     this.achievements[type] += value;
                     this.updateAchievements();
-                    
-                    // Show notification for significant achievements
-                    if (type === 'coursesCompleted' && this.achievements.coursesCompleted % 5 === 0) {
-                        showNotification(`🎉 Amazing! You've completed ${this.achievements.coursesCompleted} courses!`, 'success');
-                    }
+                    showNotification(`🎉 +${value} ${type.replace(/([A-Z])/g, ' $1').toLowerCase()}!`);
                 }
             }
         };
 
-        // Social Sharing Functions
-        function shareOnWhatsApp() {
-            const message = `Join me on LearnMate - India's best FREE educational platform! 🎓\n\nGet free courses with certificates in Maths, Science, Programming and more!\n\nUse my referral code: LEARNMATE2024\n\nStart learning now: https://learnmate-official.netlify.app`;
-            const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
-            achievementSystem.addAchievement('friendsReferred');
-            trackEvent('social', 'share', 'whatsapp');
-        }
-
-        function shareOnFacebook() {
-            const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://learnmate-official.netlify.app')}`;
-            window.open(url, '_blank');
-            trackEvent('social', 'share', 'facebook');
-        }
-
-        // ===== ENHANCED COURSE MANAGEMENT =====
+        // ===== COURSE MANAGEMENT =====
         function initializeCourses() {
             const courseGrid = document.getElementById('courseGrid');
             courseGrid.innerHTML = '';
@@ -1220,7 +1135,6 @@ squares = [x**2 for x in numbers]`,
                         </div>
                         <span class="price">${course.price}</span>
                         
-                        <!-- Social Sharing for each course -->
                         <div class="share-buttons">
                             <button class="share-btn share-whatsapp" onclick="event.stopPropagation(); shareCourse('${courseId}')">
                                 Share
@@ -1236,575 +1150,252 @@ squares = [x**2 for x in numbers]`,
             });
         }
 
-        function shareCourse(courseId) {
+        function showCourseDetails(courseId) {
             const course = coursesData[courseId];
-            const message = `Check out this amazing course: "${course.title}" on LearnMate!\n\n${course.description}\n\nEnroll now: https://learnmate-official.netlify.app`;
-            const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
-            trackEvent('social', 'share_course', courseId);
-        }
+            const enrolled = localStorage.getItem(`enrolled_${courseId}`);
+            
+            let popupHTML = `
+                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; z-index: 2000;">
+                    <div style="background: white; padding: 30px; border-radius: 15px; width: 90%; max-width: 600px; max-height: 80vh; overflow-y: auto;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid #007bff; padding-bottom: 15px;">
+                            <h2 style="margin: 0; color: #007bff;">${course.title}</h2>
+                            <button onclick="closePopup()" style="background: none; border: none; font-size: 24px; cursor: pointer;">×</button>
+                        </div>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <p style="font-size: 24px; font-weight: bold; color: #28a745; margin: 10px 0;">${course.price}</p>
+                            <p><strong>Duration:</strong> ${course.duration}</p>
+                            <p><strong>Level:</strong> ${course.level}</p>
+                        </div>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <h3>Course Description</h3>
+                            <p>${course.description}</p>
+                        </div>
+            `;
 
-        // ===== ENHANCED ENROLLMENT WITH ACHIEVEMENTS =====
-        function enrollInCourse(courseId) {
-            const result = authSystem.enrollInCourse(courseId);
-            if (result.success) {
-                showNotification(result.message);
-                closeCoursePopup();
-                authSystem.updateAuthUI();
-                
-                // Add achievement points
-                achievementSystem.addAchievement('pointsEarned', 100);
-                trackEvent('enrollment', 'enroll_course', courseId);
-            } else {
-                showNotification(result.message, 'error');
+            if (course.modules && course.modules.length > 0) {
+                popupHTML += `
+                    <div style="margin-bottom: 20px;">
+                        <h3>What You'll Learn</h3>
+                        <ul>
+                            ${course.modules.map((module, index) => `
+                                <li onclick="showModuleDetail('${courseId}', ${index})" 
+                                    style="cursor: pointer; padding: 12px; border-radius: 8px; margin: 8px 0; transition: background 0.3s; border-left: 3px solid #007bff;"
+                                    onmouseover="this.style.background='#f0f8ff'" 
+                                    onmouseout="this.style.background='transparent'">
+                                    <strong>✅ ${module.name}</strong><br>
+                                    <small>${module.description}</small>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
             }
+
+            popupHTML += `
+                <div style="display: flex; gap: 15px; margin-top: 25px;">
+                    <button onclick="enrollInCourse('${courseId}')" 
+                            style="flex: 1; padding: 15px; background: #28a745; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold;">
+                        ${enrolled ? '🎓 Continue Learning' : `Enroll Now - ${course.price}`}
+                    </button>
+                    <button onclick="contactAboutCourse('${courseId}')" 
+                            style="padding: 15px; background: #25D366; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                        💬 Enquire
+                    </button>
+                </div>
+            </div>
+        </div>`;
+
+            document.body.insertAdjacentHTML('beforeend', popupHTML);
         }
 
-        function completeModule(courseId, moduleIndex) {
-            if (authSystem.currentUser) {
-                const totalModules = coursesData[courseId].modules.length;
-                const progress = Math.round(((moduleIndex + 1) / totalModules) * 100);
-                authSystem.updateProgress(courseId, progress);
-                
-                // Check if course completed
-                if (progress === 100) {
-                    achievementSystem.addAchievement('coursesCompleted', 1);
-                    achievementSystem.addAchievement('certificatesEarned', 1);
-                    achievementSystem.addAchievement('pointsEarned', 500);
-                    showNotification(`🎉 Course Completed! You earned a certificate and 500 points!`, 'success');
-                } else {
-                    showNotification(`Module completed! Progress: ${progress}%`);
-                }
-                closeModulePopup();
+        function showModuleDetail(courseId, moduleIndex) {
+            const course = coursesData[courseId];
+            const module = course.modules[moduleIndex];
+            
+            let moduleHTML = `
+                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: flex; justify-content: center; align-items: center; z-index: 3000;">
+                    <div style="background: white; padding: 30px; border-radius: 15px; width: 90%; max-width: 800px; max-height: 80vh; overflow-y: auto;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 3px solid #007bff; padding-bottom: 15px;">
+                            <h2 style="margin: 0; color: #007bff; font-size: 28px;">${module.name}</h2>
+                            <button onclick="closePopup()" style="background: none; border: none; font-size: 30px; cursor: pointer;">×</button>
+                        </div>
+                        
+                        <div style="line-height: 1.6;">
+            `;
+
+            // Overview
+            if (module.content.overview) {
+                moduleHTML += `
+                    <div style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #007bff;">
+                        <h3 style="color: #333; margin-bottom: 15px; font-size: 20px;">📖 Overview</h3>
+                        <p style="color: #555; margin-bottom: 10px;">${module.content.overview}</p>
+                    </div>
+                `;
             }
-        }
 
-        // ===== ENHANCED AUTHENTICATION SYSTEM =====
-        const authSystem = {
-            currentUser: null,
-            users: JSON.parse(localStorage.getItem('courseUsers')) || [],
+            // Topics
+            if (module.content.topics) {
+                moduleHTML += `
+                    <div style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #007bff;">
+                        <h3 style="color: #333; margin-bottom: 15px; font-size: 20px;">📚 Topics Covered</h3>
+                        <ul>
+                            ${module.content.topics.map(topic => `<li style="margin: 8px 0;">🎯 ${topic}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
 
-            signUp: function(name, email, password) {
-                const existingUser = this.users.find(user => user.email === email);
-                if (existingUser) {
-                    return { success: false, message: 'User already exists with this email!' };
-                }
-
-                const newUser = {
-                    id: Date.now().toString(),
-                    name: name,
-                    email: email,
-                    password: password,
-                    enrolledCourses: [],
-                    progress: {},
-                    joinDate: new Date().toLocaleDateString(),
-                    referralCode: 'LEARNMATE' + Math.random().toString(36).substr(2, 6).toUpperCase()
-                };
-
-                this.users.push(newUser);
-                this.saveUsers();
-                this.currentUser = newUser;
-                
-                // Welcome achievement
-                achievementSystem.addAchievement('pointsEarned', 50);
-                
-                return { success: true, message: 'Account created successfully! +50 points!', user: newUser };
-            },
-
-            // ... rest of your existing authSystem code remains the same
-            login: function(email, password) {
-                const user = this.users.find(user => user.email === email && user.password === password);
-                if (user) {
-                    this.currentUser = user;
-                    
-                    // Daily login streak
-                    const lastLogin = localStorage.getItem('lastLogin');
-                    const today = new Date().toDateString();
-                    if (lastLogin !== today) {
-                        achievementSystem.addAchievement('streakDays', 1);
-                        achievementSystem.addAchievement('pointsEarned', 10);
-                        localStorage.setItem('lastLogin', today);
-                    }
-                    
-                    return { success: true, message: 'Login successful!', user: user };
-                } else {
-                    return { success: false, message: 'Invalid email or password!' };
-                }
-            },
-
-            // ... include all your existing authSystem functions
-            logout: function() {
-                this.currentUser = null;
-                this.updateAuthUI();
-            },
-
-            enrollInCourse: function(courseId) {
-                if (!this.currentUser) {
-                    this.showAuthModal('login');
-                    return { success: false, message: 'Please login to enroll!' };
-                }
-
-                const course = coursesData[courseId];
-                if (!course) {
-                    return { success: false, message: 'Course not found!' };
-                }
-
-                if (this.currentUser.enrolledCourses.includes(courseId)) {
-                    return { success: false, message: 'You are already enrolled in this course!' };
-                }
-
-                this.currentUser.enrolledCourses.push(courseId);
-                this.currentUser.progress[courseId] = 0;
-                
-                const userIndex = this.users.findIndex(user => user.id === this.currentUser.id);
-                if (userIndex !== -1) {
-                    this.users[userIndex] = this.currentUser;
-                    this.saveUsers();
-                }
-
-                return { 
-                    success: true, 
-                    message: `Successfully enrolled in ${course.title}!` 
-                };
-            },
-
-            updateProgress: function(courseId, progress) {
-                if (this.currentUser && this.currentUser.progress) {
-                    this.currentUser.progress[courseId] = progress;
-                    this.saveUsers();
-                    updateProgressUI();
-                }
-            },
-
-            saveUsers: function() {
-                localStorage.setItem('courseUsers', JSON.stringify(this.users));
-            },
-
-            updateAuthUI: function() {
-                const authSection = document.getElementById('authSection');
-                const userSection = document.getElementById('userSection');
-                const progressSection = document.getElementById('progressSection');
-                const userNameSpan = document.getElementById('userName');
-                const enrolledCoursesSpan = document.getElementById('enrolledCoursesCount');
-
-                if (this.currentUser) {
-                    if (authSection) authSection.style.display = 'none';
-                    if (userSection) userSection.style.display = 'flex';
-                    if (progressSection) progressSection.style.display = 'block';
-                    if (userNameSpan) userNameSpan.textContent = this.currentUser.name;
-                    if (enrolledCoursesSpan) enrolledCoursesSpan.textContent = this.currentUser.enrolledCourses.length;
-                    
-                    updateProgressUI();
-                } else {
-                    if (authSection) authSection.style.display = 'flex';
-                    if (userSection) userSection.style.display = 'none';
-                    if (progressSection) progressSection.style.display = 'none';
-                }
-            },
-
-            showAuthModal: function(type = 'login') {
-                const modalHTML = `
-                    <div class="auth-modal-overlay">
-                        <div class="auth-modal">
-                            <div class="auth-modal-header">
-                                <h2>${type === 'login' ? 'Login' : 'Sign Up'}</h2>
-                                <span class="close-auth-btn" onclick="closeAuthModal()">×</span>
-                            </div>
-                            <div class="auth-modal-content">
-                                <form id="authForm" onsubmit="handleAuthSubmit(event)">
-                                    ${type === 'signup' ? `
-                                        <div class="form-group">
-                                            <label>Full Name</label>
-                                            <input type="text" id="authName" required placeholder="Enter your full name">
-                                        </div>
-                                    ` : ''}
-                                    
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input type="email" id="authEmail" required placeholder="Enter your email">
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label>Password</label>
-                                        <input type="password" id="authPassword" required placeholder="Enter your password">
-                                    </div>
-                                    
-                                    <button type="submit" class="auth-submit-btn">
-                                        ${type === 'login' ? 'Login' : 'Create Account'}
-                                    </button>
-                                </form>
-                                
-                                <div class="auth-switch">
-                                    ${type === 'login' 
-                                        ? 'Don\'t have an account? <a href="#" onclick="switchAuthType(\'signup\')">Sign up</a>' 
-                                        : 'Already have an account? <a href="#" onclick="switchAuthType(\'login\')">Login</a>'
-                                    }
+            // Resources
+            if (module.content.resources) {
+                if (module.content.resources.pdfs) {
+                    moduleHTML += `
+                        <div style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #007bff;">
+                            <h3 style="color: #333; margin-bottom: 15px; font-size: 20px;">📚 Download Resources</h3>
+                            ${module.content.resources.pdfs.map(pdf => `
+                                <div style="background: #e7f3ff; padding: 10px; border-radius: 5px; margin: 5px 0; border-left: 3px solid #007bff;">
+                                    <strong>${pdf}</strong>
+                                    <button onclick="downloadResource('${pdf}')" style="background: #007bff; color: white; border: none; padding: 5px 10px; border-radius: 3px; margin-left: 10px; cursor: pointer;">Download</button>
                                 </div>
-                            </div>
+                            `).join('')}
+                        </div>
+                    `;
+                }
+            }
+
+            // Features
+            if (module.content.features) {
+                moduleHTML += `
+                    <div style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #007bff;">
+                        <h3 style="color: #333; margin-bottom: 15px; font-size: 20px;">✨ Key Features</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0;">
+                            ${module.content.features.map(feature => `
+                                <div style="background: #e7f3ff; padding: 15px; border-radius: 8px; border-left: 4px solid #007bff; text-align: center;">
+                                    <strong>${feature}</strong>
+                                </div>
+                            `).join('')}
                         </div>
                     </div>
                 `;
-                
-                document.body.insertAdjacentHTML('beforeend', modalHTML);
             }
-        };
 
-        // ===== ENHANCED INITIALIZATION =====
+            moduleHTML += `
+                        <button onclick="completeModule('${courseId}', ${moduleIndex})" 
+                                style="background: #28a745; color: white; border: none; padding: 15px 30px; border-radius: 8px; cursor: pointer; font-size: 16px; margin-top: 20px;">
+                            ✅ Mark as Complete
+                        </button>
+                    </div>
+                </div>
+            </div>`;
+
+            document.body.insertAdjacentHTML('beforeend', moduleHTML);
+        }
+
+        function closePopup() {
+            const popups = document.querySelectorAll('[style*="position: fixed"]');
+            popups.forEach(popup => popup.remove());
+        }
+
+        function enrollInCourse(courseId) {
+            localStorage.setItem(`enrolled_${courseId}`, 'true');
+            achievementSystem.addAchievement('pointsEarned', 100);
+            showNotification(`🎉 Successfully enrolled! +100 points earned!`);
+            closePopup();
+        }
+
+        function completeModule(courseId, moduleIndex) {
+            achievementSystem.addAchievement('pointsEarned', 50);
+            showNotification(`✅ Module completed! +50 points`);
+            closePopup();
+        }
+
+        function downloadResource(filename) {
+            showNotification(`📥 Downloading ${filename}...`);
+            // In real implementation, this would trigger actual file download
+        }
+
+        function contactAboutCourse(courseId) {
+            const course = coursesData[courseId];
+            const message = `Hi, I'm interested in the "${course.title}" course. Can you provide more details?`;
+            const url = `https://wa.me/918960002095?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        function shareCourse(courseId) {
+            const course = coursesData[courseId];
+            const message = `Check out "${course.title}" on LearnMate! ${course.description}`;
+            const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+            achievementSystem.addAchievement('friendsReferred', 1);
+        }
+
+        function shareOnWhatsApp() {
+            const message = `Join LearnMate - India's best FREE educational platform! 🎓\n\nGet free courses with certificates in Maths, Science, Programming!\n\nUse my code: LEARNMATE2024\n\nStart learning: https://learnmate-official.netlify.app`;
+            const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+            achievementSystem.addAchievement('friendsReferred', 1);
+        }
+
+        // ===== UI FUNCTIONS =====
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.style.background = type === 'error' ? '#dc3545' : '#28a745';
+            notification.textContent = message;
+            
+            const container = document.getElementById('notificationContainer');
+            container.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        function scrollToCourses() {
+            document.getElementById('courses').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        function showAuthModal(type) {
+            showNotification(`${type === 'login' ? 'Login' : 'Sign Up'} feature coming soon!`);
+        }
+
+        function logout() {
+            showNotification('Logged out successfully!');
+        }
+
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            showNotification('Thank you for your message! We will contact you soon.');
+            event.target.reset();
+        }
+
+        // ===== DARK MODE =====
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            darkModeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        });
+
+        // ===== INITIALIZATION =====
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize dark mode
             if (localStorage.getItem('darkMode') === 'true') {
                 document.body.classList.add('dark-mode');
-                document.getElementById('darkModeToggle').textContent = '☀️';
+                darkModeToggle.textContent = '☀️';
             }
             
-            // Initialize auth
-            authSystem.updateAuthUI();
+            // Initialize courses
             initializeCourses();
             
             // Initialize achievements
             achievementSystem.updateAchievements();
             
-            // Initialize MateBot
-            if (typeof mateBot !== 'undefined') {
-                mateBot.init();
-            }
-            
-            // Contact form
-            const contactForm = document.querySelector('.contact-form');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    showLoading();
-                    
-                    const name = this.querySelector('input[type="text"]').value;
-                    const email = this.querySelector('input[type="email"]').value;
-                    const message = this.querySelector('textarea').value;
-                    
-                    setTimeout(() => {
-                        if (name && email && message) {
-                            showNotification('Thank you for your message! We will contact you soon.');
-                            this.reset();
-                            trackEvent('contact', 'submit_form', 'success');
-                        } else {
-                            showNotification('Please fill all fields.', 'error');
-                        }
-                        hideLoading();
-                    }, 1000);
-                });
-            }
-
-            // Smooth scrolling
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-
-            // Search on Enter key
-            const courseSearch = document.getElementById('courseSearch');
-            if (courseSearch) {
-                courseSearch.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') {
-                        searchCourses();
-                    }
-                });
-            }
-
-            showNotification('Welcome to LearnMate! 🎓 Start your learning journey today!', 'success');
-            trackEvent('page', 'load', 'homepage');
+            showNotification('Welcome to LearnMate! 🎓 Start your learning journey today!');
         });
-
-        // ===== INCLUDE ALL YOUR EXISTING FUNCTIONS =====
-        // All your existing functions like showNotification, showLoading, hideLoading,
-        // searchCourses, filterCourses, updateProgressUI, shareProgress,
-        // showCourseDetails, closeCoursePopup, showModuleDetail, closeModulePopup,
-        // rateCourse, contactAboutCourse, closeAuthModal, switchAuthType, handleAuthSubmit,
-        // trackEvent, scrollToCourses, logout, and all MateBot related code
-
-        // I'm including the key ones here, but you should keep all your original functions
-
-        function showNotification(message, type = 'success') {
-            const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
-            notification.innerHTML = `
-                ${type === 'success' ? '✅' : type === 'error' ? '❌' : '⚠️'}
-                ${message}
-            `;
-            
-            const container = document.getElementById('notificationContainer');
-            if (container) {
-                container.appendChild(notification);
-                
-                setTimeout(() => {
-                    notification.style.animation = 'slideInRight 0.3s ease reverse';
-                    setTimeout(() => notification.remove(), 300);
-                }, 3000);
-            }
-        }
-
-        function showLoading() {
-            const spinner = document.getElementById('loadingSpinner');
-            if (spinner) spinner.style.display = 'flex';
-        }
-
-        function hideLoading() {
-            const spinner = document.getElementById('loadingSpinner');
-            if (spinner) spinner.style.display = 'none';
-        }
-
-        // ... Include all your remaining existing functions
-
-        // ===== MATEBOT AI ASSISTANT =====
-        const geminiAI = {
-            apiKey: localStorage.getItem('geminiApiKey') || '',
-            baseURL: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent',
-
-            setApiKey: function(key) {
-                this.apiKey = key;
-                localStorage.setItem('geminiApiKey', key);
-            },
-
-            getApiKey: function() {
-                return this.apiKey;
-            },
-
-            async generateResponse(userMessage) {
-                if (!this.apiKey) {
-                    throw new Error('Please enter your Google Gemini API key first! Get it from: https://aistudio.google.com/');
-                }
-
-                try {
-                    const response = await fetch(`${this.baseURL}?key=${this.apiKey}`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            contents: [{
-                                parts: [{
-                                    text: `You are MateBot, a helpful AI assistant for LearnMate educational platform. 
-                                    User is asking: "${userMessage}"
-                                    
-                                    Provide a comprehensive, helpful response in a friendly tone. 
-                                    If it's related to education, learning, or courses, provide additional guidance.
-                                    Keep responses clear and well-structured.`
-                                }]
-                            }],
-                            generationConfig: {
-                                temperature: 0.7,
-                                topK: 40,
-                                topP: 0.95,
-                                maxOutputTokens: 1024,
-                            }
-                        })
-                    });
-
-                    if (!response.ok) {
-                        const errorData = await response.json();
-                        throw new Error(errorData.error?.message || 'API request failed');
-                    }
-
-                    const data = await response.json();
-                    
-                    if (data.candidates && data.candidates[0] && data.candidates[0].content) {
-                        return data.candidates[0].content.parts[0].text;
-                    } else {
-                        throw new Error('Invalid response format from API');
-                    }
-                } catch (error) {
-                    throw new Error(`Gemini API Error: ${error.message}`);
-                }
-            }
-        };
-
-        const mateBot = {
-            isVisible: false,
-            messages: [],
-
-            init: function() {
-                this.bindEvents();
-                this.loadMessages();
-                this.loadApiKey();
-            },
-
-            bindEvents: function() {
-                const toggleBtn = document.getElementById('matebotToggle');
-                const sendBtn = document.getElementById('matebotSend');
-                const input = document.getElementById('matebotInput');
-                const quickActions = document.querySelectorAll('.matebot-quick-action');
-
-                if (toggleBtn) toggleBtn.addEventListener('click', () => this.toggle());
-                if (sendBtn) sendBtn.addEventListener('click', () => this.sendMessage());
-                if (input) input.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') this.sendMessage();
-                });
-
-                if (quickActions) {
-                    quickActions.forEach(button => {
-                        button.addEventListener('click', (e) => {
-                            const question = e.target.getAttribute('data-question');
-                            document.getElementById('matebotInput').value = question;
-                            this.sendMessage();
-                        });
-                    });
-                }
-            },
-
-            loadApiKey: function() {
-                const savedKey = geminiAI.getApiKey();
-                if (savedKey) {
-                    document.getElementById('geminiApiKey').value = savedKey;
-                }
-            },
-
-            toggle: function() {
-                const container = document.getElementById('matebotContainer');
-                this.isVisible = !this.isVisible;
-                
-                if (this.isVisible) {
-                    container.classList.remove('matebot-hidden');
-                    document.getElementById('matebotInput').focus();
-                    trackEvent('matebot', 'open_chat', 'user');
-                } else {
-                    container.classList.add('matebot-hidden');
-                }
-            },
-
-            async sendMessage() {
-                const input = document.getElementById('matebotInput');
-                const message = input.value.trim();
-                
-                if (!message) return;
-
-                this.addMessage(message, 'user');
-                input.value = '';
-                this.showTypingIndicator();
-                
-                try {
-                    const response = await geminiAI.generateResponse(message);
-                    this.removeTypingIndicator();
-                    this.addMessage(response, 'bot');
-                    trackEvent('matebot', 'send_message', 'gemini_success');
-                } catch (error) {
-                    this.removeTypingIndicator();
-                    this.addMessage(`❌ Error: ${error.message}`, 'bot');
-                    trackEvent('matebot', 'send_message', 'gemini_error');
-                }
-            },
-
-            addMessage: function(text, sender) {
-                const messagesContainer = document.getElementById('matebotMessages');
-                const messageDiv = document.createElement('div');
-                messageDiv.className = `matebot-message ${sender}-message`;
-                messageDiv.innerHTML = text.replace(/\n/g, '<br>');
-                
-                messagesContainer.appendChild(messageDiv);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-                
-                this.messages.push({ text, sender, timestamp: new Date() });
-                this.saveMessages();
-            },
-
-            showTypingIndicator: function() {
-                const messagesContainer = document.getElementById('matebotMessages');
-                const typingDiv = document.createElement('div');
-                typingDiv.className = 'matebot-typing';
-                typingDiv.id = 'typingIndicator';
-                typingDiv.innerHTML = `
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                `;
-                
-                messagesContainer.appendChild(typingDiv);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            },
-
-            removeTypingIndicator: function() {
-                const typingIndicator = document.getElementById('typingIndicator');
-                if (typingIndicator) {
-                    typingIndicator.remove();
-                }
-            },
-
-            saveMessages: function() {
-                if (this.messages.length > 50) {
-                    this.messages = this.messages.slice(-50);
-                }
-                localStorage.setItem('matebotMessages', JSON.stringify(this.messages));
-            },
-
-            loadMessages: function() {
-                const saved = localStorage.getItem('matebotMessages');
-                if (saved) {
-                    this.messages = JSON.parse(saved);
-                    this.messages.forEach(msg => {
-                        this.addMessage(msg.text, msg.sender);
-                    });
-                }
-            }
-        };
-
-        function saveApiKey() {
-            const apiKeyInput = document.getElementById('geminiApiKey');
-            const apiKey = apiKeyInput.value.trim();
-            
-            if (!apiKey) {
-                showNotification('Please enter a valid API key', 'error');
-                return;
-            }
-
-            geminiAI.setApiKey(apiKey);
-            showNotification('API key saved successfully!');
-            
-            // Test the API key
-            mateBot.addMessage('🔐 API key saved! Testing connection...', 'bot');
-            setTimeout(async () => {
-                try {
-                    await geminiAI.generateResponse('Hello');
-                    mateBot.addMessage('✅ Connection successful! You can now ask me anything!', 'bot');
-                } catch (error) {
-                    mateBot.addMessage(`❌ Connection failed: ${error.message}`, 'bot');
-                }
-            }, 1000);
-        }
-
-        // ===== PWA INSTALL PROMPT =====
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            document.getElementById('installBtn').style.display = 'block';
-        });
-
-        document.getElementById('installBtn').addEventListener('click', () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then(() => {
-                    document.getElementById('installBtn').style.display = 'none';
-                });
-            }
-        });
-
-        // ===== ANALYTICS =====
-        function trackEvent(category, action, label) {
-            const analytics = JSON.parse(localStorage.getItem('analytics')) || [];
-            analytics.push({
-                timestamp: new Date().toISOString(),
-                category,
-                action,
-                label
-            });
-            localStorage.setItem('analytics', JSON.stringify(analytics));
-        }
-
     </script>
 </body>
 </html>
