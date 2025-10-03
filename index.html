@@ -1180,7 +1180,7 @@
             <div class="matebot-avatar">MB</div>
             <div>
                 <h3 style="margin: 0; font-size: 16px;">MateBot AI</h3>
-                <div class="matebot-status">Online • Powered by Google Gemini</div>
+                <div class="matebot-status">Online • Powered by Google Gemini Pro</div>
             </div>
         </div>
         
@@ -1228,12 +1228,12 @@
     </div>
 
     <script>
-        // ===== GOOGLE GEMINI AI INTEGRATION - UPDATED FIXED VERSION =====
+        // ===== GOOGLE GEMINI AI INTEGRATION - FIXED VERSION =====
         const geminiAI = {
             apiKey: localStorage.getItem('geminiApiKey') || '',
             
-            // ✅ UPDATED WORKING API ENDPOINT
-            baseURL: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent',
+            // ✅ CORRECTED API ENDPOINT - gemini-pro model use करें
+            baseURL: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent',
 
             setApiKey: function(key) {
                 this.apiKey = key;
@@ -1249,32 +1249,47 @@
                     throw new Error('Please enter your Google Gemini API key first! Get it from: https://aistudio.google.com/');
                 }
 
-                const response = await fetch(`${this.baseURL}?key=${this.apiKey}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        contents: [{
-                            parts: [{
-                                text: `You are MateBot, a helpful AI assistant for LearnMate educational platform. 
-                                User is asking: "${userMessage}"
-                                
-                                Provide a comprehensive, helpful response in a friendly tone. 
-                                If it's related to education, learning, or courses, provide additional guidance.
-                                Keep responses clear and well-structured.`
-                            }]
-                        }]
-                    })
-                });
+                try {
+                    const response = await fetch(`${this.baseURL}?key=${this.apiKey}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            contents: [{
+                                parts: [{
+                                    text: `You are MateBot, a helpful AI assistant for LearnMate educational platform. 
+                                    User is asking: "${userMessage}"
+                                    
+                                    Provide a comprehensive, helpful response in a friendly tone. 
+                                    If it's related to education, learning, or courses, provide additional guidance.
+                                    Keep responses clear and well-structured.`
+                                }]
+                            }],
+                            generationConfig: {
+                                temperature: 0.7,
+                                topK: 40,
+                                topP: 0.95,
+                                maxOutputTokens: 1024,
+                            }
+                        })
+                    });
 
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.error?.message || 'API request failed');
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.error?.message || 'API request failed');
+                    }
+
+                    const data = await response.json();
+                    
+                    if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+                        return data.candidates[0].content.parts[0].text;
+                    } else {
+                        throw new Error('Invalid response format from API');
+                    }
+                } catch (error) {
+                    throw new Error(`Gemini API Error: ${error.message}`);
                 }
-
-                const data = await response.json();
-                return data.candidates[0].content.parts[0].text;
             }
         };
 
