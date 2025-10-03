@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LearnMate - Free Online Courses | Maths, Science, Programming</title>
+    <title>LearnMate - NCERT Solutions, CBSE Sample Papers, Important Questions</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="LearnMate - India's best free educational platform. Master Maths, Science, Programming with expert teachers. 100% Free courses with certificates.">
-    <meta name="keywords" content="learnmate, free online courses, maths class 10, science class 10, python programming, web development, digital marketing, english speaking">
+    <meta name="description" content="LearnMate - Free NCERT Solutions, CBSE Sample Papers, Important Questions for Class 10, 9, 8, 7, 6. Get expert solutions for Maths, Science, English and more.">
+    <meta name="keywords" content="ncert solutions, cbse sample papers, class 10 maths, class 10 science, important questions, revision notes, learnmate">
     <meta name="author" content="LearnMate Education">
     
     <style>
@@ -21,421 +21,485 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: #f8f9fa;
+            background: #fff;
+        }
+
+        /* Header */
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 15px 0;
+            border-bottom: 3px solid #3498db;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            color: #3498db;
+            font-size: 28px;
+        }
+
+        .logo span {
+            color: #e74c3c;
         }
 
         /* Navigation */
-        .navbar {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
+        .main-nav {
+            background: #34495e;
+            padding: 12px 0;
         }
 
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 70px;
         }
 
-        .logo h2 {
-            color: #007bff;
-            font-size: 24px;
-        }
-
-        .nav-menu {
-            display: flex;
+        .main-nav ul {
             list-style: none;
-            align-items: center;
+            display: flex;
             gap: 30px;
         }
 
-        .nav-menu a {
+        .main-nav a {
+            color: white;
             text-decoration: none;
-            color: #333;
             font-weight: 500;
             transition: color 0.3s;
         }
 
-        .nav-menu a:hover {
-            color: #007bff;
+        .main-nav a:hover {
+            color: #3498db;
+        }
+
+        /* Main Content Layout */
+        .main-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 30px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .sidebar h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 18px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 8px;
+        }
+
+        .sidebar a {
+            color: #34495e;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            padding: 5px 0;
+        }
+
+        .sidebar a:hover {
+            color: #3498db;
+        }
+
+        /* Content Area */
+        .content {
+            flex: 1;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #3498db, #2c3e50);
             color: white;
-            padding: 150px 0 100px;
+            padding: 40px;
+            border-radius: 10px;
+            margin-bottom: 30px;
             text-align: center;
-            margin-top: 70px;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
+        .hero h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
         }
 
         .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
+            font-size: 1.1rem;
             opacity: 0.9;
         }
 
-        .cta-button {
-            background: #ff6b6b;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.1rem;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-        }
-
-        /* Features Section */
-        .features {
-            padding: 80px 0;
-            background: white;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            color: #333;
-        }
-
-        .features-grid {
+        /* Cards Grid */
+        .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 25px;
+            margin: 30px 0;
         }
 
-        .feature-card {
-            background: #f8f9fa;
-            padding: 40px;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-card h3 {
-            color: #007bff;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        /* Courses Section */
-        .courses {
-            padding: 80px 0;
-            background: #f8f9fa;
-        }
-
-        .course-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .course-card {
+        .card {
             background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            border: 1px solid #e1e1e1;
+            border-radius: 8px;
+            padding: 25px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #3498db;
         }
 
-        .course-card:hover {
+        .card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .course-card h3 {
+        .card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
             font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: #333;
         }
 
-        .course-card p {
+        .card p {
             color: #666;
             margin-bottom: 15px;
         }
 
-        .course-meta {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            font-size: 0.9rem;
-        }
-
-        .price {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #28a745;
-        }
-
-        .view-course {
-            background: #007bff;
+        .card-btn {
+            background: #3498db;
             color: white;
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
-            width: 100%;
+            text-decoration: none;
+            display: inline-block;
         }
 
-        /* Stats Section */
-        .stats {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
+        /* Chapter List */
+        .chapter-list {
+            background: white;
+            border: 1px solid #e1e1e1;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
         }
 
-        .stats-grid {
+        .chapter-list h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .chapter-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            gap: 15px;
         }
 
-        .stat-card h3 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+        .chapter-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 3px solid #3498db;
+        }
+
+        .chapter-item a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .chapter-item a:hover {
+            color: #3498db;
         }
 
         /* Footer */
         .footer {
-            background: #333;
+            background: #2c3e50;
             color: white;
-            text-align: center;
             padding: 40px 0;
+            margin-top: 50px;
         }
 
-        .footer a {
-            color: #007bff;
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-section h4 {
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .footer-section a:hover {
+            color: #3498db;
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 20px;
+            background: #34495e;
+            color: white;
+            margin-top: 30px;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .breadcrumb a {
+            color: #3498db;
             text-decoration: none;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
             <div class="logo">
-                <h2>LearnMate 🎓</h2>
+                <h1>Learn<span>Mate</span>.in</h1>
             </div>
-            <ul class="nav-menu">
+            <div class="tagline">
+                <p>Free NCERT Solutions & Educational Resources</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="courses.html">Courses</a></li>
+                <li><a href="ncert-solutions.html">NCERT Solutions</a></li>
+                <li><a href="cbse-sample-papers.html">CBSE Sample Papers</a></li>
+                <li><a href="important-questions.html">Important Questions</a></li>
+                <li><a href="revision-notes.html">Revision Notes</a></li>
                 <li><a href="blog.html">Blog</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html">About Us</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Learn Without Limits</h1>
-            <p>Master new skills with India's best FREE educational platform. Expert courses with certificates.</p>
-            <button class="cta-button" onclick="location.href='courses.html'">Start Learning Today</button>
-            
-            <div style="margin-top: 30px;">
-                <p>⭐ 4.9/5 Rating • 🎓 10,000+ Students • 📚 50+ Courses • 🏆 2,500+ Certificates</p>
-            </div>
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="nav-container">
+            <a href="index.html">Home</a> &gt; 
+            <span>NCERT Solutions for Class 10</span>
         </div>
-    </section>
+    </div>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <h2>Why Choose LearnMate?</h2>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>🎓 Free Certificates</h3>
-                    <p>Get recognized with free certificates upon course completion to showcase your skills.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <h3>👨‍🏫 Expert Teachers</h3>
-                    <p>Learn from industry experts and experienced educators with proven track records.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <h3>📱 Learn Anywhere</h3>
-                    <p>Access courses on any device - desktop, tablet, or mobile at your own pace.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <h3>💼 Career Focused</h3>
-                    <p>Courses designed to help you build real-world skills and advance your career.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <h3>🔄 Updated Content</h3>
-                    <p>Regularly updated course material to keep up with industry trends and changes.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <h3>👥 Community Support</h3>
-                    <p>Join our learning community for doubt solving and peer-to-peer learning.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h3>Classes</h3>
+            <ul>
+                <li><a href="class12.html">Class 12</a></li>
+                <li><a href="class11.html">Class 11</a></li>
+                <li><a href="class10.html">Class 10</a></li>
+                <li><a href="class9.html">Class 9</a></li>
+                <li><a href="class8.html">Class 8</a></li>
+            </ul>
 
-    <!-- Courses Section -->
-    <section class="courses">
-        <div class="container">
-            <h2>Popular Courses</h2>
-            
-            <div class="course-grid">
-                <!-- Mathematics -->
-                <div class="course-card">
+            <h3>Subjects</h3>
+            <ul>
+                <li><a href="class10-maths.html">Mathematics</a></li>
+                <li><a href="class10-science.html">Science</a></li>
+                <li><a href="class10-english.html">English</a></li>
+                <li><a href="class10-hindi.html">Hindi</a></li>
+                <li><a href="class10-sst.html">Social Science</a></li>
+            </ul>
+
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="cbse-sample-papers.html">Sample Papers</a></li>
+                <li><a href="previous-year-papers.html">Previous Year Papers</a></li>
+                <li><a href="mcq-questions.html">MCQ Questions</a></li>
+                <li><a href="formula-sheets.html">Formula Sheets</a></li>
+            </ul>
+        </aside>
+
+        <!-- Content Area -->
+        <main class="content">
+            <!-- Hero Section -->
+            <section class="hero">
+                <h2>NCERT Solutions for Class 10</h2>
+                <p>Get step-by-step solutions for all NCERT textbook questions. Perfect for CBSE board exam preparation.</p>
+            </section>
+
+            <!-- Subject Cards -->
+            <div class="cards-grid">
+                <div class="card">
                     <h3>Mathematics Class 10</h3>
-                    <p>Complete CBSE syllabus with 500+ practice questions, video lectures, and mock tests.</p>
-                    <div class="course-meta">
-                        <span class="duration">⏱️ 8 Weeks</span>
-                        <span class="level">🎯 Class 10</span>
-                    </div>
-                    <span class="price">FREE</span>
-                    <button class="view-course" onclick="location.href='mathematics-class10.html'">View Course</button>
+                    <p>Complete NCERT solutions for all 15 chapters with detailed explanations and practice questions.</p>
+                    <a href="class10-maths.html" class="card-btn">View Solutions</a>
                 </div>
 
-                <!-- Science -->
-                <div class="course-card">
+                <div class="card">
                     <h3>Science Class 10</h3>
-                    <p>Master Physics, Chemistry, Biology with experiments, diagrams, and practical knowledge.</p>
-                    <div class="course-meta">
-                        <span class="duration">⏱️ 10 Weeks</span>
-                        <span class="level">🎯 Class 10</span>
-                    </div>
-                    <span class="price">FREE</span>
-                    <button class="view-course" onclick="location.href='science-class10.html'">View Course</button>
+                    <p>Physics, Chemistry, Biology NCERT solutions with diagrams, experiments, and important concepts.</p>
+                    <a href="class10-science.html" class="card-btn">View Solutions</a>
                 </div>
 
-                <!-- Python -->
-                <div class="course-card">
-                    <h3>Python Programming</h3>
-                    <p>Learn Python from basics to advanced with real-world projects and coding exercises.</p>
-                    <div class="course-meta">
-                        <span class="duration">⏱️ 6 Weeks</span>
-                        <span class="level">🎯 Beginner</span>
-                    </div>
-                    <span class="price">FREE</span>
-                    <button class="view-course" onclick="location.href='python-programming.html'">View Course</button>
-                </div>
-
-                <!-- Web Development -->
-                <div class="course-card">
-                    <h3>Web Development</h3>
-                    <p>Build websites with HTML, CSS, JavaScript. Create responsive web applications.</p>
-                    <div class="course-meta">
-                        <span class="duration">⏱️ 8 Weeks</span>
-                        <span class="level">🎯 Beginner</span>
-                    </div>
-                    <span class="price">FREE</span>
-                    <button class="view-course" onclick="location.href='web-development.html'">View Course</button>
-                </div>
-
-                <!-- Digital Marketing -->
-                <div class="course-card">
-                    <h3>Digital Marketing</h3>
-                    <p>Master SEO, Social Media, Google Ads. Learn to create successful marketing campaigns.</p>
-                    <div class="course-meta">
-                        <span class="duration">⏱️ 4 Weeks</span>
-                        <span class="level">🎯 Intermediate</span>
-                    </div>
-                    <span class="price">FREE</span>
-                    <button class="view-course" onclick="location.href='digital-marketing.html'">View Course</button>
-                </div>
-
-                <!-- English Speaking -->
-                <div class="course-card">
-                    <h3>English Speaking</h3>
-                    <p>Improve spoken English with daily practice sessions, grammar rules, and fluency exercises.</p>
-                    <div class="course-meta">
-                        <span class="duration">⏱️ 4 Weeks</span>
-                        <span class="level">🎯 Beginner</span>
-                    </div>
-                    <span class="price">FREE</span>
-                    <button class="view-course" onclick="location.href='english-speaking.html'">View Course</button>
+                <div class="card">
+                    <h3>English Class 10</h3>
+                    <p>First Flight and Footprints without Feet solutions with grammar and writing skills practice.</p>
+                    <a href="class10-english.html" class="card-btn">View Solutions</a>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container">
-            <h2>Our Impact</h2>
-            
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h3>10,000+</h3>
-                    <p>Students Learning</p>
-                </div>
-                
-                <div class="stat-card">
-                    <h3>50+</h3>
-                    <p>Courses Available</p>
-                </div>
-                
-                <div class="stat-card">
-                    <h3>2,500+</h3>
-                    <p>Certificates Issued</p>
-                </div>
-                
-                <div class="stat-card">
-                    <h3>4.9/5</h3>
-                    <p>Student Rating</p>
+            <!-- Mathematics Chapters -->
+            <div class="chapter-list">
+                <h3>Mathematics Class 10 - Chapter-wise Solutions</h3>
+                <div class="chapter-grid">
+                    <div class="chapter-item">
+                        <a href="real-numbers.html">Chapter 1: Real Numbers</a>
+                    </div>
+                    <div class="chapter-item">
+                        <a href="polynomials.html">Chapter 2: Polynomials</a>
+                    </div>
+                    <div class="chapter-item">
+                        <a href="linear-equations.html">Chapter 3: Linear Equations</a>
+                    </div>
+                    <div class="chapter-item">
+                        <a href="quadratic-equations.html">Chapter 4: Quadratic Equations</a>
+                    </div>
+                    <div class="chapter-item">
+                        <a href="arithmetic-progressions.html">Chapter 5: Arithmetic Progressions</a>
+                    </div>
+                    <div class="chapter-item">
+                        <a href="triangles.html">Chapter 6: Triangles</a>
+                    </div>
+                    <div class="chapter-item">
+                        <a href="coordinate-geometry.html">Chapter 7: Coordinate Geometry</a>
+                    </div>
+                    <div class="chapter-item">
+                        <a href="trigonometry.html">Chapter 8: Trigonometry</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+
+            <!-- Science Chapters -->
+            <div class="chapter-list">
+                <h3>Science Class 10 - Chapter-wise Solutions</h3>
+                <div class="chapter-grid">
+                    <div class="chapter-item">
+                        <a href="chemical-reactions.html">Chemical Reactions</a>
+                    </div>
+                    <div class="chapter-item">
+                        <a href="acids-bases.html">Acids, Bases & Salts</a>
+                    </div>
+                    <div class="chapter-item">
+                        <a href="metals-nonmetals.html">Metals & Non-metals</a>
+                    </div>
+                    <div class="chapter-item">
+                        <a href="carbon-compounds.html">Carbon Compounds</a>
+                    </div>
+                    <div class="chapter-item">
+                        <a href="life-processes.html">Life Processes</a>
+                    </div>
+                    <div class="chapter-item">
+                        <a href="control-coordination.html">Control & Coordination</a>
+                    </div>
+                    <div class="chapter-item">
+                        <a href="electricity.html">Electricity</a>
+                    </div>
+                    <div class="chapter-item">
+                        <a href="magnetic-effects.html">Magnetic Effects</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 LearnMate. All rights reserved.</p>
-            <p>📧 Contact: learnmate@education.com | 📱 WhatsApp: +91 8960002095</p>
-            <p><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-conditions.html">Terms & Conditions</a></p>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>NCERT Solutions</h4>
+                <a href="class6-solutions.html">Class 6 Solutions</a>
+                <a href="class7-solutions.html">Class 7 Solutions</a>
+                <a href="class8-solutions.html">Class 8 Solutions</a>
+                <a href="class9-solutions.html">Class 9 Solutions</a>
+                <a href="class10-solutions.html">Class 10 Solutions</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>Study Materials</h4>
+                <a href="sample-papers.html">Sample Papers</a>
+                <a href="important-questions.html">Important Questions</a>
+                <a href="revision-notes.html">Revision Notes</a>
+                <a href="formula-sheets.html">Formula Sheets</a>
+                <a href="mcq-questions.html">MCQ Questions</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms-conditions.html">Terms & Conditions</a>
+                <a href="sitemap.html">Sitemap</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <p>Email: contact@learnmate.in</p>
+                <p>Phone: +91 8960002095</p>
+                <p>Address: Delhi, India</p>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2024 LearnMate.in. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Simple analytics tracking
+        // Simple page tracking
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Homepage loaded');
-            // Track page view for analytics
+            console.log('LearnMate CBSE page loaded');
         });
 
-        // Enrollment function
-        function enrollCourse(courseId) {
-            alert('🎉 Successfully enrolled! You can now access the course.');
-            // In real implementation, redirect to course page
+        // Navigation functionality
+        function navigateTo(page) {
+            window.location.href = page;
         }
     </script>
 </body>
